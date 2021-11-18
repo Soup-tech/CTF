@@ -28,7 +28,7 @@ Based on the hint provided for the problem, apostrophes are my primary suspect a
 After catching the request in BurpSuite, I began trying variations of SQL injections. I also began some research on SQLi that bypassed logins. Alas, I could not find any that didn't contain an apostrophe. However, after some time I realized that there is more than one field I could try injecting into.<br>
 The first injection I performed in the username field was <i>admin'--:password</i> which would perform the following query:
 ```SQL
-	SELECT * FROM users WHERE username='admin'-- AND password='$password'
+	SELECT * FROM users WHERE username='admin''-- AND password='$password'
 ```
 
 ### Flag
