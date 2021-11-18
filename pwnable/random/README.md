@@ -33,7 +33,7 @@ Random
 
 > The goal is to get "system" to run and cat the flag. Our result from XOR'ing our input and "random" must equal 0xdeadbeef
 > Here, the random number generator is never seeded, thus the value of 'random' is constant.
-> If we consider 0xdeadbeef as the 'ciphertext' and 'random' as the plaintext, we can deduce the key.
+> If we consider 0xdeadbeef as the 'ciphertext' and 'random' as the plaintext, we can deduce the key. This is known from basic cryptography and is the weakness when using just XOR 
 
 > First determine the value of random
 
