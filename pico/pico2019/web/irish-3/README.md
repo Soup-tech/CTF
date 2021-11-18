@@ -37,7 +37,7 @@ Odd looking password. This probably means that my input is being encrypted befor
 Option 1 probably the most likely scenario because modern day login forms work in a similar way. Before anything though I need to figure out the encryption scheme.<br>
 After approximatly 30 seconds, I have cracked the encryption. This is a ROT13 encryption scheme.<br>
 <br>
-At first I thought I had to guess the password. After a few tries I decided to write a small brute forcing script: <a href="ex.py">ex.py</b>.<br>
+At first I thought I had to guess the password. After a few tries I decided to write a small brute forcing script: <a href="ex.py">ex.py</a>.<br>
 While that was running I decided to go back to trying SQLi. Inputting <i>' OR 1=1-- </i> returned 
 ```SQL
 	SQL query: SELECT * FROM admin where password = '' BE 1=1--'
