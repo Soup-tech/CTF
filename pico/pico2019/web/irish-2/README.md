@@ -24,7 +24,7 @@ I suspect that the SQL query is the same as before:
 	SELECT * FROM users WHERE username='$username' AND password='$password'
 ```
 <br>
-Based on the hint provided for the problem, apostrephes are my primary suspect as to which characters are being filtered.<br>
+Based on the hint provided for the problem, apostrophes are my primary suspect as to which characters are being filtered.<br>
 After catching the request in BurpSuite, I began trying variations of SQL injections. I also began some research on SQLi that bypassed logins. Alas, I could not find any that didn't contain an apostrophe. However, after some time I realized that there is more than one field I could try injecting into.<br>
 The first injection I performed in the username field was <i>admin'--:password</i> which would perform the following query:
 ```SQL
