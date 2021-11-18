@@ -41,7 +41,9 @@ At first I thought I had to guess the password. After a few tries I decided to w
 While that was running I decided to go back to trying SQLi. Inputting <i>' OR 1=1-- </i> returned 
 ```SQL
 	SQL query: SELECT * FROM admin where password = '' BE 1=1--'
-``` 
+```
+
+
 The next logical thing would be to try <i>' BE 1=1-- </i> since that was the ROT13 version. This got me the flag. <br>
 To bad, I really like writting custom exploits (not that a brute forcer is much of an exploit)<br>
 
