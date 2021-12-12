@@ -37,10 +37,13 @@ Hello John!
 ### Challenge
 > After finding Santa's account, what is their position at the company?<br>
 The Boss!<br>
+
 > After finding McStocker's account, what is their position in the company?<br>
 Build Manager<br>
+
 > After finding the account responsible for tampering, what is their position in the company?<br>
 Mischief Manager<br>
+
 > What is the received flag when McSkidy fixes the Inventory Management System?<br>
 THM{AOC_IDOR_2B34BHI3}<br>
 
@@ -93,8 +96,8 @@ Below is a summary of how cookie values could be manipulated.<br>
 
 ### Challenge
 
-> What is the name of the new cookie that was created for your account?
-user-auth
+> What is the name of the new cookie that was created for your account?<br>
+user-auth<br>
 
 > What encoding type was used for the cookie value?<br>
 hexadecimal<br>
