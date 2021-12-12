@@ -116,3 +116,35 @@ Application<br>
 
 ### Conclusion
 Learn more about authentication bypass here: https://tryhackme.com/jr/authenticationbypass  
+
+## Christmas Blackout
+
+### Content Discovery
+Content is the assets and inner workings of the application that we are testing. Contents can be files, folders, or pathways that weren't necessarily intended to be accessed by the general public. Content discovery is a useful technique to have in our arsenal because it allows us to find things that we aren't supposed to see. For example, we may be able to find:<br>
+* Configuration Files
+* Passwords and Secrets
+* Backups
+* Content management systems
+* Administrative dashboard or portals
+We can use applications such as dirbuster or gobuster to scan for directories and files on a web server.<br>
+Here is a good place to find wordlists. Your ability to find content is only as good as your wordlist: https://github.com/danielmiessler/SecLists
+
+### Challenge
+> Using a common wordlist for discovering content, enumerate http://10.10.14.123 to find the location of the administrator dashboard. What is the name of the folder?
+I ran:
+```bash
+gobuster dir -u http://10.10.14.123 -t 50 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x html,php -o christmas.gob
+
+/index.html           (Status: 200) [Size: 5061]
+/admin                (Status: 301) [Size: 312] [--> http://10.10.14.123/admin/]
+/assets               (Status: 301) [Size: 313] [--> http://10.10.14.123/assets/]
+/javascript           (Status: 301) [Size: 317] [--> http://10.10.14.123/javascript/]
+```
+admin<br>
+
+> In your web browser, try some default credentials on the newly discovered login form for the "administrator" user. What is the password?
+administrator:administrator<br>
+
+> Access the admin panel. What is the value of the flag?
+THM{ADM1N_AC3SS}<br>
+
