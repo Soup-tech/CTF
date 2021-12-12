@@ -99,11 +99,10 @@ Below is a summary of how cookie values could be manipulated.<br>
 5. Re-encode the cookie and insert the cookie into the value space; this can be done by double-clicking the value box.
 6. Action the cookie; this can be done by refreshing the page or logging in.
 
-### Connection
-https://static-labs.tryhackme.cloud/sites/aoc-cookies/
+### Challenge
 
 > What is the name of the new cookie that was created for your account?
-```user-auth```
+user-auth
 > What encoding type was used for the cookie value?
 ```hexadecimal```
 > What object format is the data of the cookie stored in?
