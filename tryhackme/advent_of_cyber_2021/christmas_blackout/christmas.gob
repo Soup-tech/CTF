@@ -1,0 +1,4 @@
+/index.html           (Status: 200) [Size: 5061]
+/admin                (Status: 301) [Size: 312] [--> http://10.10.14.123/admin/]
+/assets               (Status: 301) [Size: 313] [--> http://10.10.14.123/assets/]
+/javascript           (Status: 301) [Size: 317] [--> http://10.10.14.123/javascript/]
