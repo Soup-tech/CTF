@@ -103,16 +103,17 @@ Below is a summary of how cookie values could be manipulated.<br>
 
 > What is the name of the new cookie that was created for your account?
 user-auth
+
 > What encoding type was used for the cookie value?
-```hexadecimal```
+hexadecimal
 > What object format is the data of the cookie stored in?
-```JSON```
+JSON
 > What is the value of the administrator cookie? (username = admin)
-```7b636f6d70616e793a2022546865204265737420466573746976616c20436f6d70616e79222c206973726567697374657265643a2254727565222c20757365726e616d653a2261646d696e227d```
+7b636f6d70616e793a2022546865204265737420466573746976616c20436f6d70616e79222c206973726567697374657265643a2254727565222c20757365726e616d653a2261646d696e227d
 > What team environment is not responding?
-```HR```
+HR
 > What team environment is not responding?
-```Application```
+Application
 
 ### Conclusion
 Learn more about authentication bypass here: https://tryhackme.com/jr/authenticationbypass  
