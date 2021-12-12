@@ -100,7 +100,7 @@ Below is a summary of how cookie values could be manipulated.<br>
 6. Action the cookie; this can be done by refreshing the page or logging in.
 
 ### Connection
-```https://static-labs.tryhackme.cloud/sites/aoc-cookies/```
+https://static-labs.tryhackme.cloud/sites/aoc-cookies/
 
 > What is the name of the new cookie that was created for your account?
 ```user-auth```
