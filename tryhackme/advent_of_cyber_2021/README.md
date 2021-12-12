@@ -93,8 +93,8 @@ Below is a summary of how cookie values could be manipulated.<br>
 
 ### Challenge
 
-> What is the name of the new cookie that was created for your account?<br>
-user-auth<br>
+> What is the name of the new cookie that was created for your account?
+user-auth
 
 > What encoding type was used for the cookie value?<br>
 hexadecimal<br>
