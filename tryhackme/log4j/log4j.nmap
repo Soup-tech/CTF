@@ -1,0 +1,8 @@
+Nmap scan report for 10.10.98.169
+Host is up (0.083s latency).
+Not shown: 65532 closed ports
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+111/tcp  open  rpcbind 2-4 (RPC #100000)
+8983/tcp open  http    Apache Solr
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
