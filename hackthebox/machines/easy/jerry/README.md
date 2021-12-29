@@ -1,7 +1,7 @@
 # Jerry
 
 ## Information Gathering
-10.10.10.95
+10.10.10.95<br>
 Apache Tomcat/7.0.88
 
 ## Enumeration
@@ -97,5 +97,5 @@ nc -lnvp 1337
 
 I can navigate directly to C:\Users\Administrator\Desktop\flags and cat "2 for the price of one.txt" which gives both user and root flag. I need to do more studying on Windows privilege escalation anyways...
 
-user.txt : 7004dbcef0f854e0fb401875f26ebd00
+user.txt : 7004dbcef0f854e0fb401875f26ebd00<br>
 root.txt : 04a8b36e1545a455393d067e772fe90e
