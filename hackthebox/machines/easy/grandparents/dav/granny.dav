@@ -1,0 +1,44 @@
+********************************************************
+ Testing DAV connection
+OPEN		SUCCEED:		http://10.10.10.15
+********************************************************
+NOTE	Random string for this session: BM7s7z
+********************************************************
+ Creating directory
+MKCOL		SUCCEED:		Created http://10.10.10.15/DavTestDir_BM7s7z
+********************************************************
+ Sending test files
+PUT	shtml	FAIL
+PUT	jhtml	SUCCEED:	http://10.10.10.15/DavTestDir_BM7s7z/davtest_BM7s7z.jhtml
+PUT	html	SUCCEED:	http://10.10.10.15/DavTestDir_BM7s7z/davtest_BM7s7z.html
+PUT	pl	SUCCEED:	http://10.10.10.15/DavTestDir_BM7s7z/davtest_BM7s7z.pl
+PUT	jsp	SUCCEED:	http://10.10.10.15/DavTestDir_BM7s7z/davtest_BM7s7z.jsp
+PUT	cgi	FAIL
+PUT	asp	FAIL
+PUT	aspx	FAIL
+PUT	php	SUCCEED:	http://10.10.10.15/DavTestDir_BM7s7z/davtest_BM7s7z.php
+PUT	txt	SUCCEED:	http://10.10.10.15/DavTestDir_BM7s7z/davtest_BM7s7z.txt
+PUT	cfm	SUCCEED:	http://10.10.10.15/DavTestDir_BM7s7z/davtest_BM7s7z.cfm
+********************************************************
+ Checking for test file execution
+EXEC	jhtml	FAIL
+EXEC	html	SUCCEED:	http://10.10.10.15/DavTestDir_BM7s7z/davtest_BM7s7z.html
+EXEC	pl	FAIL
+EXEC	jsp	FAIL
+EXEC	php	FAIL
+EXEC	txt	SUCCEED:	http://10.10.10.15/DavTestDir_BM7s7z/davtest_BM7s7z.txt
+EXEC	cfm	FAIL
+
+********************************************************
+/usr/bin/davtest Summary:
+Created: http://10.10.10.15/DavTestDir_BM7s7z
+PUT File: http://10.10.10.15/DavTestDir_BM7s7z/davtest_BM7s7z.jhtml
+PUT File: http://10.10.10.15/DavTestDir_BM7s7z/davtest_BM7s7z.html
+PUT File: http://10.10.10.15/DavTestDir_BM7s7z/davtest_BM7s7z.pl
+PUT File: http://10.10.10.15/DavTestDir_BM7s7z/davtest_BM7s7z.jsp
+PUT File: http://10.10.10.15/DavTestDir_BM7s7z/davtest_BM7s7z.php
+PUT File: http://10.10.10.15/DavTestDir_BM7s7z/davtest_BM7s7z.txt
+PUT File: http://10.10.10.15/DavTestDir_BM7s7z/davtest_BM7s7z.cfm
+Executes: http://10.10.10.15/DavTestDir_BM7s7z/davtest_BM7s7z.html
+Executes: http://10.10.10.15/DavTestDir_BM7s7z/davtest_BM7s7z.txt
+

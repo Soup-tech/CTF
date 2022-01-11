@@ -1,0 +1,11 @@
+# Nmap 7.92 scan initiated Sat Jan  8 00:57:12 2022 as: nmap -p 32376 -sC -sV -oN nmap/nginxatsu.nmap 139.59.188.27
+Nmap scan report for 139.59.188.27
+Host is up (0.012s latency).
+
+PORT      STATE SERVICE VERSION
+32376/tcp open  http    nginx
+| http-title: nginxatsu
+|_Requested resource was http://139.59.188.27:32376/auth/login
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sat Jan  8 00:57:31 2022 -- 1 IP address (1 host up) scanned in 18.95 seconds
