@@ -133,3 +133,45 @@ After that, you have a few resources to find vulnerabilities and exploits agains
 5. Google
 
 ## DLL Hijacking
+DLL hijacking is an effective technique that can allow you to inject code into an applicaitno. Some Window executables will use Dynamic Link Libraries (DLL) when running. DLLs are files that store additional functions that suppor tht emain funciton of the .exe file. DLL's however cannot be ran directly and require a .exe to run it. If we switch the legitmate DLL file with a specially crafted DLL file, our code will be run by the applicaiton. DLL hijacking requires an application (typically an exe file) that either has a missing DLL file, or where the search order can be used to insert the malicious DLL file. 
+
+### Introduction to DLL Files
+Something to keep in mind is that missing a DLL will not always result in an error. When launched, the application will look for DLL files it needs and, while a missing critical DLL file can stop the application from running, lesser important ones may not result in visible errors.<br>
+A DLL hijacking scenario consists of replacing a legitimate DLL file with a malicious DLL file that will be called by the executable and run. A successful DLL hijacking attack can be summarized as:
+1. An applicaiton that uses one or more DLL files
+2. A way to manipulate these DLL files
+Manipulation may include replaces an existing file or creating a file in the location where the applicaiton is looking for it.
+In summary , for standard desktop applications, Windows will follow one of the orders listed below depending on if the SafeDllSearchMode is enabled or not.<br>
+If SafeDllSearchMode is enabled, the search order is follow:
+1. The directory from which the application loaded
+2. The system directory. Use the GetSystemDirectory function to get the path of this directory
+3. The 16-bit system directory. There is no function that obtains the path of this directory, but it is searched. 
+4. The Windows directory. Use the GetWindowsDirectory function to get the path of this directory
+5. The current directory
+6. The directories that are listed in the PATH environment variable. Note that this does not include the per-applciation path specified by the App Paths registry key. The App Paths key is not sued when computing the DLL search path. 
+
+If SafeDllSearchMode is disabled, the search order is as follows:
+1. The directory from which the application loaded.
+2. The current directory.
+3. The system directory. Use the GetSystemDirectory function to get the path of this directory.
+4. The 16-bit system directory. There is no function that obtains the path of this directory, but it is searched.
+5. The Windows directory. Use the GetWindowsDirectory function to get the path of this directory.
+6. The directories that are listed in the PATH environment variable. Note that this does not include the per-application path specified by the App Paths registry key. The App Paths key is not used when computing the DLL search path.
+For example, if our application.exe requires the app.dll file to run, it will look for the app.dll file first in the directory from which it is launched. If this does not return any match for app.dll, the search will continue in the above-specified order. If the user privileges we have on the system allow us to write to any folder in the search order, we can have a possible DLL hijacking vulnerability. An important note is that the application should not be able to find the legitimate DLL before our modified DLL.<br>
+
+### Finding DLL Hijacking Vulnerabilities
+The first step is to use a tool you can use to find potential DLL hijacking vulnerabilities is Process Monitor (ProcMon). This software requires Admin rights, so this is something you will have to load on your test machine and conduct research. Look for .exe trying to launch certain .dll but cannot find said .dll. The second step is to create this missing .dll file. It is important that we have write permissions for any folder we wish to use for DLL hijacking.
+
+### Creating the Malicious DLL file
+An example of a potential DLL file is below:
+```C
+#include <windows.h>
+
+BOOL WINAPI DllMain (HANDLE hDll, DWORD dwReason, LPVOID lpReserved) {
+    if (dwReason == DLL_PROCESS_ATTACH) {
+        system("cmd.exe /k whoami > C:\\Temp\\dll.txt");
+        ExitProcess(0);
+    }
+    return TRUE;
+}
+```
