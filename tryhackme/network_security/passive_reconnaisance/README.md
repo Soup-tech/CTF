@@ -184,3 +184,15 @@ tryhackme.com.          300     IN      MX      10 alt4.aspmx.l.google.com.
 tryhackme.com.          300     IN      MX      1 aspmx.l.google.com.
 tryhackme.com.          300     IN      MX      5 alt1.aspmx.l.google.com.
 ```
+
+## DNSDumpster
+Domains may contain subdomains that can reveal more about a target. Subdomains are typically not maintained or updated regularly, making them for vulnerable. You can try bruteforcing subdomains but this may take some time. You can use <a href="https://dnsdumpster.com/">DNSDumpster</a>. Using the graph shows a better representation of the data DNSDumpster can provide.
+
+## Shodan.io
+<a href="https://www.shodan.io">Shodan.io</a> is one of the best tools for passive recon. Shodan tries to connect to every device reachable online to build a search engine of connected "things" in contrast with a search engine for web pages. From Shodan we can learn a few things:
+<ul>
+	<li>IP Address</li>
+	<li>Hosting comapany</li>
+	<li>Geographical Location</li>
+	<li>Server type and version</li>
+</ul>
