@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <h1>Soup-Tech's Captrue the Flag</h1>
+    <p>This repository contains writeups, techniques, and some tools for the various CTF competitions I have competed in. I mainly wanted to keep a record of all the cool things I learn in my cybersecurity journy. I'll will attempt to make some order in all of this chaos... but I make no promises :P</p>
+  </head>
+  <body>
+    
+  </body>
+</html>
+
 # Shortcuts
 
 ## General
