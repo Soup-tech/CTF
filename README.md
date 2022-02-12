@@ -15,7 +15,7 @@
         <th>OS</th>
       </tr>
       <tr>
-        <th>Lame</th>
+        <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/lame">Lame</a></th>
         <th>Easy</th>
         <th>Linux</th>
       </tr>
