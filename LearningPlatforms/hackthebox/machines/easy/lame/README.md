@@ -1,5 +1,5 @@
 # Lame
-<img src="assets/lame.png"/>
+<img src="assets/lame.png" width="100%"/>
 
 ## Information Gathering
 Lame<br>
