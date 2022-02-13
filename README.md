@@ -20,7 +20,7 @@
         <th>Linux</th>
       </tr>
       <tr>
-        <th>Bashed</th>
+        <th><a href="">Bashed</th>
         <th>Easy</th>
         <th>Linux</th>
       </tr>
