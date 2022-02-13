@@ -20,7 +20,7 @@
         <th>Linux</th>
       </tr>
       <tr>
-        <th><a href="">Bashed</th>
+        <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/bashed">Bashed</th>
         <th>Easy</th>
         <th>Linux</th>
       </tr>
