@@ -25,6 +25,11 @@
         <th>Linux</th>
       </tr>
       <tr>
+        <th>Legacy</th>
+        <th>Easy</th>
+        <th>Windows</th>
+      </tr>
+      <tr>
         <th>Blocky</th>
         <th>Easy</th>
         <th>Linux</th>
@@ -36,11 +41,6 @@
       </tr>
       <tr>
         <th>Beep</th>
-        <th>Easy</th>
-        <th>Linux</th>
-      </tr>
-      <tr>
-        <th>Lame</th>
         <th>Easy</th>
         <th>Linux</th>
       </tr>
