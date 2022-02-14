@@ -37,7 +37,12 @@
       <tr>
         <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/blue">Blue</a></th>
         <th>Easy</th>
-        <th>Windoes</th>
+        <th>Windows</th>
+      </tr>
+      <tr>
+        <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/medium/solidstate">SolidState</a></th>
+        <th>Medium</th>
+        <th>Linux</th>
       </tr>
     </table>
   </body>
