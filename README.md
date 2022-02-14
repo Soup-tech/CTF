@@ -25,7 +25,7 @@
         <th>Linux</th>
       </tr>
       <tr>
-        <th>Legacy</th>
+        <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/legacy">Legacy</a></th>
         <th>Easy</th>
         <th>Windows</th>
       </tr>
