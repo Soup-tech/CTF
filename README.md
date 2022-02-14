@@ -44,6 +44,11 @@
         <th>Medium</th>
         <th>Linux</th>
       </tr>
+      <tr>
+        <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/shocker">Shocker</a></th>
+        <th>Easy</th>
+        <th>Linux</th>
+      </tr>
     </table>
   </body>
 </html>
