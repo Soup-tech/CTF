@@ -37,7 +37,7 @@
       <tr>
         <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/blue">Blue</a></th>
         <th>Easy</th>
-        <th>Linux</th>
+        <th>Windoes</th>
       </tr>
     </table>
   </body>
