@@ -1,0 +1,23 @@
+# Nmap 7.92 scan initiated Mon Feb 14 18:09:26 2022 as: nmap -p80 --script=http-shellshock --script-args uri=/cgi-bin/user.sh -oN nmap/vulnerbility_scan.nmap 10.10.10.56
+Nmap scan report for 10.10.10.56
+Host is up (0.028s latency).
+
+PORT   STATE SERVICE
+80/tcp open  http
+| http-shellshock: 
+|   VULNERABLE:
+|   HTTP Shellshock vulnerability
+|     State: VULNERABLE (Exploitable)
+|     IDs:  CVE:CVE-2014-6271
+|       This web application might be affected by the vulnerability known
+|       as Shellshock. It seems the server is executing commands injected
+|       via malicious HTTP headers.
+|             
+|     Disclosure date: 2014-09-24
+|     References:
+|       http://seclists.org/oss-sec/2014/q3/685
+|       http://www.openwall.com/lists/oss-security/2014/09/24/10
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-6271
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-7169
+
+# Nmap done at Mon Feb 14 18:09:27 2022 -- 1 IP address (1 host up) scanned in 0.62 seconds
