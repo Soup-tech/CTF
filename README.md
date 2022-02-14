@@ -35,12 +35,7 @@
         <th>Linux</th>
       </tr>
       <tr>
-        <th>Shocker</th>
-        <th>Easy</th>
-        <th>Linux</th>
-      </tr>
-      <tr>
-        <th>Beep</th>
+        <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/blue">Blue</a></th>
         <th>Easy</th>
         <th>Linux</th>
       </tr>
