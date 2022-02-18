@@ -54,3 +54,24 @@ You can then look on Google, GitHub, Exploit-db, CVE-Mitre, etc for exploits on 
  ```bash
  mkpasswd -m sha-512 newpassword
  ```
+Historically, /etc/passwd contained user password hashes. For backwards compatibility, if the second field of a user row in /etc/passwd contains a password has, it takes precedent over the hash in /etc/shadow.<br>
+If we can write to /etc/passwd, we can easily enter a known password hash for the root user, and then use the su command to switch to the root user.<br>
+Alternatively, if we can only append to the file, we can create a new user but assign them the root user ID (0). This works because Linux allows multiple entries fo rthe same user ID< as long as the usernames are different.<br><br>
+The root accoutn in /etc/passwd is usually configured like this:
+```
+root:x:0:0:root:/root:/bin/bash
+```
+The "x" in the second field instructs Linux to look for the password hash in the /etc/shadow file.<br>
+In some versions of Linux, it is possible to simply delete the "x", which Linux interprets as the user having no password:
+```
+root::0:0:root:/root:/bin/bash 
+```
+### Backups
+Insecure backups exist. It's worth exploring the file system looking for readable backup files. Some common places include:
+- User home directories
+- / (root) directory
+- /tmp
+- /var/backups
+
+## Sudo
+Sudo allows users to run other programs with the security privileges of other users.
