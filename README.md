@@ -49,6 +49,16 @@
         <th>Easy</th>
         <th>Linux</th>
       </tr>
+      <tr>
+        <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/beep">Beep</a></th>
+        <th>Easy</th>
+        <th>Linux</th>
+      </tr>
+      <tr>
+        <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/mirai">Mirai</a></th>
+        <th>Easy</th>
+        <th>Linux</th>
+      </tr>
     </table>
   </body>
 </html>
