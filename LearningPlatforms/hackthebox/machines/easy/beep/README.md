@@ -92,10 +92,5 @@ The first webserver I enumerate is port 80 which immediatly redirects to the HTT
 ```
 When navigating to /admin, I am presented with a restricted page which needs credentials. After a few tries, I get an unauthorization message. However, the header of the application is exposed which reveals the version of FreePBX. Nice!<br><br>
 ## Exploitation
-From what I have read about, this box has 4 different AV's which yield foothold/root.
-
-### LFI
 The first method uses this exploit: https://www.exploit-db.com/exploits/37637 <br>
 This page leaks credentials to the server which allows you to login as root over ssh. 
-
-## Privilege Escalation
