@@ -7,7 +7,7 @@
   <body>
     <h1>HacktheBox</h1>
     <h2>Machines</h2>
-    <p>Here are the boxes from HacktheBox that I have done or plan on doing. Anything that is hyperlinked means that I have completed that box. I follow <a href="https://docs.google.com/spreadsheets/d/1dwSMIAPIam0PuRBkCiDI88pU3yzrqqHkDtBngUHNCw8/edit#gid=1839402159">this</a> machine order. <a href="https://www.noobsec.net/hack-oscp/">This</a> guide is the one I refer to while I am studying for my OSCP.</p>
+    <p>Here are the boxes from HacktheBox that I have blooded. I follow <a href="https://docs.google.com/spreadsheets/d/1dwSMIAPIam0PuRBkCiDI88pU3yzrqqHkDtBngUHNCw8/edit#gid=1839402159">this</a> machine order. <a href="https://www.noobsec.net/hack-oscp/">This</a> guide is the one I refer to while I am studying for my OSCP.</p>
     <table>
       <tr>
         <th>Name</th>
