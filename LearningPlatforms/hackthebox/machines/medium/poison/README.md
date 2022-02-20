@@ -64,6 +64,7 @@ charix:Charix!2#4%6&8(0
 Essentially what the script does is,
 1. Make a very large request. This causes the server 2-3 ms extra time to compute and thus, the file stays on the server for much longer.
 2. Use LFI to hit the file before it gets deleted from cache
+
 I actually get the script off of <a href="https://github.com/swisskyrepo/PayloadsAllTheThings">PayloadAllTheThings</a>. <a href="https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/File%20Inclusion/phpinfolfi.py">This</a> is the script I used. I made some minor changes such as the PHP payload to be used. I also had to change all instances of ">" into "&gt" because of PHP entities. You also have to remove the NULL byte in LFIREQ. After a few seconds, I get a reverse shell!<br>
 Note: On BSD, files for the webserver are stored at /usr/local/www/apache24/data by default.
 
@@ -115,6 +116,7 @@ This command pretty much says:
 - Listen on my machine on port 5901 (-L)
 - Any traffic that goes through ssh (ssh charix@10.10.10.84)
 - Send to localhost on port 5901
+
 We can use vncviewer to connect on our localhost. This goes through SSH and on the other side gets forwarded to 127.0.0.1
 ```bash
 vncviewer -passwd secret 127.0.0.1::5901
