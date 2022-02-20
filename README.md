@@ -64,6 +64,16 @@
         <th>Easy</th>
         <th>Windows</th>
       </tr>
+      <tr>
+        <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/medium/poison">Poison</a></th>
+        <th>Medium</th>
+        <th>FreeBSD</th>
+      </tr>
+      <tr>
+        <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/medium/poison">Optimum</a></th>
+        <th>Easy</th>
+        <th>Windows</th>
+      </tr>
     </table>
   </body>
 </html>
