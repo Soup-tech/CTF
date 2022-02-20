@@ -41,7 +41,7 @@ You can then look on Google, GitHub, Exploit-db, CVE-Mitre, etc for exploits on 
  ```
  First, determine what applications are running on what port:
  ```bash
- netstat -nl
+ netstat -an | grep LISTEN
  
  tcp        0      0 127.0.0.1:3306           0.0.0.0:*   
  ```
