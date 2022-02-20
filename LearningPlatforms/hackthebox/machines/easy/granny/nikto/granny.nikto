@@ -22,7 +22,7 @@
 + OSVDB-5646: GET HTTP method ('Public' Header): 'DELETE' may allow clients to remove files on the web server.
 + OSVDB-397: GET HTTP method ('Public' Header): 'PUT' method could allow clients to save files on the web server.
 + OSVDB-5647: GET HTTP method ('Public' Header): 'MOVE' may allow clients to change file locations on the web server.
-+ OPTIONS WebDAV enabled (PROPFIND LOCK SEARCH PROPPATCH COPY MKCOL UNLOCK listed as allowed)
++ OPTIONS WebDAV enabled (MKCOL PROPPATCH COPY UNLOCK PROPFIND SEARCH LOCK listed as allowed)
 + OSVDB-13431: PROPFIND PROPFIND HTTP verb may show the server's internal IP address: http://granny/_vti_bin/_vti_aut/author.dll
 + OSVDB-396: GET /_vti_bin/shtml.exe: Attackers may be able to crash FrontPage by requesting a DOS device, like shtml.exe/aux.htm -- a DoS was not attempted.
 + OSVDB-3233: GET /postinfo.html: Microsoft FrontPage default file found.
