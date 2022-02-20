@@ -116,6 +116,7 @@ This command pretty much says:
 - Listen on my machine on port 5901 (-L)
 - Any traffic that goes through ssh (ssh charix@10.10.10.84)
 - Send to localhost on port 5901
+
 We can use vncviewer to connect on our localhost. This goes through SSH and on the other side gets forwarded to 127.0.0.1
 ```bash
 vncviewer -passwd secret 127.0.0.1::5901
