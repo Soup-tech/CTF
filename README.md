@@ -84,6 +84,11 @@
         <th>Easy</th>
         <th>Windows</th>
       </tr>
+      <tr>
+        <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/medium/sense">Sense</a></th>
+        <th>Easy</th>
+        <th>FreeBSD</th>
+      </tr>
     </table>
   </body>
 </html>
