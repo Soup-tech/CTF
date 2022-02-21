@@ -1,0 +1,8 @@
+/contact.html         (Status: 200) [Size: 5433]
+/images               (Status: 301) [Size: 309] [--> http://172.31.1.7/images/]
+/index.html           (Status: 200) [Size: 6338]
+/blog.html            (Status: 200) [Size: 7654]
+/about.html           (Status: 200) [Size: 8795]
+/css                  (Status: 301) [Size: 306] [--> http://172.31.1.7/css/]
+/fonts                (Status: 301) [Size: 308] [--> http://172.31.1.7/fonts/]
+/server-status        (Status: 403) [Size: 275]

@@ -1,15 +1,19 @@
 # Secret
 
 ## Information Gathering
-secret
-10.10.11.120
+Secret<br>
+10.10.11.120<br>
+
+Software Versions
+- OpenSSH 8.2p1
+- nginx 1.18.0
 
 ## Enumeration
-nmap scan
+Start with an nmap scan:
 ```bash
-# Nmap 7.92 scan initiated Fri Jan 28 17:30:36 2022 as: nmap -sC -sV -oN nmap/secret_initial.nmap 10.10.11.120
+# Nmap 7.92 scan initiated Sun Feb 20 17:30:57 2022 as: nmap -sC -sV -oN nmap/secret.nmap -Pn 10.10.11.120
 Nmap scan report for 10.10.11.120
-Host is up (0.062s latency).
+Host is up (0.032s latency).
 Not shown: 997 closed tcp ports (reset)
 PORT     STATE SERVICE VERSION
 22/tcp   open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
@@ -25,10 +29,9 @@ PORT     STATE SERVICE VERSION
 Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-# Nmap done at Fri Jan 28 17:30:55 2022 -- 1 IP address (1 host up) scanned in 18.85 seconds
+# Nmap done at Sun Feb 20 17:31:10 2022 -- 1 IP address (1 host up) scanned in 13.25 seconds
 
 ```
-
 ## Exploitation
 
 ## Privilege Escalation
