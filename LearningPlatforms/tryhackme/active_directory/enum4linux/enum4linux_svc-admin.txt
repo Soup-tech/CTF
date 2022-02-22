@@ -1,0 +1,1021 @@
+Starting enum4linux v0.8.9 ( http://labs.portcullis.co.uk/application/enum4linux/ ) on Mon Feb 21 22:48:30 2022
+
+ ========================== 
+|    Target Information    |
+ ========================== 
+Target ........... 10.10.252.24
+RID Range ........ 500-550,1000-1050
+Username ......... 'svc-admin'
+Password ......... 'management2005'
+Known Usernames .. administrator, guest, krbtgt, domain admins, root, bin, none
+
+
+ ==================================================== 
+|    Enumerating Workgroup/Domain on 10.10.252.24    |
+ ==================================================== 
+[E] Can't find workgroup/domain
+
+
+ ============================================ 
+|    Nbtstat Information for 10.10.252.24    |
+ ============================================ 
+Looking up status of 10.10.252.24
+No reply from 10.10.252.24
+
+ ===================================== 
+|    Session Check on 10.10.252.24    |
+ ===================================== 
+[+] Server 10.10.252.24 allows sessions using username 'svc-admin', password 'management2005'
+[+] Got domain/workgroup name: 
+
+ =========================================== 
+|    Getting domain SID for 10.10.252.24    |
+ =========================================== 
+Domain Name: THM-AD
+Domain Sid: S-1-5-21-3591857110-2884097990-301047963
+[+] Host is part of a domain (not a workgroup)
+
+ ====================================== 
+|    OS information on 10.10.252.24    |
+ ====================================== 
+[+] Got OS info for 10.10.252.24 from smbclient: 
+[+] Got OS info for 10.10.252.24 from srvinfo:
+	10.10.252.24   Wk Sv PDC Tim NT     
+	platform_id     :	500
+	os version      :	10.0
+	server type     :	0x80102b
+
+ ============================= 
+|    Users on 10.10.252.24    |
+ ============================= 
+index: 0xfc1 RID: 0x641 acb: 0x00000210 Account: a-spooks	Name: Admin Spooks	Desc: (null)
+index: 0xeda RID: 0x1f4 acb: 0x00000210 Account: Administrator	Name: (null)	Desc: Built-in account for administering the computer/domain
+index: 0xfc0 RID: 0x45e acb: 0x00000210 Account: backup	Name: backup	Desc: (null)
+index: 0xfae RID: 0x450 acb: 0x00000210 Account: breakerofthings	Name: Ashu BreakerOfThings	Desc: (null)
+index: 0xfb2 RID: 0x454 acb: 0x00000210 Account: darkstar	Name: Jon Darkstar	Desc: (null)
+index: 0xedb RID: 0x1f5 acb: 0x00000215 Account: Guest	Name: (null)	Desc: Built-in account for guest access to the computer/domain
+index: 0xfb7 RID: 0x459 acb: 0x00000210 Account: horshark	Name: horshark	Desc: (null)
+index: 0xfaf RID: 0x451 acb: 0x00000210 Account: james	Name: James Ninja	Desc: (null)
+index: 0xf0f RID: 0x1f6 acb: 0x00020011 Account: krbtgt	Name: (null)	Desc: Key Distribution Center Service Account
+index: 0xfb6 RID: 0x458 acb: 0x00000210 Account: Muirland	Name: Muirland Oracle	Desc: (null)
+index: 0xfb0 RID: 0x452 acb: 0x00000210 Account: optional	Name: root optional	Desc: (null)
+index: 0xfb3 RID: 0x455 acb: 0x00000210 Account: Ori	Name: Ori	Desc: (null)
+index: 0xfb5 RID: 0x457 acb: 0x00000210 Account: paradox	Name: Par Adox	Desc: (null)
+index: 0xfb4 RID: 0x456 acb: 0x00000210 Account: robin	Name: Robin	Desc: (null)
+index: 0xfb1 RID: 0x453 acb: 0x00000210 Account: sherlocksec	Name: Dan SherlockSec	Desc: (null)
+index: 0xfad RID: 0x44f acb: 0x00000210 Account: skidy	Name: Ben Skidy	Desc: (null)
+index: 0xfb8 RID: 0x45a acb: 0x00010210 Account: svc-admin	Name: svc admin	Desc: (null)
+
+user:[Administrator] rid:[0x1f4]
+user:[Guest] rid:[0x1f5]
+user:[krbtgt] rid:[0x1f6]
+user:[skidy] rid:[0x44f]
+user:[breakerofthings] rid:[0x450]
+user:[james] rid:[0x451]
+user:[optional] rid:[0x452]
+user:[sherlocksec] rid:[0x453]
+user:[darkstar] rid:[0x454]
+user:[Ori] rid:[0x455]
+user:[robin] rid:[0x456]
+user:[paradox] rid:[0x457]
+user:[Muirland] rid:[0x458]
+user:[horshark] rid:[0x459]
+user:[svc-admin] rid:[0x45a]
+user:[backup] rid:[0x45e]
+user:[a-spooks] rid:[0x641]
+
+ ========================================= 
+|    Share Enumeration on 10.10.252.24    |
+ ========================================= 
+do_connect: Connection to 10.10.252.24 failed (Error NT_STATUS_RESOURCE_NAME_NOT_FOUND)
+
+	Sharename       Type      Comment
+	---------       ----      -------
+	ADMIN$          Disk      Remote Admin
+	backup          Disk      
+	C$              Disk      Default share
+	IPC$            IPC       Remote IPC
+	NETLOGON        Disk      Logon server share 
+	SYSVOL          Disk      Logon server share 
+Reconnecting with SMB1 for workgroup listing.
+Unable to connect with SMB1 -- no workgroup available
+
+[+] Attempting to map shares on 10.10.252.24
+//10.10.252.24/ADMIN$	Mapping: DENIED, Listing: N/A
+//10.10.252.24/backup	Mapping: OK, Listing: OK
+//10.10.252.24/C$	Mapping: DENIED, Listing: N/A
+//10.10.252.24/IPC$	[E] Can't understand response:
+NT_STATUS_INVALID_INFO_CLASS listing \*
+//10.10.252.24/NETLOGON	Mapping: OK, Listing: OK
+//10.10.252.24/SYSVOL	Mapping: OK, Listing: OK
+
+ ==================================================== 
+|    Password Policy Information for 10.10.252.24    |
+ ==================================================== 
+
+
+[+] Attaching to 10.10.252.24 using svc-admin:management2005
+
+[+] Trying protocol 139/SMB...
+
+	[!] Protocol failed: Cannot request session (Called Name:10.10.252.24)
+
+[+] Trying protocol 445/SMB...
+
+[+] Found domain(s):
+
+	[+] THM-AD
+	[+] Builtin
+
+[+] Password Info for Domain: THM-AD
+
+	[+] Minimum password length: None
+	[+] Password history length: None
+	[+] Maximum password age: 41 days 23 hours 53 minutes 
+	[+] Password Complexity Flags: 000000
+
+		[+] Domain Refuse Password Change: 0
+		[+] Domain Password Store Cleartext: 0
+		[+] Domain Password Lockout Admins: 0
+		[+] Domain Password No Clear Change: 0
+		[+] Domain Password No Anon Change: 0
+		[+] Domain Password Complex: 0
+
+	[+] Minimum password age: 1 day 4 minutes 
+	[+] Reset Account Lockout Counter: 30 minutes 
+	[+] Locked Account Duration: 30 minutes 
+	[+] Account Lockout Threshold: None
+	[+] Forced Log off Time: Not Set
+
+
+[+] Retieved partial password policy with rpcclient:
+
+Password Complexity: Disabled
+Minimum Password Length: 0
+
+
+ ============================== 
+|    Groups on 10.10.252.24    |
+ ============================== 
+
+[+] Getting builtin groups:
+group:[Server Operators] rid:[0x225]
+group:[Account Operators] rid:[0x224]
+group:[Pre-Windows 2000 Compatible Access] rid:[0x22a]
+group:[Incoming Forest Trust Builders] rid:[0x22d]
+group:[Windows Authorization Access Group] rid:[0x230]
+group:[Terminal Server License Servers] rid:[0x231]
+group:[Administrators] rid:[0x220]
+group:[Users] rid:[0x221]
+group:[Guests] rid:[0x222]
+group:[Print Operators] rid:[0x226]
+group:[Backup Operators] rid:[0x227]
+group:[Replicator] rid:[0x228]
+group:[Remote Desktop Users] rid:[0x22b]
+group:[Network Configuration Operators] rid:[0x22c]
+group:[Performance Monitor Users] rid:[0x22e]
+group:[Performance Log Users] rid:[0x22f]
+group:[Distributed COM Users] rid:[0x232]
+group:[IIS_IUSRS] rid:[0x238]
+group:[Cryptographic Operators] rid:[0x239]
+group:[Event Log Readers] rid:[0x23d]
+group:[Certificate Service DCOM Access] rid:[0x23e]
+group:[RDS Remote Access Servers] rid:[0x23f]
+group:[RDS Endpoint Servers] rid:[0x240]
+group:[RDS Management Servers] rid:[0x241]
+group:[Hyper-V Administrators] rid:[0x242]
+group:[Access Control Assistance Operators] rid:[0x243]
+group:[Remote Management Users] rid:[0x244]
+group:[Storage Replica Administrators] rid:[0x246]
+
+[+] Getting builtin group memberships:
+Group 'Windows Authorization Access Group' (RID: 560) has member: NT AUTHORITY\ENTERPRISE DOMAIN CONTROLLERS
+Group 'Pre-Windows 2000 Compatible Access' (RID: 554) has member: NT AUTHORITY\Authenticated Users
+Group 'Guests' (RID: 546) has member: THM-AD\Guest
+Group 'Guests' (RID: 546) has member: THM-AD\Domain Guests
+Group 'Remote Desktop Users' (RID: 555) has member: THM-AD\Administrator
+Group 'Remote Desktop Users' (RID: 555) has member: THM-AD\Domain Users
+Group 'Remote Desktop Users' (RID: 555) has member: THM-AD\svc-admin
+Group 'Remote Desktop Users' (RID: 555) has member: THM-AD\a-spooks
+Group 'IIS_IUSRS' (RID: 568) has member: NT AUTHORITY\IUSR
+Group 'Administrators' (RID: 544) has member: THM-AD\Administrator
+Group 'Administrators' (RID: 544) has member: THM-AD\Enterprise Admins
+Group 'Administrators' (RID: 544) has member: THM-AD\Domain Admins
+Group 'Users' (RID: 545) has member: NT AUTHORITY\INTERACTIVE
+Group 'Users' (RID: 545) has member: NT AUTHORITY\Authenticated Users
+Group 'Users' (RID: 545) has member: THM-AD\Domain Users
+
+[+] Getting local groups:
+group:[Cert Publishers] rid:[0x205]
+group:[RAS and IAS Servers] rid:[0x229]
+group:[Allowed RODC Password Replication Group] rid:[0x23b]
+group:[Denied RODC Password Replication Group] rid:[0x23c]
+group:[DnsAdmins] rid:[0x44d]
+group:[CompStaff] rid:[0x45c]
+
+[+] Getting local group memberships:
+Group 'CompStaff' (RID: 1116) has member: THM-AD\skidy
+Group 'CompStaff' (RID: 1116) has member: THM-AD\breakerofthings
+Group 'CompStaff' (RID: 1116) has member: THM-AD\james
+Group 'CompStaff' (RID: 1116) has member: THM-AD\optional
+Group 'CompStaff' (RID: 1116) has member: THM-AD\sherlocksec
+Group 'CompStaff' (RID: 1116) has member: THM-AD\darkstar
+Group 'CompStaff' (RID: 1116) has member: THM-AD\Ori
+Group 'CompStaff' (RID: 1116) has member: THM-AD\robin
+Group 'CompStaff' (RID: 1116) has member: THM-AD\paradox
+Group 'CompStaff' (RID: 1116) has member: THM-AD\Muirland
+Group 'CompStaff' (RID: 1116) has member: THM-AD\horshark
+Group 'CompStaff' (RID: 1116) has member: THM-AD\svc-admin
+Group 'Denied RODC Password Replication Group' (RID: 572) has member: THM-AD\krbtgt
+Group 'Denied RODC Password Replication Group' (RID: 572) has member: THM-AD\Domain Controllers
+Group 'Denied RODC Password Replication Group' (RID: 572) has member: THM-AD\Schema Admins
+Group 'Denied RODC Password Replication Group' (RID: 572) has member: THM-AD\Enterprise Admins
+Group 'Denied RODC Password Replication Group' (RID: 572) has member: THM-AD\Cert Publishers
+Group 'Denied RODC Password Replication Group' (RID: 572) has member: THM-AD\Domain Admins
+Group 'Denied RODC Password Replication Group' (RID: 572) has member: THM-AD\Group Policy Creator Owners
+Group 'Denied RODC Password Replication Group' (RID: 572) has member: THM-AD\Read-only Domain Controllers
+
+[+] Getting domain groups:
+group:[Enterprise Read-only Domain Controllers] rid:[0x1f2]
+group:[Domain Admins] rid:[0x200]
+group:[Domain Users] rid:[0x201]
+group:[Domain Guests] rid:[0x202]
+group:[Domain Computers] rid:[0x203]
+group:[Domain Controllers] rid:[0x204]
+group:[Schema Admins] rid:[0x206]
+group:[Enterprise Admins] rid:[0x207]
+group:[Group Policy Creator Owners] rid:[0x208]
+group:[Read-only Domain Controllers] rid:[0x209]
+group:[Cloneable Domain Controllers] rid:[0x20a]
+group:[Protected Users] rid:[0x20d]
+group:[Key Admins] rid:[0x20e]
+group:[Enterprise Key Admins] rid:[0x20f]
+group:[DnsUpdateProxy] rid:[0x44e]
+group:[dc] rid:[0x45d]
+
+[+] Getting domain group memberships:
+Group 'Domain Guests' (RID: 514) has member: THM-AD\Guest
+Group 'Schema Admins' (RID: 518) has member: THM-AD\Administrator
+Group 'Enterprise Admins' (RID: 519) has member: THM-AD\Administrator
+Group 'Enterprise Admins' (RID: 519) has member: THM-AD\a-spooks
+Group 'Domain Users' (RID: 513) has member: THM-AD\Administrator
+Group 'Domain Users' (RID: 513) has member: THM-AD\krbtgt
+Group 'Domain Users' (RID: 513) has member: THM-AD\skidy
+Group 'Domain Users' (RID: 513) has member: THM-AD\breakerofthings
+Group 'Domain Users' (RID: 513) has member: THM-AD\james
+Group 'Domain Users' (RID: 513) has member: THM-AD\optional
+Group 'Domain Users' (RID: 513) has member: THM-AD\sherlocksec
+Group 'Domain Users' (RID: 513) has member: THM-AD\darkstar
+Group 'Domain Users' (RID: 513) has member: THM-AD\Ori
+Group 'Domain Users' (RID: 513) has member: THM-AD\robin
+Group 'Domain Users' (RID: 513) has member: THM-AD\paradox
+Group 'Domain Users' (RID: 513) has member: THM-AD\Muirland
+Group 'Domain Users' (RID: 513) has member: THM-AD\horshark
+Group 'Domain Users' (RID: 513) has member: THM-AD\svc-admin
+Group 'Domain Users' (RID: 513) has member: THM-AD\backup
+Group 'Domain Users' (RID: 513) has member: THM-AD\a-spooks
+Group 'Group Policy Creator Owners' (RID: 520) has member: THM-AD\Administrator
+Group 'Domain Admins' (RID: 512) has member: THM-AD\Administrator
+Group 'Domain Admins' (RID: 512) has member: THM-AD\a-spooks
+Group 'Domain Controllers' (RID: 516) has member: THM-AD\ATTACKTIVEDIREC$
+
+ ======================================================================= 
+|    Users on 10.10.252.24 via RID cycling (RIDS: 500-550,1000-1050)    |
+ ======================================================================= 
+[I] Found new SID: S-1-5-21-3591857110-2884097990-301047963
+[I] Found new SID: S-1-5-21-3532885019-1334016158-1514108833
+[I] Found new SID: S-1-5-90
+[I] Found new SID: S-1-5-82-3006700770-424185619-1745488364-794895919
+[I] Found new SID: S-1-5-80-3139157870-2983391045-3678747466-658725712
+[I] Found new SID: S-1-5-80
+[I] Found new SID: S-1-5-32
+[+] Enumerating users using SID S-1-5-21-3591857110-2884097990-301047963 and logon username 'svc-admin', password 'management2005'
+S-1-5-21-3591857110-2884097990-301047963-500 THM-AD\Administrator (Local User)
+S-1-5-21-3591857110-2884097990-301047963-501 THM-AD\Guest (Local User)
+S-1-5-21-3591857110-2884097990-301047963-502 THM-AD\krbtgt (Local User)
+S-1-5-21-3591857110-2884097990-301047963-503 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-504 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-505 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-506 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-507 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-508 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-509 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-510 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-511 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-512 THM-AD\Domain Admins (Domain Group)
+S-1-5-21-3591857110-2884097990-301047963-513 THM-AD\Domain Users (Domain Group)
+S-1-5-21-3591857110-2884097990-301047963-514 THM-AD\Domain Guests (Domain Group)
+S-1-5-21-3591857110-2884097990-301047963-515 THM-AD\Domain Computers (Domain Group)
+S-1-5-21-3591857110-2884097990-301047963-516 THM-AD\Domain Controllers (Domain Group)
+S-1-5-21-3591857110-2884097990-301047963-517 THM-AD\Cert Publishers (Local Group)
+S-1-5-21-3591857110-2884097990-301047963-518 THM-AD\Schema Admins (Domain Group)
+S-1-5-21-3591857110-2884097990-301047963-519 THM-AD\Enterprise Admins (Domain Group)
+S-1-5-21-3591857110-2884097990-301047963-520 THM-AD\Group Policy Creator Owners (Domain Group)
+S-1-5-21-3591857110-2884097990-301047963-521 THM-AD\Read-only Domain Controllers (Domain Group)
+S-1-5-21-3591857110-2884097990-301047963-522 THM-AD\Cloneable Domain Controllers (Domain Group)
+S-1-5-21-3591857110-2884097990-301047963-523 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-524 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-525 THM-AD\Protected Users (Domain Group)
+S-1-5-21-3591857110-2884097990-301047963-526 THM-AD\Key Admins (Domain Group)
+S-1-5-21-3591857110-2884097990-301047963-527 THM-AD\Enterprise Key Admins (Domain Group)
+S-1-5-21-3591857110-2884097990-301047963-528 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-529 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-530 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-531 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-532 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-533 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-534 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-535 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-536 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-537 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-538 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-539 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-540 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-541 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-542 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-543 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-544 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-545 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-546 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-547 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-548 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-549 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-550 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1000 THM-AD\ATTACKTIVEDIREC$ (Local User)
+S-1-5-21-3591857110-2884097990-301047963-1001 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1002 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1003 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1004 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1005 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1006 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1007 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1008 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1009 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1010 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1011 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1012 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1013 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1014 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1015 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1016 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1017 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1018 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1019 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1020 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1021 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1022 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1023 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1024 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1025 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1026 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1027 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1028 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1029 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1030 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1031 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1032 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1033 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1034 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1035 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1036 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1037 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1038 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1039 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1040 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1041 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1042 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1043 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1044 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1045 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1046 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1047 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1048 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1049 *unknown*\*unknown* (8)
+S-1-5-21-3591857110-2884097990-301047963-1050 *unknown*\*unknown* (8)
+[+] Enumerating users using SID S-1-5-82-3006700770-424185619-1745488364-794895919 and logon username 'svc-admin', password 'management2005'
+S-1-5-82-3006700770-424185619-1745488364-794895919-500 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-501 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-502 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-503 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-504 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-505 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-506 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-507 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-508 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-509 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-510 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-511 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-512 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-513 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-514 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-515 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-516 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-517 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-518 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-519 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-520 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-521 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-522 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-523 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-524 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-525 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-526 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-527 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-528 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-529 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-530 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-531 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-532 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-533 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-534 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-535 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-536 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-537 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-538 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-539 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-540 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-541 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-542 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-543 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-544 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-545 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-546 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-547 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-548 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-549 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-550 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1000 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1001 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1002 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1003 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1004 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1005 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1006 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1007 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1008 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1009 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1010 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1011 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1012 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1013 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1014 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1015 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1016 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1017 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1018 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1019 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1020 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1021 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1022 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1023 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1024 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1025 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1026 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1027 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1028 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1029 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1030 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1031 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1032 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1033 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1034 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1035 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1036 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1037 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1038 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1039 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1040 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1041 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1042 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1043 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1044 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1045 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1046 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1047 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1048 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1049 *unknown*\*unknown* (8)
+S-1-5-82-3006700770-424185619-1745488364-794895919-1050 *unknown*\*unknown* (8)
+[+] Enumerating users using SID S-1-5-80-3139157870-2983391045-3678747466-658725712 and logon username 'svc-admin', password 'management2005'
+S-1-5-80-3139157870-2983391045-3678747466-658725712-500 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-501 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-502 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-503 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-504 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-505 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-506 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-507 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-508 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-509 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-510 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-511 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-512 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-513 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-514 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-515 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-516 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-517 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-518 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-519 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-520 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-521 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-522 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-523 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-524 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-525 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-526 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-527 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-528 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-529 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-530 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-531 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-532 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-533 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-534 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-535 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-536 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-537 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-538 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-539 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-540 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-541 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-542 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-543 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-544 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-545 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-546 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-547 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-548 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-549 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-550 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1000 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1001 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1002 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1003 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1004 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1005 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1006 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1007 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1008 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1009 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1010 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1011 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1012 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1013 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1014 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1015 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1016 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1017 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1018 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1019 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1020 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1021 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1022 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1023 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1024 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1025 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1026 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1027 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1028 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1029 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1030 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1031 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1032 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1033 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1034 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1035 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1036 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1037 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1038 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1039 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1040 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1041 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1042 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1043 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1044 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1045 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1046 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1047 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1048 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1049 *unknown*\*unknown* (8)
+S-1-5-80-3139157870-2983391045-3678747466-658725712-1050 *unknown*\*unknown* (8)
+[+] Enumerating users using SID S-1-5-80 and logon username 'svc-admin', password 'management2005'
+S-1-5-80-500 *unknown*\*unknown* (8)
+S-1-5-80-501 *unknown*\*unknown* (8)
+S-1-5-80-502 *unknown*\*unknown* (8)
+S-1-5-80-503 *unknown*\*unknown* (8)
+S-1-5-80-504 *unknown*\*unknown* (8)
+S-1-5-80-505 *unknown*\*unknown* (8)
+S-1-5-80-506 *unknown*\*unknown* (8)
+S-1-5-80-507 *unknown*\*unknown* (8)
+S-1-5-80-508 *unknown*\*unknown* (8)
+S-1-5-80-509 *unknown*\*unknown* (8)
+S-1-5-80-510 *unknown*\*unknown* (8)
+S-1-5-80-511 *unknown*\*unknown* (8)
+S-1-5-80-512 *unknown*\*unknown* (8)
+S-1-5-80-513 *unknown*\*unknown* (8)
+S-1-5-80-514 *unknown*\*unknown* (8)
+S-1-5-80-515 *unknown*\*unknown* (8)
+S-1-5-80-516 *unknown*\*unknown* (8)
+S-1-5-80-517 *unknown*\*unknown* (8)
+S-1-5-80-518 *unknown*\*unknown* (8)
+S-1-5-80-519 *unknown*\*unknown* (8)
+S-1-5-80-520 *unknown*\*unknown* (8)
+S-1-5-80-521 *unknown*\*unknown* (8)
+S-1-5-80-522 *unknown*\*unknown* (8)
+S-1-5-80-523 *unknown*\*unknown* (8)
+S-1-5-80-524 *unknown*\*unknown* (8)
+S-1-5-80-525 *unknown*\*unknown* (8)
+S-1-5-80-526 *unknown*\*unknown* (8)
+S-1-5-80-527 *unknown*\*unknown* (8)
+S-1-5-80-528 *unknown*\*unknown* (8)
+S-1-5-80-529 *unknown*\*unknown* (8)
+S-1-5-80-530 *unknown*\*unknown* (8)
+S-1-5-80-531 *unknown*\*unknown* (8)
+S-1-5-80-532 *unknown*\*unknown* (8)
+S-1-5-80-533 *unknown*\*unknown* (8)
+S-1-5-80-534 *unknown*\*unknown* (8)
+S-1-5-80-535 *unknown*\*unknown* (8)
+S-1-5-80-536 *unknown*\*unknown* (8)
+S-1-5-80-537 *unknown*\*unknown* (8)
+S-1-5-80-538 *unknown*\*unknown* (8)
+S-1-5-80-539 *unknown*\*unknown* (8)
+S-1-5-80-540 *unknown*\*unknown* (8)
+S-1-5-80-541 *unknown*\*unknown* (8)
+S-1-5-80-542 *unknown*\*unknown* (8)
+S-1-5-80-543 *unknown*\*unknown* (8)
+S-1-5-80-544 *unknown*\*unknown* (8)
+S-1-5-80-545 *unknown*\*unknown* (8)
+S-1-5-80-546 *unknown*\*unknown* (8)
+S-1-5-80-547 *unknown*\*unknown* (8)
+S-1-5-80-548 *unknown*\*unknown* (8)
+S-1-5-80-549 *unknown*\*unknown* (8)
+S-1-5-80-550 *unknown*\*unknown* (8)
+S-1-5-80-1000 *unknown*\*unknown* (8)
+S-1-5-80-1001 *unknown*\*unknown* (8)
+S-1-5-80-1002 *unknown*\*unknown* (8)
+S-1-5-80-1003 *unknown*\*unknown* (8)
+S-1-5-80-1004 *unknown*\*unknown* (8)
+S-1-5-80-1005 *unknown*\*unknown* (8)
+S-1-5-80-1006 *unknown*\*unknown* (8)
+S-1-5-80-1007 *unknown*\*unknown* (8)
+S-1-5-80-1008 *unknown*\*unknown* (8)
+S-1-5-80-1009 *unknown*\*unknown* (8)
+S-1-5-80-1010 *unknown*\*unknown* (8)
+S-1-5-80-1011 *unknown*\*unknown* (8)
+S-1-5-80-1012 *unknown*\*unknown* (8)
+S-1-5-80-1013 *unknown*\*unknown* (8)
+S-1-5-80-1014 *unknown*\*unknown* (8)
+S-1-5-80-1015 *unknown*\*unknown* (8)
+S-1-5-80-1016 *unknown*\*unknown* (8)
+S-1-5-80-1017 *unknown*\*unknown* (8)
+S-1-5-80-1018 *unknown*\*unknown* (8)
+S-1-5-80-1019 *unknown*\*unknown* (8)
+S-1-5-80-1020 *unknown*\*unknown* (8)
+S-1-5-80-1021 *unknown*\*unknown* (8)
+S-1-5-80-1022 *unknown*\*unknown* (8)
+S-1-5-80-1023 *unknown*\*unknown* (8)
+S-1-5-80-1024 *unknown*\*unknown* (8)
+S-1-5-80-1025 *unknown*\*unknown* (8)
+S-1-5-80-1026 *unknown*\*unknown* (8)
+S-1-5-80-1027 *unknown*\*unknown* (8)
+S-1-5-80-1028 *unknown*\*unknown* (8)
+S-1-5-80-1029 *unknown*\*unknown* (8)
+S-1-5-80-1030 *unknown*\*unknown* (8)
+S-1-5-80-1031 *unknown*\*unknown* (8)
+S-1-5-80-1032 *unknown*\*unknown* (8)
+S-1-5-80-1033 *unknown*\*unknown* (8)
+S-1-5-80-1034 *unknown*\*unknown* (8)
+S-1-5-80-1035 *unknown*\*unknown* (8)
+S-1-5-80-1036 *unknown*\*unknown* (8)
+S-1-5-80-1037 *unknown*\*unknown* (8)
+S-1-5-80-1038 *unknown*\*unknown* (8)
+S-1-5-80-1039 *unknown*\*unknown* (8)
+S-1-5-80-1040 *unknown*\*unknown* (8)
+S-1-5-80-1041 *unknown*\*unknown* (8)
+S-1-5-80-1042 *unknown*\*unknown* (8)
+S-1-5-80-1043 *unknown*\*unknown* (8)
+S-1-5-80-1044 *unknown*\*unknown* (8)
+S-1-5-80-1045 *unknown*\*unknown* (8)
+S-1-5-80-1046 *unknown*\*unknown* (8)
+S-1-5-80-1047 *unknown*\*unknown* (8)
+S-1-5-80-1048 *unknown*\*unknown* (8)
+S-1-5-80-1049 *unknown*\*unknown* (8)
+S-1-5-80-1050 *unknown*\*unknown* (8)
+[+] Enumerating users using SID S-1-5-32 and logon username 'svc-admin', password 'management2005'
+S-1-5-32-500 *unknown*\*unknown* (8)
+S-1-5-32-501 *unknown*\*unknown* (8)
+S-1-5-32-502 *unknown*\*unknown* (8)
+S-1-5-32-503 *unknown*\*unknown* (8)
+S-1-5-32-504 *unknown*\*unknown* (8)
+S-1-5-32-505 *unknown*\*unknown* (8)
+S-1-5-32-506 *unknown*\*unknown* (8)
+S-1-5-32-507 *unknown*\*unknown* (8)
+S-1-5-32-508 *unknown*\*unknown* (8)
+S-1-5-32-509 *unknown*\*unknown* (8)
+S-1-5-32-510 *unknown*\*unknown* (8)
+S-1-5-32-511 *unknown*\*unknown* (8)
+S-1-5-32-512 *unknown*\*unknown* (8)
+S-1-5-32-513 *unknown*\*unknown* (8)
+S-1-5-32-514 *unknown*\*unknown* (8)
+S-1-5-32-515 *unknown*\*unknown* (8)
+S-1-5-32-516 *unknown*\*unknown* (8)
+S-1-5-32-517 *unknown*\*unknown* (8)
+S-1-5-32-518 *unknown*\*unknown* (8)
+S-1-5-32-519 *unknown*\*unknown* (8)
+S-1-5-32-520 *unknown*\*unknown* (8)
+S-1-5-32-521 *unknown*\*unknown* (8)
+S-1-5-32-522 *unknown*\*unknown* (8)
+S-1-5-32-523 *unknown*\*unknown* (8)
+S-1-5-32-524 *unknown*\*unknown* (8)
+S-1-5-32-525 *unknown*\*unknown* (8)
+S-1-5-32-526 *unknown*\*unknown* (8)
+S-1-5-32-527 *unknown*\*unknown* (8)
+S-1-5-32-528 *unknown*\*unknown* (8)
+S-1-5-32-529 *unknown*\*unknown* (8)
+S-1-5-32-530 *unknown*\*unknown* (8)
+S-1-5-32-531 *unknown*\*unknown* (8)
+S-1-5-32-532 *unknown*\*unknown* (8)
+S-1-5-32-533 *unknown*\*unknown* (8)
+S-1-5-32-534 *unknown*\*unknown* (8)
+S-1-5-32-535 *unknown*\*unknown* (8)
+S-1-5-32-536 *unknown*\*unknown* (8)
+S-1-5-32-537 *unknown*\*unknown* (8)
+S-1-5-32-538 *unknown*\*unknown* (8)
+S-1-5-32-539 *unknown*\*unknown* (8)
+S-1-5-32-540 *unknown*\*unknown* (8)
+S-1-5-32-541 *unknown*\*unknown* (8)
+S-1-5-32-542 *unknown*\*unknown* (8)
+S-1-5-32-543 *unknown*\*unknown* (8)
+S-1-5-32-544 BUILTIN\Administrators (Local Group)
+S-1-5-32-545 BUILTIN\Users (Local Group)
+S-1-5-32-546 BUILTIN\Guests (Local Group)
+S-1-5-32-547 *unknown*\*unknown* (8)
+S-1-5-32-548 BUILTIN\Account Operators (Local Group)
+S-1-5-32-549 BUILTIN\Server Operators (Local Group)
+S-1-5-32-550 BUILTIN\Print Operators (Local Group)
+S-1-5-32-1000 *unknown*\*unknown* (8)
+S-1-5-32-1001 *unknown*\*unknown* (8)
+S-1-5-32-1002 *unknown*\*unknown* (8)
+S-1-5-32-1003 *unknown*\*unknown* (8)
+S-1-5-32-1004 *unknown*\*unknown* (8)
+S-1-5-32-1005 *unknown*\*unknown* (8)
+S-1-5-32-1006 *unknown*\*unknown* (8)
+S-1-5-32-1007 *unknown*\*unknown* (8)
+S-1-5-32-1008 *unknown*\*unknown* (8)
+S-1-5-32-1009 *unknown*\*unknown* (8)
+S-1-5-32-1010 *unknown*\*unknown* (8)
+S-1-5-32-1011 *unknown*\*unknown* (8)
+S-1-5-32-1012 *unknown*\*unknown* (8)
+S-1-5-32-1013 *unknown*\*unknown* (8)
+S-1-5-32-1014 *unknown*\*unknown* (8)
+S-1-5-32-1015 *unknown*\*unknown* (8)
+S-1-5-32-1016 *unknown*\*unknown* (8)
+S-1-5-32-1017 *unknown*\*unknown* (8)
+S-1-5-32-1018 *unknown*\*unknown* (8)
+S-1-5-32-1019 *unknown*\*unknown* (8)
+S-1-5-32-1020 *unknown*\*unknown* (8)
+S-1-5-32-1021 *unknown*\*unknown* (8)
+S-1-5-32-1022 *unknown*\*unknown* (8)
+S-1-5-32-1023 *unknown*\*unknown* (8)
+S-1-5-32-1024 *unknown*\*unknown* (8)
+S-1-5-32-1025 *unknown*\*unknown* (8)
+S-1-5-32-1026 *unknown*\*unknown* (8)
+S-1-5-32-1027 *unknown*\*unknown* (8)
+S-1-5-32-1028 *unknown*\*unknown* (8)
+S-1-5-32-1029 *unknown*\*unknown* (8)
+S-1-5-32-1030 *unknown*\*unknown* (8)
+S-1-5-32-1031 *unknown*\*unknown* (8)
+S-1-5-32-1032 *unknown*\*unknown* (8)
+S-1-5-32-1033 *unknown*\*unknown* (8)
+S-1-5-32-1034 *unknown*\*unknown* (8)
+S-1-5-32-1035 *unknown*\*unknown* (8)
+S-1-5-32-1036 *unknown*\*unknown* (8)
+S-1-5-32-1037 *unknown*\*unknown* (8)
+S-1-5-32-1038 *unknown*\*unknown* (8)
+S-1-5-32-1039 *unknown*\*unknown* (8)
+S-1-5-32-1040 *unknown*\*unknown* (8)
+S-1-5-32-1041 *unknown*\*unknown* (8)
+S-1-5-32-1042 *unknown*\*unknown* (8)
+S-1-5-32-1043 *unknown*\*unknown* (8)
+S-1-5-32-1044 *unknown*\*unknown* (8)
+S-1-5-32-1045 *unknown*\*unknown* (8)
+S-1-5-32-1046 *unknown*\*unknown* (8)
+S-1-5-32-1047 *unknown*\*unknown* (8)
+S-1-5-32-1048 *unknown*\*unknown* (8)
+S-1-5-32-1049 *unknown*\*unknown* (8)
+S-1-5-32-1050 *unknown*\*unknown* (8)
+[+] Enumerating users using SID S-1-5-90 and logon username 'svc-admin', password 'management2005'
+S-1-5-90-500 *unknown*\*unknown* (8)
+S-1-5-90-501 *unknown*\*unknown* (8)
+S-1-5-90-502 *unknown*\*unknown* (8)
+S-1-5-90-503 *unknown*\*unknown* (8)
+S-1-5-90-504 *unknown*\*unknown* (8)
+S-1-5-90-505 *unknown*\*unknown* (8)
+S-1-5-90-506 *unknown*\*unknown* (8)
+S-1-5-90-507 *unknown*\*unknown* (8)
+S-1-5-90-508 *unknown*\*unknown* (8)
+S-1-5-90-509 *unknown*\*unknown* (8)
+S-1-5-90-510 *unknown*\*unknown* (8)
+S-1-5-90-511 *unknown*\*unknown* (8)
+S-1-5-90-512 *unknown*\*unknown* (8)
+S-1-5-90-513 *unknown*\*unknown* (8)
+S-1-5-90-514 *unknown*\*unknown* (8)
+S-1-5-90-515 *unknown*\*unknown* (8)
+S-1-5-90-516 *unknown*\*unknown* (8)
+S-1-5-90-517 *unknown*\*unknown* (8)
+S-1-5-90-518 *unknown*\*unknown* (8)
+S-1-5-90-519 *unknown*\*unknown* (8)
+S-1-5-90-520 *unknown*\*unknown* (8)
+S-1-5-90-521 *unknown*\*unknown* (8)
+S-1-5-90-522 *unknown*\*unknown* (8)
+S-1-5-90-523 *unknown*\*unknown* (8)
+S-1-5-90-524 *unknown*\*unknown* (8)
+S-1-5-90-525 *unknown*\*unknown* (8)
+S-1-5-90-526 *unknown*\*unknown* (8)
+S-1-5-90-527 *unknown*\*unknown* (8)
+S-1-5-90-528 *unknown*\*unknown* (8)
+S-1-5-90-529 *unknown*\*unknown* (8)
+S-1-5-90-530 *unknown*\*unknown* (8)
+S-1-5-90-531 *unknown*\*unknown* (8)
+S-1-5-90-532 *unknown*\*unknown* (8)
+S-1-5-90-533 *unknown*\*unknown* (8)
+S-1-5-90-534 *unknown*\*unknown* (8)
+S-1-5-90-535 *unknown*\*unknown* (8)
+S-1-5-90-536 *unknown*\*unknown* (8)
+S-1-5-90-537 *unknown*\*unknown* (8)
+S-1-5-90-538 *unknown*\*unknown* (8)
+S-1-5-90-539 *unknown*\*unknown* (8)
+S-1-5-90-540 *unknown*\*unknown* (8)
+S-1-5-90-541 *unknown*\*unknown* (8)
+S-1-5-90-542 *unknown*\*unknown* (8)
+S-1-5-90-543 *unknown*\*unknown* (8)
+S-1-5-90-544 *unknown*\*unknown* (8)
+S-1-5-90-545 *unknown*\*unknown* (8)
+S-1-5-90-546 *unknown*\*unknown* (8)
+S-1-5-90-547 *unknown*\*unknown* (8)
+S-1-5-90-548 *unknown*\*unknown* (8)
+S-1-5-90-549 *unknown*\*unknown* (8)
+S-1-5-90-550 *unknown*\*unknown* (8)
+S-1-5-90-1000 *unknown*\*unknown* (8)
+S-1-5-90-1001 *unknown*\*unknown* (8)
+S-1-5-90-1002 *unknown*\*unknown* (8)
+S-1-5-90-1003 *unknown*\*unknown* (8)
+S-1-5-90-1004 *unknown*\*unknown* (8)
+S-1-5-90-1005 *unknown*\*unknown* (8)
+S-1-5-90-1006 *unknown*\*unknown* (8)
+S-1-5-90-1007 *unknown*\*unknown* (8)
+S-1-5-90-1008 *unknown*\*unknown* (8)
+S-1-5-90-1009 *unknown*\*unknown* (8)
+S-1-5-90-1010 *unknown*\*unknown* (8)
+S-1-5-90-1011 *unknown*\*unknown* (8)
+S-1-5-90-1012 *unknown*\*unknown* (8)
+S-1-5-90-1013 *unknown*\*unknown* (8)
+S-1-5-90-1014 *unknown*\*unknown* (8)
+S-1-5-90-1015 *unknown*\*unknown* (8)
+S-1-5-90-1016 *unknown*\*unknown* (8)
+S-1-5-90-1017 *unknown*\*unknown* (8)
+S-1-5-90-1018 *unknown*\*unknown* (8)
+S-1-5-90-1019 *unknown*\*unknown* (8)
+S-1-5-90-1020 *unknown*\*unknown* (8)
+S-1-5-90-1021 *unknown*\*unknown* (8)
+S-1-5-90-1022 *unknown*\*unknown* (8)
+S-1-5-90-1023 *unknown*\*unknown* (8)
+S-1-5-90-1024 *unknown*\*unknown* (8)
+S-1-5-90-1025 *unknown*\*unknown* (8)
+S-1-5-90-1026 *unknown*\*unknown* (8)
+S-1-5-90-1027 *unknown*\*unknown* (8)
+S-1-5-90-1028 *unknown*\*unknown* (8)
+S-1-5-90-1029 *unknown*\*unknown* (8)
+S-1-5-90-1030 *unknown*\*unknown* (8)
+S-1-5-90-1031 *unknown*\*unknown* (8)
+S-1-5-90-1032 *unknown*\*unknown* (8)
+S-1-5-90-1033 *unknown*\*unknown* (8)
+S-1-5-90-1034 *unknown*\*unknown* (8)
+S-1-5-90-1035 *unknown*\*unknown* (8)
+S-1-5-90-1036 *unknown*\*unknown* (8)
+S-1-5-90-1037 *unknown*\*unknown* (8)
+S-1-5-90-1038 *unknown*\*unknown* (8)
+S-1-5-90-1039 *unknown*\*unknown* (8)
+S-1-5-90-1040 *unknown*\*unknown* (8)
+S-1-5-90-1041 *unknown*\*unknown* (8)
+S-1-5-90-1042 *unknown*\*unknown* (8)
+S-1-5-90-1043 *unknown*\*unknown* (8)
+S-1-5-90-1044 *unknown*\*unknown* (8)
+S-1-5-90-1045 *unknown*\*unknown* (8)
+S-1-5-90-1046 *unknown*\*unknown* (8)
+S-1-5-90-1047 *unknown*\*unknown* (8)
+S-1-5-90-1048 *unknown*\*unknown* (8)
+S-1-5-90-1049 *unknown*\*unknown* (8)
+S-1-5-90-1050 *unknown*\*unknown* (8)
+[+] Enumerating users using SID S-1-5-21-3532885019-1334016158-1514108833 and logon username 'svc-admin', password 'management2005'
+S-1-5-21-3532885019-1334016158-1514108833-500 ATTACKTIVEDIREC\Administrator (Local User)
+S-1-5-21-3532885019-1334016158-1514108833-501 ATTACKTIVEDIREC\Guest (Local User)
+S-1-5-21-3532885019-1334016158-1514108833-502 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-503 ATTACKTIVEDIREC\DefaultAccount (Local User)
+S-1-5-21-3532885019-1334016158-1514108833-504 ATTACKTIVEDIREC\WDAGUtilityAccount (Local User)
+S-1-5-21-3532885019-1334016158-1514108833-505 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-506 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-507 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-508 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-509 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-510 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-511 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-512 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-513 ATTACKTIVEDIREC\None (Domain Group)
+S-1-5-21-3532885019-1334016158-1514108833-514 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-515 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-516 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-517 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-518 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-519 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-520 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-521 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-522 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-523 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-524 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-525 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-526 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-527 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-528 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-529 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-530 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-531 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-532 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-533 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-534 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-535 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-536 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-537 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-538 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-539 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-540 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-541 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-542 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-543 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-544 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-545 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-546 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-547 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-548 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-549 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-550 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1000 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1001 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1002 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1003 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1004 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1005 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1006 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1007 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1008 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1009 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1010 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1011 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1012 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1013 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1014 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1015 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1016 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1017 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1018 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1019 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1020 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1021 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1022 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1023 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1024 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1025 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1026 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1027 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1028 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1029 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1030 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1031 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1032 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1033 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1034 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1035 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1036 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1037 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1038 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1039 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1040 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1041 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1042 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1043 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1044 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1045 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1046 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1047 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1048 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1049 *unknown*\*unknown* (8)
+S-1-5-21-3532885019-1334016158-1514108833-1050 *unknown*\*unknown* (8)
+
+ ============================================= 
+|    Getting printer info for 10.10.252.24    |
+ ============================================= 
+result was WERR_INVALID_NAME
+
+
+enum4linux complete on Mon Feb 21 23:07:33 2022
+

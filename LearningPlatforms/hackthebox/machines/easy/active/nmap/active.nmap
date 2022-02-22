@@ -1,0 +1,24 @@
+# Nmap 7.92 scan initiated Mon Feb 21 18:07:34 2022 as: nmap -sC -sV -oN nmap/active.nmap -Pn 10.10.10.100
+Nmap scan report for 10.10.10.100
+Host is up (0.029s latency).
+Not shown: 992 closed tcp ports (reset)
+PORT      STATE SERVICE      VERSION
+88/tcp    open  kerberos-sec Microsoft Windows Kerberos (server time: 2022-02-21 23:14:49Z)
+135/tcp   open  msrpc        Microsoft Windows RPC
+139/tcp   open  netbios-ssn  Microsoft Windows netbios-ssn
+464/tcp   open  kpasswd5?
+49152/tcp open  unknown
+49153/tcp open  unknown
+49154/tcp open  unknown
+49155/tcp open  unknown
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_smb2-time: ERROR: Script execution failed (use -d to debug)
+|_smb-security-mode: ERROR: Script execution failed (use -d to debug)
+|_ms-sql-info: ERROR: Script execution failed (use -d to debug)
+|_smb-os-discovery: ERROR: Script execution failed (use -d to debug)
+|_smb2-security-mode: SMB: Couldn't find a NetBIOS name that works for the server. Sorry!
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Feb 21 18:08:49 2022 -- 1 IP address (1 host up) scanned in 74.58 seconds

