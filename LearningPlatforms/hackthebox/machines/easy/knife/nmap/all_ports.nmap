@@ -1,0 +1,1 @@
+# Nmap 7.92 scan initiated Tue Mar  1 15:10:25 2022 as: nmap -p- -A -oN nmap/all_ports.nmap 10.10.10.242
