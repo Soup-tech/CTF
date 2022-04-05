@@ -4,8 +4,7 @@ This repository contains writeups, techniques, and some tools for the various CT
 ## Quick Guides
 Useful guides/procedures to follow in case I forget.
 
-[BufferOverflowMadeEasy](#)
-
+[BufferOverflowMadeEasy](#)<br>
 [LinuxPrivEsc](#)
 
 ## Competitions
