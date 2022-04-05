@@ -1,0 +1,53 @@
+- Nikto v2.1.6/2.1.5
++ Target Host: 10.10.10.233
++ Target Port: 80
++ GET Retrieved x-powered-by header: PHP/5.4.16
++ GET The X-XSS-Protection header is not defined. This header can hint to the user agent to protect against some forms of XSS
++ GET Uncommon header 'x-generator' found, with contents: Drupal 7 (http://drupal.org)
++ OSVDB-3268: GET /scripts/: Directory indexing found.
++ OSVDB-3268: GET /includes/: Directory indexing found.
++ GET Entry '/includes/' in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ OSVDB-3268: GET /misc/: Directory indexing found.
++ GET Entry '/misc/' in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ OSVDB-3268: GET /modules/: Directory indexing found.
++ GET Entry '/modules/' in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ OSVDB-3268: GET /profiles/: Directory indexing found.
++ GET Entry '/profiles/' in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ GET Entry '/scripts/' in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ OSVDB-3268: GET /themes/: Directory indexing found.
++ GET Entry '/themes/' in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ GET Entry '/INSTALL.mysql.txt' in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ GET Entry '/INSTALL.pgsql.txt' in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ GET Entry '/INSTALL.sqlite.txt' in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ GET Entry '/install.php' in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ GET Entry '/LICENSE.txt' in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ GET Entry '/MAINTAINERS.txt' in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ GET Entry '/UPGRADE.txt' in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ GET Entry '/xmlrpc.php' in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ GET Entry '/?q=filter/tips/' in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ GET Entry '/?q=user/password/' in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ GET Entry '/?q=user/register/' in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ GET Entry '/?q=user/login/' in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ GET "robots.txt" contains 68 entries which should be manually viewed.
++ HEAD PHP/5.4.16 appears to be outdated (current is at least 7.2.12). PHP 5.6.33, 7.0.27, 7.1.13, 7.2.1 may also current release for each branch.
++ HEAD Apache/2.4.6 appears to be outdated (current is at least Apache/2.4.37). Apache 2.2.34 is the EOL for the 2.x branch.
++ QDLQUNOJ Web Server returns a valid response with junk HTTP methods, this may cause false positives.
++ DEBUG DEBUG HTTP verb may show server debugging information. See http://msdn.microsoft.com/en-us/library/e8z01xdh%28VS.80%29.aspx for details.
++ OSVDB-877: TRACE HTTP TRACE method is active, suggesting the host is vulnerable to XST
++ OSVDB-3092: GET /web.config: ASP config file is accessible.
++ OSVDB-12184: GET /?=PHPB8B5F2A0-3C92-11d3-A3A9-4C7B08C10000: PHP reveals potentially sensitive information via certain HTTP requests that contain specific QUERY strings.
++ OSVDB-12184: GET /?=PHPE9568F34-D428-11d2-A769-00AA001ACF42: PHP reveals potentially sensitive information via certain HTTP requests that contain specific QUERY strings.
++ OSVDB-12184: GET /?=PHPE9568F35-D428-11d2-A769-00AA001ACF42: PHP reveals potentially sensitive information via certain HTTP requests that contain specific QUERY strings.
++ OSVDB-3092: GET /includes/: This might be interesting...
++ OSVDB-3092: GET /misc/: This might be interesting...
++ OSVDB-3268: GET /icons/: Directory indexing found.
++ OSVDB-3092: GET /UPGRADE.txt: Default file found.
++ OSVDB-3092: GET /install.php: Drupal install.php file found.
++ OSVDB-3092: GET /install.php: install.php file found.
++ OSVDB-3092: GET /LICENSE.txt: License file found may identify site software.
++ OSVDB-3092: GET /xmlrpc.php: xmlrpc.php was found.
++ OSVDB-3233: GET /INSTALL.mysql.txt: Drupal installation file found.
++ OSVDB-3233: GET /INSTALL.pgsql.txt: Drupal installation file found.
++ OSVDB-3233: GET /icons/README: Apache default file found.
++ OSVDB-3268: GET /sites/: Directory indexing found.
++ GET /.gitignore: .gitignore file found. It is possible to grasp the directory structure.

