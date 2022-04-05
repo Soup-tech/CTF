@@ -1,107 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <h1>Soup-Tech's Capture the Flag</h1>
-    <p>This repository contains writeups, techniques, and some tools for the various CTF competitions I have competed in. I mainly wanted to keep a record of all the cool things I learn in my cybersecurity journy. I will attempt to make some order in all of this chaos... but I make no promises :P</p>
-  </head>
-  <body>
-    <h1>HacktheBox</h1>
-    <h2>Machines</h2>
-    <p>Here are the boxes from HacktheBox that I have blooded. I follow <a href="https://docs.google.com/spreadsheets/d/1dwSMIAPIam0PuRBkCiDI88pU3yzrqqHkDtBngUHNCw8/edit#gid=1839402159">this</a> machine order. <a href="https://www.noobsec.net/hack-oscp/">This</a> guide is the one I refer to while I am studying for my OSCP.</p>
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>Difficulty</th>
-        <th>OS</th>
-      </tr>
-      <tr>
-        <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/lame">Lame</a></th>
-        <th>Easy</th>
-        <th>Linux</th>
-      </tr>
-      <tr>
-        <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/bashed">Bashed</th>
-        <th>Easy</th>
-        <th>Linux</th>
-      </tr>
-      <tr>
-        <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/legacy">Legacy</a></th>
-        <th>Easy</th>
-        <th>Windows</th>
-      </tr>
-      <tr>
-        <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/blocky">Blocky</a></th>
-        <th>Easy</th>
-        <th>Linux</th>
-      </tr>
-      <tr>
-        <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/blue">Blue</a></th>
-        <th>Easy</th>
-        <th>Windows</th>
-      </tr>
-      <tr>
-        <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/medium/solidstate">SolidState</a></th>
-        <th>Medium</th>
-        <th>Linux</th>
-      </tr>
-      <tr>
-        <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/shocker">Shocker</a></th>
-        <th>Easy</th>
-        <th>Linux</th>
-      </tr>
-      <tr>
-        <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/beep">Beep</a></th>
-        <th>Easy</th>
-        <th>Linux</th>
-      </tr>
-      <tr>
-        <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/mirai">Mirai</a></th>
-        <th>Easy</th>
-        <th>Linux</th>
-      </tr>
-      <tr>
-        <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/jerry">Jerry</a></th>
-        <th>Easy</th>
-        <th>Windows</th>
-      </tr>
-      <tr>
-        <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/medium/poison">Poison</a></th>
-        <th>Medium</th>
-        <th>FreeBSD</th>
-      </tr>
-      <tr>
-        <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/optimum">Optimum</a></th>
-        <th>Easy</th>
-        <th>Windows</th>
-      </tr>
-      <tr>
-        <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/granny">Granny</a></th>
-        <th>Easy</th>
-        <th>Windows</th>
-      </tr>
-      <tr>
-        <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/grandpa">Grandpa</a></th>
-        <th>Easy</th>
-        <th>Windows</th>
-      </tr>
-      <tr>
-        <th><a href="https://github.com/Soup-tech/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/sense">Sense</a></th>
-        <th>Easy</th>
-        <th>FreeBSD</th>
-      </tr>
-    </table>
-  </body>
-</html>
+# Soup-Tech's Capture the Flag
+This repository contains writeups, techniques, and some tools for the various CTF competitions I have competed in. I will attempt to make some order in this chaos...
 
-# Shortcuts
+## Quick Guides
+Useful guides/procedures to follow in case I forget.
 
-## General
-<a href="https://www.unifiedkillchain.com/assets/The-Unified-Kill-Chain.pdf">Unified Kill Chain</a><br>
-<a href="Penetration_Testing_Template.md">Basic Penetration Testing Template</a><br>
-<a href="https://attack.mitre.org/">MITRE ATT&CK</a><br>
+[BufferOverflowMadeEasy](#)
+[LinuxPrivEsc](#)
 
+## Competitions
+These are the various CTF competitions I've been apart of. Not all are included here as I no longer have access to results from some competitions.
 
-## Google Dorking
-<a href="https://gist.github.com/sundowndev/283efaddbcf896ab405488330d1bbc06">Small Cheat Sheet</a><br>
-<a href="https://books.google.com/books?id=bvB1-MmhEjQC&pg=PA127&lpg=PA127&dq=intitle:+%22index+of%22+intext:+credentials&source=bl&ots=ensp2ySjsb&sig=ACfU3U29lLpMb6uIliYkOvokM7PkDQkN5g&hl=en&sa=X&ved=2ahUKEwiIxuDdyLr1AhUFQTABHQm2D3s4ChDoAXoECCIQAw#v=onepage&q=intitle%3A%20%22index%20of%22%20intext%3A%20credentials&f=false">Google Scholar: Google Hacking for Penetration Testers</a><br>
-<a href="https://gist.github.com/gabsoftware/b91ab8f71c3ad7fcbf01e6e7027ef008">Google Hack Master List</a><br>
+- [National Cyber League (NCL)](https://cyberskyline.com/)
+	- Fall 2020 - 835/3000 Silver Bracket
+	- Spring 2021
+		- Individual: 475/3000 Silver Bracket
+		- Team: 2405/2965
+	- Fall 2021 - 780/3000 Silver Bracket
+- [PicoCTF](https://play.picoctf.org/login)
+	- PicoCTF2022 - Rank 1598 - 5500/14600
+
+## HacktheBox
+Here are all the boxes I have done on HacktheBox that have writeups.
+
+Check me out: **Cheat0**
+
+Current Stats (as of April 5th, 2022):
+- Global Ranking: 516
+- User Owns: 33
+- System Owns: 27
+
+### Linux
+| Name | Difficulty |
+| ------ | --------- |
+| Lame | Easy |
+| Bashed | Easy |
+| Blocky | Easy |
+| Shocker | Easy |
+| Beep | Easy |
+| Mirai | Easy |
+| ScriptKiddie | Easy |
+| Armageddon | Easy |
+| Cap | Easy |
+| Knife | Easy |
+| Valentine | Easy |
+| SolidState | Medium |
+
+### Windows
+| Name | Difficulty |
+| --- | --- |
+| Legacy | Easy | 
+| Blue | Easy |
+| Jerry | Easy |
+| Optimum | Easy |
+| Granny | Easy | 
+| Grandpa | Easy |
+| Devel | Easy |
+| Netmon | Easy |
+
+### OpenBS
+| Name  | Difficulty |
+| --- | --- |
+| Sense | Easy |
+| Poison | Medium |
+
+## CyberSecLabs
+Here are all the boxes I have done for CyberSecLabs that have writeups.
+
+Beginner Labs
+- Shares
+
