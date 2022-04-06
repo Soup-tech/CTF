@@ -1,4 +1,4 @@
-# Soup-Tech's Capture the Flag
+# Cheat0 Capture the Flag
 This repository contains writeups, techniques, and some tools for the various CTF competitions I have competed in. I will attempt to make some order in this chaos...
 
 ## Quick Guides
