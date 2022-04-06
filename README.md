@@ -32,36 +32,36 @@ Current Stats (as of April 5th, 2022):
 ### Linux
 | Name | Difficulty |
 | ------ | --------- |
-| Lame | Easy |
-| Bashed | Easy |
-| Blocky | Easy |
-| Shocker | Easy |
-| Beep | Easy |
-| Mirai | Easy |
-| ScriptKiddie | Easy |
-| Armageddon | Easy |
-| Cap | Easy |
-| Knife | Easy |
-| Valentine | Easy |
-| SolidState | Medium |
+| [Lame](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/lame) | Easy |
+| [Bashed](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/bashed) | Easy |
+| [Blocky](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/blocky) | Easy |
+| [Shocker](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/shocker) | Easy |
+| [Beep](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/beep) | Easy |
+| [Mirai](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/mirai) | Easy |
+| [ScriptKiddie](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/scriptkiddie) | Easy |
+| [Armageddon](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/armageddon) | Easy |
+| [Cap](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/cap) | Easy |
+| [Knife](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/knife) | Easy |
+| [Valentine](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/valentine) | Easy |
+| [SolidState](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/medium/solidstate) | Medium |
 
 ### Windows
 | Name | Difficulty |
 | --- | --- |
-| Legacy | Easy | 
-| Blue | Easy |
-| Jerry | Easy |
-| Optimum | Easy |
-| Granny | Easy | 
-| Grandpa | Easy |
-| Devel | Easy |
-| Netmon | Easy |
+| [Legacy](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/legacy) | Easy | 
+| [Blue](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/blue) | Easy |
+| [Jerry](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/jerry) | Easy |
+| [Optimum](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/optimum) | Easy |
+| [Granny](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/granny) | Easy | 
+| [Grandpa](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/grandpa) | Easy |
+| [Devel](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/devel) | Easy |
+| [Netmon](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/netmon) | Easy |
 
 ### OpenBS
 | Name  | Difficulty |
 | --- | --- |
-| Sense | Easy |
-| Poison | Medium |
+| [Sense](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/sense) | Easy |
+| [Poison](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/medium/poison) | Medium |
 
 ## CyberSecLabs
 Here are all the boxes I have done for CyberSecLabs that have writeups.
