@@ -1,0 +1,147 @@
+_______________________________________________________________
+         __          _______   _____
+         \ \        / /  __ \ / ____|
+          \ \  /\  / /| |__) | (___   ___  __ _ _ __ ®
+           \ \/  \/ / |  ___/ \___ \ / __|/ _` | '_ \
+            \  /\  /  | |     ____) | (__| (_| | | | |
+             \/  \/   |_|    |_____/ \___|\__,_|_| |_|
+
+         WordPress Security Scanner by the WPScan Team
+                         Version 3.8.20
+       Sponsored by Automattic - https://automattic.com/
+       @_WPScan_, @ethicalhack3r, @erwan_lr, @firefart
+_______________________________________________________________
+
+[+] URL: http://192.168.240.50/wordpress/ [192.168.240.50]
+[+] Started: Wed Apr  6 11:39:31 2022
+
+Interesting Finding(s):
+
+[+] Headers
+ | Interesting Entry: Server: Apache/2.4.18 (Ubuntu)
+ | Found By: Headers (Passive Detection)
+ | Confidence: 100%
+
+[+] XML-RPC seems to be enabled: http://192.168.240.50/wordpress/xmlrpc.php
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+ | References:
+ |  - http://codex.wordpress.org/XML-RPC_Pingback_API
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_ghost_scanner/
+ |  - https://www.rapid7.com/db/modules/auxiliary/dos/http/wordpress_xmlrpc_dos/
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_xmlrpc_login/
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_pingback_access/
+
+[+] WordPress readme found: http://192.168.240.50/wordpress/readme.html
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+
+[+] Upload directory has listing enabled: http://192.168.240.50/wordpress/wp-content/uploads/
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+
+[+] WordPress version 3.9.14 identified (Insecure, released on 2016-09-07).
+ | Found By: Rss Generator (Passive Detection)
+ |  - http://192.168.240.50/wordpress/?feed=rss2, <generator>http://wordpress.org/?v=3.9.14</generator>
+ |  - http://192.168.240.50/wordpress/?feed=comments-rss2, <generator>http://wordpress.org/?v=3.9.14</generator>
+
+[+] WordPress theme in use: twentyfourteen
+ | Location: http://192.168.240.50/wordpress/wp-content/themes/twentyfourteen/
+ | Latest Version: 3.2
+ | Last Updated: 2021-07-22T00:00:00.000Z
+ | Style URL: http://192.168.240.50/wordpress/wp-content/themes/twentyfourteen/style.css?ver=3.9.14
+ |
+ | Found By: Css Style In Homepage (Passive Detection)
+ |
+ | The version could not be determined.
+
+
+[i] Plugin(s) Identified:
+
+[+] mail-masta
+ | Location: http://192.168.240.50/wordpress/wp-content/plugins/mail-masta/
+ | Latest Version: 1.0 (up to date)
+ | Last Updated: 2014-09-19T07:52:00.000Z
+ |
+ | Found By: Urls In Homepage (Passive Detection)
+ |
+ | Version: 1.0 (100% confidence)
+ | Found By: Readme - Stable Tag (Aggressive Detection)
+ |  - http://192.168.240.50/wordpress/wp-content/plugins/mail-masta/readme.txt
+ | Confirmed By: Readme - ChangeLog Section (Aggressive Detection)
+ |  - http://192.168.240.50/wordpress/wp-content/plugins/mail-masta/readme.txt
+
+
+[i] Theme(s) Identified:
+
+[+] twentyfourteen
+ | Location: http://192.168.240.50/wordpress/wp-content/themes/twentyfourteen/
+ | Latest Version: 3.2
+ | Last Updated: 2021-07-22T00:00:00.000Z
+ | Style URL: http://192.168.240.50/wordpress/wp-content/themes/twentyfourteen/style.css
+ |
+ | Found By: Urls In Homepage (Passive Detection)
+ | Confirmed By: Known Locations (Aggressive Detection)
+ |  - http://192.168.240.50/wordpress/wp-content/themes/twentyfourteen/, status: 500
+ |
+ | The version could not be determined.
+
+[+] twentythirteen
+ | Location: http://192.168.240.50/wordpress/wp-content/themes/twentythirteen/
+ | Last Updated: 2021-07-22T00:00:00.000Z
+ | [!] The version is out of date, the latest version is 3.4
+ | Style URL: http://192.168.240.50/wordpress/wp-content/themes/twentythirteen/style.css
+ | Style Name: Twenty Thirteen
+ | Style URI: http://wordpress.org/themes/twentythirteen
+ | Description: The 2013 theme for WordPress takes us back to the blog, featuring a full range of post formats, each...
+ | Author: the WordPress team
+ | Author URI: http://wordpress.org/
+ |
+ | Found By: Known Locations (Aggressive Detection)
+ |  - http://192.168.240.50/wordpress/wp-content/themes/twentythirteen/, status: 500
+ |
+ | Version: 1.2 (80% confidence)
+ | Found By: Style (Passive Detection)
+ |  - http://192.168.240.50/wordpress/wp-content/themes/twentythirteen/style.css, Match: 'Version: 1.2'
+
+[+] twentytwelve
+ | Location: http://192.168.240.50/wordpress/wp-content/themes/twentytwelve/
+ | Last Updated: 2021-07-26T00:00:00.000Z
+ | [!] The version is out of date, the latest version is 3.5
+ | Style URL: http://192.168.240.50/wordpress/wp-content/themes/twentytwelve/style.css
+ | Style Name: Twenty Twelve
+ | Style URI: http://wordpress.org/themes/twentytwelve
+ | Description: The 2012 theme for WordPress is a fully responsive theme that looks great on any device. Features in...
+ | Author: the WordPress team
+ | Author URI: http://wordpress.org/
+ |
+ | Found By: Known Locations (Aggressive Detection)
+ |  - http://192.168.240.50/wordpress/wp-content/themes/twentytwelve/, status: 500
+ |
+ | Version: 1.4 (80% confidence)
+ | Found By: Style (Passive Detection)
+ |  - http://192.168.240.50/wordpress/wp-content/themes/twentytwelve/style.css, Match: 'Version: 1.4'
+
+
+[i] User(s) Identified:
+
+[+] btrisk
+ | Found By: Author Posts - Display Name (Passive Detection)
+ | Confirmed By:
+ |  Rss Generator (Passive Detection)
+ |  Author Id Brute Forcing - Author Pattern (Aggressive Detection)
+
+[+] admin
+ | Found By: Author Id Brute Forcing - Author Pattern (Aggressive Detection)
+ | Confirmed By: Login Error Messages (Aggressive Detection)
+
+[!] No WPScan API Token given, as a result vulnerability data has not been output.
+[!] You can get a free API token with 25 daily requests by registering at https://wpscan.com/register
+
+[+] Finished: Wed Apr  6 11:45:07 2022
+[+] Requests Done: 23512
+[+] Cached Requests: 53
+[+] Data Sent: 6.544 MB
+[+] Data Received: 3.268 MB
+[+] Memory used: 295.379 MB
+[+] Elapsed time: 00:05:36

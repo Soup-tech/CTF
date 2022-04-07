@@ -1,0 +1,6 @@
+/index.php            (Status: 200) [Size: 16088]
+/account.php          (Status: 200) [Size: 16]
+/css                  (Status: 301) [Size: 310] [--> http://10.10.11.116/css/]
+/js                   (Status: 301) [Size: 309] [--> http://10.10.11.116/js/]
+/config.php           (Status: 200) [Size: 0]
+/server-status        (Status: 403) [Size: 277]

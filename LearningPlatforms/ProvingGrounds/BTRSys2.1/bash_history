@@ -1,0 +1,41 @@
+cd
+cd /var/www
+ls
+cd html
+ls
+cat wp-config.php
+cd wordpress
+ls
+cat wp-config.php
+myslq -u root 
+mysql -u root -h
+mysql -u root -p
+mysql -u root -p
+exit
+mysql -u root -p
+su
+id
+su
+exit
+mysql -uroot -prootpassword!
+exit
+cat /bin
+cd /bin
+ls
+cd 
+cd /etc/shells
+cd /etc
+ls
+cat shells
+clear
+cd
+exit
+ls
+cd /etc
+ls
+cd /var/www/html/wordpress
+ls
+cat wp-config.php
+mysql -u root -p -D wordpress -e 'SHOW TABLES;'
+mysql -u root -p -D wordpress -e 'SELECT * FROM wp_users;'
+exit
