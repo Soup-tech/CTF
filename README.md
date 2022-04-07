@@ -43,7 +43,7 @@ Current Stats (as of April 5th, 2022):
 | [Cap](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/cap) | Easy |
 | [Knife](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/knife) | Easy |
 | [Valentine](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/valentine) | Easy |
-| Validation | Easy |
+| [Validation](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/validation) | Easy |
 | [SolidState](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/medium/solidstate) | Medium |
 
 ### Windows
