@@ -43,7 +43,7 @@ Current Stats (as of April 5th, 2022):
 | [Cap](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/cap) | Easy |
 | [Knife](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/knife) | Easy |
 | [Valentine](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/valentine) | Easy |
-| Validation | Easy |
+| [Validation](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/validation) | Easy |
 | [SolidState](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/medium/solidstate) | Medium |
 
 ### Windows
@@ -68,10 +68,10 @@ Current Stats (as of April 5th, 2022):
 Here are all the boxes I have done for CyberSecLabs that have writeups.
 
 Beginner Labs
-- Shares
+- [Shares](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/CyberSecLabs/BeginnerLabs/shares)
 
 ## Proving Grounds
 Here are all the machines I have done for Offensive Security's: Proving Grounds
 
 Intermediate
-- BTRSys2.1
+- [BTRSys2.1](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/ProvingGrounds/BTRSys2.1)
