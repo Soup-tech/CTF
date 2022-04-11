@@ -75,3 +75,4 @@ Here are all the machines I have done for Offensive Security's: Proving Grounds
 
 Intermediate
 - [BTRSys2.1](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/ProvingGrounds/BTRSys2.1)
+- [Deception](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/ProvingGrounds/Deception)
