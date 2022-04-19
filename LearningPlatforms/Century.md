@@ -54,3 +54,63 @@ This was a pretty simple one as it is very similar to Linux.
 cd ".\Can You Open Me"
 ```
 The file is **5548**.
+
+## Century5
+```
+The password for Century6 is the short name of the domain in which this system resides in PLUS the name of the file on the desktop.
+```
+First, the file on the Desktop is **3347**.
+Using the **Get-WmiObject** cmdlet with the Class Win32_NTDomain gives the domain name.
+```ps1
+Get-WmiObject -Class Win32_NTDomain
+
+ClientSiteName          : Default-First-Site-Name                                                                           
+DcSiteName              : Default-First-Site-Name                                                                           
+Description             : underthewire                                                                                      
+DnsForestName           : underthewire.tech                                                                                 
+DomainControllerAddress : \\192.99.167.156                                                                                  
+DomainControllerName    : \\UTW                                                                                             
+DomainName              : underthewire                                                                                      
+Roles                   :                                                                                                   
+Status                  : OK
+```
+The Get-WmiObject (Windows Management Instrumentation) gets instances of WMI classes or information about the available classes. The Win32_NTDomain class represents the a Windows domain.
+
+## Century6
+```
+The password for Century7 is the number of folders on the desktop.
+```
+This was similar to Century3
+```ps1
+Get-ChildItem | Measure-Object
+
+Count    : 197                                                                                                              
+Average  :                                                                                                                  
+Sum      :                                                                                                                  
+Maximum  :                                                                                                                  
+Minimum  :                                                                                                                  
+Property :
+```
+
+## Century7
+```
+The password for Century8 is in a readme file somewhere within the contacts, desktop, documents, downloads, favorites, music, or videos folder in the user’s profile.
+```
+**Get-ChildItem** cmdlet seems to be a 'roided version of ls.
+```ps1
+Get-ChildItem readme*
+
+    Directory: C:\users\century7\Downloads                                                                                  
+                                                                                                                            
+                                                                                                                            
+Mode                LastWriteTime         Length Name                                                                       
+----                -------------         ------ ----                                                                       
+-a----        8/30/2018   3:29 AM              7 Readme.txt                                                                 
+-a----        2/12/2022   8:59 PM              2 Readme2.txt
+```
+The contents of Readme.txt was **7points**
+
+## Century8
+```
+The password for Century9 is the number of unique entries within the file on the desktop.
+```
