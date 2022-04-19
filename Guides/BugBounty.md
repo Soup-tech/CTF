@@ -10,7 +10,32 @@ https://alike-lantern-72d.notion.site/Web-Application-Penetration-Testing-Checkl
 ## Using Web Proxies
 - **Intercepting Responses**: You can intercept web server responses before it reaches the client. This is useful when we want to change the apperance, enable/disable certain fields, and change the overall behavior of the web app.
 - **Automatic Modification**: You can apply certain modifications for all requests/responses based on a ruleset. This can be useful when a web application blocks a certain header or feature (such as a User-Agent). Change this (Proxy>Options>Match and Replace)
-- **ProxyChain**: proxychains is probably the simplest way to route all traffic from the command line to a proxy. Edit /etc/proxychain.conf, comment out *socks4 127.0.0.1 9050* and add *http 127.0.0.1 8080*. It is also a good idea to enable quite mode. To route traffic
+- **OWASP - Zap**: I would really only recommend using Zap for it's Spidering and Active Scanning features. It is overall a good application (nice GUI, open source, free) but I am already too dedicated to Burp. Perhaps in another life...
+
+
+## Information Gathering
+
+### Whois
+We can consider WHOIS as the "white pages" for domain names. It is a TCP-based transaction-oriented query/response protocol listening on TCP port 43 by default. We can use it for querying databases containing domain names, IP addresses, or autonomous systems and provide information services to Internet users. The protocol is defined in RFC 3912. 
 ```bash
-proxychains curl http://SERVER_IP:PORT/
+$ whois <target>
 ```
+
+Information to pay attention to in the results of a whois query:
+- Organization
+- Locations
+- Domain Email Address
+- Registrar Email Address
+- Phone Number
+- Language
+- Registrar
+- New Domain
+- DNSSEC
+- Name Servers
+
+### Domain Name System (DNS)
+Considered the internet phonebook.
+
+There is a heirarchy of names in DNS structure. The system's root, the highest level, is unnamed.
+
+Top-Level Domains nameservers, might be compared to a single shelf of books in a library.
