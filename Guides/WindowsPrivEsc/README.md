@@ -108,6 +108,10 @@ Run specific check categories:
 > .\winPEASany.exe quiet cmd systeminfo
 ```
 
+### accesschk.exe
+Old but trustworthy tool for checking user access control rights. You can use it to check whether a user or grup has access to files, directories, services, and registry keys.
+The downside is more recent versions of the program spawn a GUI "accept EULA" popup window. When using the command line, we have to use an older version which still has an /accepteula command line option.
+
 ## Kernel Exploits
 The kernel has complete control over the operating system. Exploiting a kernel vulnerability can result in execution as the SYSTEM user. 
 
