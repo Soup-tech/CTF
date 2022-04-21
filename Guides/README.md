@@ -3,10 +3,12 @@ Here are some commands, reverse shells, and small scripts that I keep for pen-te
 
 ## Quick Links
 [Linux Privilege Escalation](LinuxPrivEsc/README.md)
-[Windows Privilege Escalation](WindowsPrivEsc/README.md)
-[PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings)
-[Web Penetration Testing Checklist](https://github.com/swisskyrepo/PayloadsAllTheThings)
 
+[Windows Privilege Escalation](WindowsPrivEsc/README.md)
+
+[PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings)
+
+[Web Penetration Testing Checklist](https://github.com/swisskyrepo/PayloadsAllTheThings)
 
 ## Reverse Shell
 Alternate ways to gain shells.
