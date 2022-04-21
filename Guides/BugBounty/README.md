@@ -2,16 +2,12 @@
 This will be a collection of tips, tricks and methodology for bug bounties. All the information here comes from [HTB Academy - Bug Bounty Program](https://academy.hackthebox.com/).
 Only new stuff that I learned will exist here as well as a general procedure that I'll try to follow. This will also contain links to other repo's which contain cheat sheets. 
 
-## Procedure
-https://github.com/harshinsecurity/web-pentesting-checklist
-
-https://alike-lantern-72d.notion.site/Web-Application-Penetration-Testing-Checklist-4792d95add7d4ffd85dd50a5f50659c6
+[General Procedure](https://github.com/harshinsecurity/web-pentesting-checklist)
 
 ## Using Web Proxies
 - **Intercepting Responses**: You can intercept web server responses before it reaches the client. This is useful when we want to change the apperance, enable/disable certain fields, and change the overall behavior of the web app.
 - **Automatic Modification**: You can apply certain modifications for all requests/responses based on a ruleset. This can be useful when a web application blocks a certain header or feature (such as a User-Agent). Change this (Proxy>Options>Match and Replace)
 - **OWASP - Zap**: I would really only recommend using Zap for it's Spidering and Active Scanning features. It is overall a good application (nice GUI, open source, free) but I am already too dedicated to Burp. Perhaps in another life...
-
 
 ## Information Gathering
 

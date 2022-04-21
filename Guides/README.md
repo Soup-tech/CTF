@@ -1,19 +1,16 @@
 # Cheat Sheet
 Here are some commands, reverse shells, and small scripts that I keep for pen-testing.
 
-Linux Privilege Escalation
+## Quick Links
+[Linux Privilege Escalation](LinuxPrivEsc/README.md)
+[Windows Privilege Escalation](WindowsPrivEsc/README.md)
+[PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings)
+[Web Penetration Testing Checklist](https://github.com/swisskyrepo/PayloadsAllTheThings)
 
-## Web Application Testing Checklist
-1. Walk the Application
-	- Did you view all the source code
-		- HTML
-		- Javascript
-		- CSS
-	- Did you log all network traffic
-		- Capture all HTTP requests/responses
 
 ## Reverse Shell
 Alternate ways to gain shells.
+
 ### Linux
 Using cURL
 ```bash
