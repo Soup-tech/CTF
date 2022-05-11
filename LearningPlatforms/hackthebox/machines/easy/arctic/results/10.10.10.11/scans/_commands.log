@@ -1,0 +1,18 @@
+nmap -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -oN "/home/kali/Documents/CTF/LearningPlatforms/hackthebox/machines/easy/arctic/results/10.10.10.11/scans/_quick_tcp_nmap.txt" -oX "/home/kali/Documents/CTF/LearningPlatforms/hackthebox/machines/easy/arctic/results/10.10.10.11/scans/xml/_quick_tcp_nmap.xml" 10.10.10.11
+
+nmap -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -p- -oN "/home/kali/Documents/CTF/LearningPlatforms/hackthebox/machines/easy/arctic/results/10.10.10.11/scans/_full_tcp_nmap.txt" -oX "/home/kali/Documents/CTF/LearningPlatforms/hackthebox/machines/easy/arctic/results/10.10.10.11/scans/xml/_full_tcp_nmap.xml" 10.10.10.11
+
+nmap -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -oN "/home/kali/Documents/CTF/LearningPlatforms/hackthebox/machines/easy/arctic/results/10.10.10.11/scans/_quick_tcp_nmap.txt" -oX "/home/kali/Documents/CTF/LearningPlatforms/hackthebox/machines/easy/arctic/results/10.10.10.11/scans/xml/_quick_tcp_nmap.xml" 10.10.10.11
+
+nmap -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -p- -oN "/home/kali/Documents/CTF/LearningPlatforms/hackthebox/machines/easy/arctic/results/10.10.10.11/scans/_full_tcp_nmap.txt" -oX "/home/kali/Documents/CTF/LearningPlatforms/hackthebox/machines/easy/arctic/results/10.10.10.11/scans/xml/_full_tcp_nmap.xml" 10.10.10.11
+
+nmap -vv --reason -Pn -T4 -sU -A --top-ports 100 -oN "/home/kali/Documents/CTF/LearningPlatforms/hackthebox/machines/easy/arctic/results/10.10.10.11/scans/_top_100_udp_nmap.txt" -oX "/home/kali/Documents/CTF/LearningPlatforms/hackthebox/machines/easy/arctic/results/10.10.10.11/scans/xml/_top_100_udp_nmap.xml" 10.10.10.11
+
+getArch.py -target 10.10.10.11
+
+nmap -vv --reason -Pn -T4 -sV -p 135 --script="banner,msrpc-enum,rpc-grind,rpcinfo" -oN "/home/kali/Documents/CTF/LearningPlatforms/hackthebox/machines/easy/arctic/results/10.10.10.11/scans/tcp135/tcp_135_rpc_nmap.txt" -oX "/home/kali/Documents/CTF/LearningPlatforms/hackthebox/machines/easy/arctic/results/10.10.10.11/scans/tcp135/xml/tcp_135_rpc_nmap.xml" 10.10.10.11
+
+impacket-rpcdump -port 135 10.10.10.11
+
+nmap -vv --reason -Pn -T4 -sV -p 49154 --script="banner,msrpc-enum,rpc-grind,rpcinfo" -oN "/home/kali/Documents/CTF/LearningPlatforms/hackthebox/machines/easy/arctic/results/10.10.10.11/scans/tcp49154/tcp_49154_rpc_nmap.txt" -oX "/home/kali/Documents/CTF/LearningPlatforms/hackthebox/machines/easy/arctic/results/10.10.10.11/scans/tcp49154/xml/tcp_49154_rpc_nmap.xml" 10.10.10.11
+

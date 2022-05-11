@@ -1,0 +1,12 @@
+[*] msrpc on tcp/135
+
+	[-] RPC Client:
+
+		rpcclient -p 135 -U "" 10.10.10.11
+
+[*] msrpc on tcp/49154
+
+	[-] RPC Client:
+
+		rpcclient -p 49154 -U "" 10.10.10.11
+

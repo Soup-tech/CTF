@@ -21,10 +21,6 @@
 
 [33m  [+] [1;32mInteresting Services -non Microsoft-[33m([1;90mT1007[33m)[0m
 [33m   [?] [1;34mCheck if you can overwrite some service binary or perform a DLL hijacking, also check for unquoted paths [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#services[0m
-    daclsvc(DACL Service)[[0m[1;32m"C:\Program Files\DACL Service\daclservice.exe"[0m] - Manual - Stopped
-    [0m[1;31mYOU CAN MODIFY THIS SERVICE: WriteData/CreateFiles[0m
-[1;90m   =================================================================================================[0m
-
     dllsvc(DLL Hijack Service)[[0m[1;32m"C:\Program Files\DLL Hijack Service\dllhijackservice.exe"[0m] - Manual - Stopped
 [1;90m   =================================================================================================[0m
 
@@ -45,8 +41,7 @@
 
 [33m  [+] [1;32mModifiable Services[33m([1;90mT1007[33m)[0m
 [33m   [?] [1;34mCheck if you can modify any service [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#services[0m
-[1;31m    LOOKS LIKE YOU CAN MODIFY SOME SERVICE/s:[0m
-[0m[1;31m    daclsvc: WriteData/CreateFiles[0m
+[1;32m    You cannot modify any service[0m
 
 [33m  [+] [1;32mLooking if you can modify any service registry[33m([1;90m[33m)[0m
 [33m   [?] [1;34mCheck if you can modify the registry of a service [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#services-registry-permissions[0m

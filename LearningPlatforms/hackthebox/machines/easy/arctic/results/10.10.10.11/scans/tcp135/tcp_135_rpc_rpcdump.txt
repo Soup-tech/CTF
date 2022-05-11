@@ -1,0 +1,6 @@
+Impacket v0.9.25.dev1+20220218.140931.6042675a - Copyright 2021 SecureAuth Corporation
+
+[*] Retrieving endpoint list from 10.10.10.11
+[-] Protocol failed: Could not connect: timed out
+[*] No endpoints found.
+
