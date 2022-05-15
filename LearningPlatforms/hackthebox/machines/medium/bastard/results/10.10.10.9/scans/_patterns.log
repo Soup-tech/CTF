@@ -1,0 +1,12 @@
+Identified Architecture: 64-bit
+
+Matched Pattern: Powered-By: PHP/5.3.28
+
+Matched Pattern: Powered-By: ASP.NET
+
+Matched Pattern: powered-by" class="block block-system">
+
+Matched Pattern: Powered by <a href="https://www.drupal.org">Drupal</a></span>  </div>
+
+Identified HTTP Server: Microsoft-IIS/7.5
+

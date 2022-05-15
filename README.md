@@ -16,7 +16,7 @@ These are the various CTF competitions I've been apart of. Not all are included 
 ## HacktheBox
 Here are all the boxes I have done on HacktheBox that have writeups.
 
-Check me out: **Cheat0**
+Check me out: **Kaz00ie**
 
 Current Stats (as of April 5th, 2022):
 - Global Ranking: 516
@@ -51,6 +51,7 @@ Current Stats (as of April 5th, 2022):
 | [Grandpa](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/grandpa) | Easy |
 | [Devel](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/devel) | Easy |
 | [Netmon](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/netmon) | Easy |
+| [Bastard](LearningPlatforms/hackthebox/machines/medium/bastard) | Medium |
 
 ### OpenBS
 | Name  | Difficulty |
