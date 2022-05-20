@@ -1,0 +1,104 @@
+nmap -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -oN "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/_quick_tcp_nmap.txt" -oX "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/xml/_quick_tcp_nmap.xml" 10.10.10.82
+
+nmap -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -p- -oN "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/_full_tcp_nmap.txt" -oX "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/xml/_full_tcp_nmap.xml" 10.10.10.82
+
+nmap -vv --reason -Pn -T4 -sU -A --top-ports 100 -oN "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/_top_100_udp_nmap.txt" -oX "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/xml/_top_100_udp_nmap.xml" 10.10.10.82
+
+feroxbuster -u http://10.10.10.82:80/ -t 10 -w /root/.config/AutoRecon/wordlists/dirbuster.txt -x "txt,html,php,asp,aspx,jsp" -v -k -n -q -e -o "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp80/tcp_80_http_feroxbuster_dirbuster.txt"
+
+curl -sSik http://10.10.10.82:80/
+
+curl -sSikf http://10.10.10.82:80/.well-known/security.txt
+
+curl -sSikf http://10.10.10.82:80/robots.txt
+
+nmap -vv --reason -Pn -T4 -sV -p 80 --script="banner,(http* or ssl*) and not (brute or broadcast or dos or external or http-slowloris* or fuzzer)" -oN "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp80/tcp_80_http_nmap.txt" -oX "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp80/xml/tcp_80_http_nmap.xml" 10.10.10.82
+
+whatweb --color=never --no-errors -a 3 -v http://10.10.10.82:80 2>&1
+
+wkhtmltoimage --format png http://10.10.10.82:80/ /home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp80/tcp_80_http_screenshot.png
+
+getArch.py -target 10.10.10.82
+
+nmap -vv --reason -Pn -T4 -sV -p 135 --script="banner,msrpc-enum,rpc-grind,rpcinfo" -oN "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp135/tcp_135_rpc_nmap.txt" -oX "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp135/xml/tcp_135_rpc_nmap.xml" 10.10.10.82
+
+impacket-rpcdump -port 135 10.10.10.82
+
+enum4linux -a -M -l -d 10.10.10.82 2>&1
+
+nbtscan -rvh 10.10.10.82 2>&1
+
+nmap -vv --reason -Pn -T4 -sV -p 445 --script="banner,(nbstat or smb* or ssl*) and not (brute or broadcast or dos or external or fuzzer)" -oN "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp445/tcp_445_smb_nmap.txt" -oX "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp445/xml/tcp_445_smb_nmap.xml" 10.10.10.82
+
+smbclient -L //10.10.10.82 -N -I 10.10.10.82 2>&1
+
+smbmap -H 10.10.10.82 -P 445 2>&1
+
+nmap -vv --reason -Pn -T4 -sV -p 1521 --script="banner,(oracle* or ssl*) and not (brute or broadcast or dos or external or fuzzer)" -oN "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp1521/tcp_1521_oracle_nmap.txt" -oX "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp1521/xml/tcp_1521_oracle_nmap.xml" 10.10.10.82
+
+oscanner -v -s 10.10.10.82 -P 1521 2>&1
+
+tnscmd10g ping -h 10.10.10.82 -p 1521 2>&1
+
+nmap -vv --reason -Pn -T4 -sV -p 49152 --script="banner,msrpc-enum,rpc-grind,rpcinfo" -oN "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp49152/tcp_49152_rpc_nmap.txt" -oX "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp49152/xml/tcp_49152_rpc_nmap.xml" 10.10.10.82
+
+nmap -vv --reason -Pn -T4 -sV -p 49153 --script="banner,msrpc-enum,rpc-grind,rpcinfo" -oN "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp49153/tcp_49153_rpc_nmap.txt" -oX "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp49153/xml/tcp_49153_rpc_nmap.xml" 10.10.10.82
+
+nmap -vv --reason -Pn -T4 -sV -p 49154 --script="banner,msrpc-enum,rpc-grind,rpcinfo" -oN "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp49154/tcp_49154_rpc_nmap.txt" -oX "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp49154/xml/tcp_49154_rpc_nmap.xml" 10.10.10.82
+
+nmap -vv --reason -Pn -T4 -sV -p 49155 --script="banner,msrpc-enum,rpc-grind,rpcinfo" -oN "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp49155/tcp_49155_rpc_nmap.txt" -oX "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp49155/xml/tcp_49155_rpc_nmap.xml" 10.10.10.82
+
+nmap -vv --reason -Pn -T4 -sV -p 49159 --script="banner,(oracle* or ssl*) and not (brute or broadcast or dos or external or fuzzer)" -oN "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp49159/tcp_49159_oracle_nmap.txt" -oX "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp49159/xml/tcp_49159_oracle_nmap.xml" 10.10.10.82
+
+oscanner -v -s 10.10.10.82 -P 49159 2>&1
+
+tnscmd10g ping -h 10.10.10.82 -p 49159 2>&1
+
+nmap -vv --reason -Pn -T4 -sV -p 49160 --script="banner,msrpc-enum,rpc-grind,rpcinfo" -oN "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp49160/tcp_49160_rpc_nmap.txt" -oX "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp49160/xml/tcp_49160_rpc_nmap.xml" 10.10.10.82
+
+nmap -vv --reason -Pn -T4 -sV -p 49161 --script="banner,msrpc-enum,rpc-grind,rpcinfo" -oN "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp49161/tcp_49161_rpc_nmap.txt" -oX "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp49161/xml/tcp_49161_rpc_nmap.xml" 10.10.10.82
+
+tnscmd10g version -h 10.10.10.82 -p 1521 2>&1
+
+tnscmd10g version -h 10.10.10.82 -p 49159 2>&1
+
+smbmap -u null -p "" -H 10.10.10.82 -P 445 2>&1
+
+smbmap -H 10.10.10.82 -P 445 -R 2>&1
+
+smbmap -u null -p "" -H 10.10.10.82 -P 445 -R 2>&1
+
+smbmap -H 10.10.10.82 -P 445 -x "ipconfig /all" 2>&1
+
+smbmap -u null -p "" -H 10.10.10.82 -P 445 -x "ipconfig /all" 2>&1
+
+feroxbuster -u http://10.10.10.82:5985/ -t 10 -w /root/.config/AutoRecon/wordlists/dirbuster.txt -x "txt,html,php,asp,aspx,jsp" -v -k -n -q -e -o "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp5985/tcp_5985_http_feroxbuster_dirbuster.txt"
+
+curl -sSik http://10.10.10.82:5985/
+
+curl -sSikf http://10.10.10.82:5985/.well-known/security.txt
+
+curl -sSikf http://10.10.10.82:5985/robots.txt
+
+nmap -vv --reason -Pn -T4 -sV -p 5985 --script="banner,(http* or ssl*) and not (brute or broadcast or dos or external or http-slowloris* or fuzzer)" -oN "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp5985/tcp_5985_http_nmap.txt" -oX "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp5985/xml/tcp_5985_http_nmap.xml" 10.10.10.82
+
+whatweb --color=never --no-errors -a 3 -v http://10.10.10.82:5985 2>&1
+
+wkhtmltoimage --format png http://10.10.10.82:5985/ /home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp5985/tcp_5985_http_screenshot.png
+
+feroxbuster -u http://10.10.10.82:47001/ -t 10 -w /root/.config/AutoRecon/wordlists/dirbuster.txt -x "txt,html,php,asp,aspx,jsp" -v -k -n -q -e -o "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp47001/tcp_47001_http_feroxbuster_dirbuster.txt"
+
+curl -sSik http://10.10.10.82:47001/
+
+curl -sSikf http://10.10.10.82:47001/.well-known/security.txt
+
+curl -sSikf http://10.10.10.82:47001/robots.txt
+
+nmap -vv --reason -Pn -T4 -sV -p 47001 --script="banner,(http* or ssl*) and not (brute or broadcast or dos or external or http-slowloris* or fuzzer)" -oN "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp47001/tcp_47001_http_nmap.txt" -oX "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp47001/xml/tcp_47001_http_nmap.xml" 10.10.10.82
+
+whatweb --color=never --no-errors -a 3 -v http://10.10.10.82:47001 2>&1
+
+wkhtmltoimage --format png http://10.10.10.82:47001/ /home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp47001/tcp_47001_http_screenshot.png
+
+nmap -vv --reason -Pn -T4 -sV -p 49162 --script="banner,msrpc-enum,rpc-grind,rpcinfo" -oN "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp49162/tcp_49162_rpc_nmap.txt" -oX "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp49162/xml/tcp_49162_rpc_nmap.xml" 10.10.10.82
+

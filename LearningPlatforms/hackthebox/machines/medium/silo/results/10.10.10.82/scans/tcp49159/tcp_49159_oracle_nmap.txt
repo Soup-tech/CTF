@@ -1,0 +1,11 @@
+# Nmap 7.92 scan initiated Mon May 16 16:12:55 2022 as: nmap -vv --reason -Pn -T4 -sV -p 49159 "--script=banner,(oracle* or ssl*) and not (brute or broadcast or dos or external or fuzzer)" -oN /home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp49159/tcp_49159_oracle_nmap.txt -oX /home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp49159/xml/tcp_49159_oracle_nmap.xml 10.10.10.82
+Nmap scan report for 10.10.10.82
+Host is up, received user-set (0.038s latency).
+Scanned at 2022-05-16 16:12:55 EDT for 133s
+
+PORT      STATE SERVICE    REASON          VERSION
+49159/tcp open  oracle-tns syn-ack ttl 127 Oracle TNS listener (requires service name)
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon May 16 16:15:08 2022 -- 1 IP address (1 host up) scanned in 133.43 seconds

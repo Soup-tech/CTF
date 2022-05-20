@@ -1,0 +1,7 @@
+200      GET      334l     2089w    99710c http://10.10.10.82/iis-85.png
+200      GET       32l       55w      701c http://10.10.10.82/
+301      GET        2l       10w      156c http://10.10.10.82/aspnet_client => http://10.10.10.82/aspnet_client/
+301      GET        2l       10w      156c http://10.10.10.82/Aspnet_client => http://10.10.10.82/Aspnet_client/
+301      GET        2l       10w      156c http://10.10.10.82/aspnet_Client => http://10.10.10.82/aspnet_Client/
+301      GET        2l       10w      156c http://10.10.10.82/ASPNET_CLIENT => http://10.10.10.82/ASPNET_CLIENT/
+301      GET        2l       10w      156c http://10.10.10.82/Aspnet_Client => http://10.10.10.82/Aspnet_Client/

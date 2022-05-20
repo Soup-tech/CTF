@@ -1,0 +1,13 @@
+# Nmap 7.92 scan initiated Tue May 17 12:04:23 2022 as: nmap -vv --reason -Pn -T4 -sV -p 1521 --script=banner,oracle-sid-brute -oN /home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp1521/tcp_1521_oracle_sid-brute_nmap.txt -oX /home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp1521/xml/tcp_1521_oracle_sid-brute_nmap.xml 10.10.10.82
+Nmap scan report for 10.10.10.82
+Host is up, received user-set (0.044s latency).
+Scanned at 2022-05-17 12:04:23 EDT for 80s
+
+PORT     STATE SERVICE    REASON  VERSION
+1521/tcp open  oracle-tns syn-ack Oracle TNS listener 11.2.0.2.0 (unauthorized)
+| oracle-sid-brute: 
+|_  XE
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Tue May 17 12:05:43 2022 -- 1 IP address (1 host up) scanned in 79.46 seconds

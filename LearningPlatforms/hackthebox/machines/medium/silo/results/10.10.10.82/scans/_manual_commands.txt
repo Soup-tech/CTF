@@ -1,0 +1,210 @@
+[*] http on tcp/80
+
+	[-] (feroxbuster) Multi-threaded recursive directory/file enumeration for web servers using various wordlists:
+
+		feroxbuster -u http://10.10.10.82:80 -t 10 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x "txt,html,php,asp,aspx,jsp" -v -k -n -o /home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp80/tcp_80_http_feroxbuster_dirbuster.txt
+
+	[-] Credential bruteforcing commands (don't run these without modifying them):
+
+		hydra -L "/usr/share/seclists/Usernames/top-usernames-shortlist.txt" -P "/usr/share/seclists/Passwords/darkweb2017-top100.txt" -e nsr -s 80 -o "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp80/tcp_80_http_auth_hydra.txt" http-get://10.10.10.82/path/to/auth/area
+
+		medusa -U "/usr/share/seclists/Usernames/top-usernames-shortlist.txt" -P "/usr/share/seclists/Passwords/darkweb2017-top100.txt" -e ns -n 80 -O "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp80/tcp_80_http_auth_medusa.txt" -M http -h 10.10.10.82 -m DIR:/path/to/auth/area
+
+		hydra -L "/usr/share/seclists/Usernames/top-usernames-shortlist.txt" -P "/usr/share/seclists/Passwords/darkweb2017-top100.txt" -e nsr -s 80 -o "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp80/tcp_80_http_form_hydra.txt" http-post-form://10.10.10.82/path/to/login.php:"username=^USER^&password=^PASS^":"invalid-login-message"
+
+		medusa -U "/usr/share/seclists/Usernames/top-usernames-shortlist.txt" -P "/usr/share/seclists/Passwords/darkweb2017-top100.txt" -e ns -n 80 -O "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp80/tcp_80_http_form_medusa.txt" -M web-form -h 10.10.10.82 -m FORM:/path/to/login.php -m FORM-DATA:"post?username=&password=" -m DENY-SIGNAL:"invalid login message"
+
+	[-] (nikto) old but generally reliable web server enumeration tool:
+
+		nikto -ask=no -h http://10.10.10.82:80 2>&1 | tee "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp80/tcp_80_http_nikto.txt"
+
+	[-] (wpscan) WordPress Security Scanner (useful if WordPress is found):
+
+		wpscan --url http://10.10.10.82:80/ --no-update -e vp,vt,tt,cb,dbe,u,m --plugins-detection aggressive --plugins-version-detection aggressive -f cli-no-color 2>&1 | tee "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp80/tcp_80_http_wpscan.txt"
+
+[*] msrpc on tcp/135
+
+	[-] RPC Client:
+
+		rpcclient -p 135 -U "" 10.10.10.82
+
+[*] microsoft-ds on tcp/445
+
+	[-] Lookup SIDs
+
+		lookupsid.py [username]:[password]@10.10.10.82
+
+	[-] Nmap scans for SMB vulnerabilities that could potentially cause a DoS if scanned (according to Nmap). Be careful:
+
+		nmap -vv --reason -Pn -T4 -sV -p 445 --script="smb-vuln-ms06-025" --script-args="unsafe=1" -oN "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp445/tcp_445_smb_ms06-025.txt" -oX "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp445/xml/tcp_445_smb_ms06-025.xml" 10.10.10.82
+
+		nmap -vv --reason -Pn -T4 -sV -p 445 --script="smb-vuln-ms07-029" --script-args="unsafe=1" -oN "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp445/tcp_445_smb_ms07-029.txt" -oX "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp445/xml/tcp_445_smb_ms07-029.xml" 10.10.10.82
+
+		nmap -vv --reason -Pn -T4 -sV -p 445 --script="smb-vuln-ms08-067" --script-args="unsafe=1" -oN "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp445/tcp_445_smb_ms08-067.txt" -oX "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp445/xml/tcp_445_smb_ms08-067.xml" 10.10.10.82
+
+[*] oracle-tns on tcp/1521
+
+	[-] Brute-force SIDs using Nmap:
+
+		nmap -vv --reason -Pn -T4 -sV -p 1521 --script="banner,oracle-sid-brute" -oN "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp1521/tcp_1521_oracle_sid-brute_nmap.txt" -oX "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp1521/xml/tcp_1521_oracle_sid-brute_nmap.xml" 10.10.10.82
+
+	[-] Install ODAT (https://github.com/quentinhardy/odat) and run the following commands:
+
+		python odat.py tnscmd -s 10.10.10.82 -p 1521 --ping
+
+		python odat.py tnscmd -s 10.10.10.82 -p 1521 --version
+
+		python odat.py tnscmd -s 10.10.10.82 -p 1521 --status
+
+		python odat.py sidguesser -s 10.10.10.82 -p 1521
+
+		python odat.py passwordguesser -s 10.10.10.82 -p 1521 -d <sid> --accounts-file accounts/accounts_multiple.txt
+
+		python odat.py tnspoison -s 10.10.10.82 -p 1521 -d <sid> --test-module
+
+	[-] Install Oracle Instant Client (https://github.com/rapid7/metasploit-framework/wiki/How-to-get-Oracle-Support-working-with-Kali-Linux) and then bruteforce with patator:
+
+		patator oracle_login host=10.10.10.82 port=1521 user=COMBO00 password=COMBO01 0=/usr/share/seclists/Passwords/Default-Credentials/oracle-betterdefaultpasslist.txt -x ignore:code=ORA-01017 -x ignore:code=ORA-28000
+
+[*] msrpc on tcp/49152
+
+	[-] RPC Client:
+
+		rpcclient -p 49152 -U "" 10.10.10.82
+
+[*] msrpc on tcp/49153
+
+	[-] RPC Client:
+
+		rpcclient -p 49153 -U "" 10.10.10.82
+
+[*] msrpc on tcp/49154
+
+	[-] RPC Client:
+
+		rpcclient -p 49154 -U "" 10.10.10.82
+
+[*] msrpc on tcp/49155
+
+	[-] RPC Client:
+
+		rpcclient -p 49155 -U "" 10.10.10.82
+
+[*] oracle-tns on tcp/49159
+
+	[-] Brute-force SIDs using Nmap:
+
+		nmap -vv --reason -Pn -T4 -sV -p 49159 --script="banner,oracle-sid-brute" -oN "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp49159/tcp_49159_oracle_sid-brute_nmap.txt" -oX "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp49159/xml/tcp_49159_oracle_sid-brute_nmap.xml" 10.10.10.82
+
+	[-] Install ODAT (https://github.com/quentinhardy/odat) and run the following commands:
+
+		python odat.py tnscmd -s 10.10.10.82 -p 49159 --ping
+
+		python odat.py tnscmd -s 10.10.10.82 -p 49159 --version
+
+		python odat.py tnscmd -s 10.10.10.82 -p 49159 --status
+
+		python odat.py sidguesser -s 10.10.10.82 -p 49159
+
+		python odat.py passwordguesser -s 10.10.10.82 -p 49159 -d <sid> --accounts-file accounts/accounts_multiple.txt
+
+		python odat.py tnspoison -s 10.10.10.82 -p 49159 -d <sid> --test-module
+
+	[-] Install Oracle Instant Client (https://github.com/rapid7/metasploit-framework/wiki/How-to-get-Oracle-Support-working-with-Kali-Linux) and then bruteforce with patator:
+
+		patator oracle_login host=10.10.10.82 port=49159 user=COMBO00 password=COMBO01 0=/usr/share/seclists/Passwords/Default-Credentials/oracle-betterdefaultpasslist.txt -x ignore:code=ORA-01017 -x ignore:code=ORA-28000
+
+[*] msrpc on tcp/49160
+
+	[-] RPC Client:
+
+		rpcclient -p 49160 -U "" 10.10.10.82
+
+[*] msrpc on tcp/49161
+
+	[-] RPC Client:
+
+		rpcclient -p 49161 -U "" 10.10.10.82
+
+[*] http on tcp/5985
+
+	[-] (feroxbuster) Multi-threaded recursive directory/file enumeration for web servers using various wordlists:
+
+		feroxbuster -u http://10.10.10.82:5985 -t 10 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x "txt,html,php,asp,aspx,jsp" -v -k -n -o /home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp5985/tcp_5985_http_feroxbuster_dirbuster.txt
+
+	[-] Credential bruteforcing commands (don't run these without modifying them):
+
+		hydra -L "/usr/share/seclists/Usernames/top-usernames-shortlist.txt" -P "/usr/share/seclists/Passwords/darkweb2017-top100.txt" -e nsr -s 5985 -o "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp5985/tcp_5985_http_auth_hydra.txt" http-get://10.10.10.82/path/to/auth/area
+
+		medusa -U "/usr/share/seclists/Usernames/top-usernames-shortlist.txt" -P "/usr/share/seclists/Passwords/darkweb2017-top100.txt" -e ns -n 5985 -O "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp5985/tcp_5985_http_auth_medusa.txt" -M http -h 10.10.10.82 -m DIR:/path/to/auth/area
+
+		hydra -L "/usr/share/seclists/Usernames/top-usernames-shortlist.txt" -P "/usr/share/seclists/Passwords/darkweb2017-top100.txt" -e nsr -s 5985 -o "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp5985/tcp_5985_http_form_hydra.txt" http-post-form://10.10.10.82/path/to/login.php:"username=^USER^&password=^PASS^":"invalid-login-message"
+
+		medusa -U "/usr/share/seclists/Usernames/top-usernames-shortlist.txt" -P "/usr/share/seclists/Passwords/darkweb2017-top100.txt" -e ns -n 5985 -O "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp5985/tcp_5985_http_form_medusa.txt" -M web-form -h 10.10.10.82 -m FORM:/path/to/login.php -m FORM-DATA:"post?username=&password=" -m DENY-SIGNAL:"invalid login message"
+
+	[-] (nikto) old but generally reliable web server enumeration tool:
+
+		nikto -ask=no -h http://10.10.10.82:5985 2>&1 | tee "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp5985/tcp_5985_http_nikto.txt"
+
+	[-] (wpscan) WordPress Security Scanner (useful if WordPress is found):
+
+		wpscan --url http://10.10.10.82:5985/ --no-update -e vp,vt,tt,cb,dbe,u,m --plugins-detection aggressive --plugins-version-detection aggressive -f cli-no-color 2>&1 | tee "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp5985/tcp_5985_http_wpscan.txt"
+
+	[-] Bruteforce logins:
+
+		crackmapexec winrm 10.10.10.82 -d <domain> -u /usr/share/seclists/Usernames/top-usernames-shortlist.txt -p /usr/share/seclists/Passwords/darkweb2017-top100.txt
+
+	[-] Check login (requires credentials):
+
+		crackmapexec winrm 10.10.10.82 -d <domain> -u <username> -p <password> -x "whoami"
+
+	[-] Evil WinRM (gem install evil-winrm):
+
+		evil-winrm -u <user> -p <password> -i 10.10.10.82
+
+		evil-winrm -u <user> -H <hash> -i 10.10.10.82
+
+[*] http on tcp/47001
+
+	[-] (feroxbuster) Multi-threaded recursive directory/file enumeration for web servers using various wordlists:
+
+		feroxbuster -u http://10.10.10.82:47001 -t 10 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x "txt,html,php,asp,aspx,jsp" -v -k -n -o /home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp47001/tcp_47001_http_feroxbuster_dirbuster.txt
+
+	[-] Credential bruteforcing commands (don't run these without modifying them):
+
+		hydra -L "/usr/share/seclists/Usernames/top-usernames-shortlist.txt" -P "/usr/share/seclists/Passwords/darkweb2017-top100.txt" -e nsr -s 47001 -o "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp47001/tcp_47001_http_auth_hydra.txt" http-get://10.10.10.82/path/to/auth/area
+
+		medusa -U "/usr/share/seclists/Usernames/top-usernames-shortlist.txt" -P "/usr/share/seclists/Passwords/darkweb2017-top100.txt" -e ns -n 47001 -O "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp47001/tcp_47001_http_auth_medusa.txt" -M http -h 10.10.10.82 -m DIR:/path/to/auth/area
+
+		hydra -L "/usr/share/seclists/Usernames/top-usernames-shortlist.txt" -P "/usr/share/seclists/Passwords/darkweb2017-top100.txt" -e nsr -s 47001 -o "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp47001/tcp_47001_http_form_hydra.txt" http-post-form://10.10.10.82/path/to/login.php:"username=^USER^&password=^PASS^":"invalid-login-message"
+
+		medusa -U "/usr/share/seclists/Usernames/top-usernames-shortlist.txt" -P "/usr/share/seclists/Passwords/darkweb2017-top100.txt" -e ns -n 47001 -O "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp47001/tcp_47001_http_form_medusa.txt" -M web-form -h 10.10.10.82 -m FORM:/path/to/login.php -m FORM-DATA:"post?username=&password=" -m DENY-SIGNAL:"invalid login message"
+
+	[-] (nikto) old but generally reliable web server enumeration tool:
+
+		nikto -ask=no -h http://10.10.10.82:47001 2>&1 | tee "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp47001/tcp_47001_http_nikto.txt"
+
+	[-] (wpscan) WordPress Security Scanner (useful if WordPress is found):
+
+		wpscan --url http://10.10.10.82:47001/ --no-update -e vp,vt,tt,cb,dbe,u,m --plugins-detection aggressive --plugins-version-detection aggressive -f cli-no-color 2>&1 | tee "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/medium/silo/results/10.10.10.82/scans/tcp47001/tcp_47001_http_wpscan.txt"
+
+	[-] Bruteforce logins:
+
+		crackmapexec winrm 10.10.10.82 -d <domain> -u /usr/share/seclists/Usernames/top-usernames-shortlist.txt -p /usr/share/seclists/Passwords/darkweb2017-top100.txt
+
+	[-] Check login (requires credentials):
+
+		crackmapexec winrm 10.10.10.82 -d <domain> -u <username> -p <password> -x "whoami"
+
+	[-] Evil WinRM (gem install evil-winrm):
+
+		evil-winrm -u <user> -p <password> -i 10.10.10.82
+
+		evil-winrm -u <user> -H <hash> -i 10.10.10.82
+
+[*] msrpc on tcp/49162
+
+	[-] RPC Client:
+
+		rpcclient -p 49162 -U "" 10.10.10.82
+

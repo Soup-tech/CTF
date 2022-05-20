@@ -1,0 +1,31 @@
+```bash
+nmap -vv --reason -Pn -T4 -sU -A --top-ports 100 -oN "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/easy/bounty/results/10.10.10.93/scans/_top_100_udp_nmap.txt" -oX "/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/easy/bounty/results/10.10.10.93/scans/xml/_top_100_udp_nmap.xml" 10.10.10.93
+```
+
+[/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/easy/bounty/results/10.10.10.93/scans/_top_100_udp_nmap.txt](file:///home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/easy/bounty/results/10.10.10.93/scans/_top_100_udp_nmap.txt):
+
+```
+# Nmap 7.92 scan initiated Fri May 20 15:44:21 2022 as: nmap -vv --reason -Pn -T4 -sU -A --top-ports 100 -oN /home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/easy/bounty/results/10.10.10.93/scans/_top_100_udp_nmap.txt -oX /home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/easy/bounty/results/10.10.10.93/scans/xml/_top_100_udp_nmap.xml 10.10.10.93
+Nmap scan report for 10.10.10.93
+Host is up, received user-set (0.035s latency).
+Scanned at 2022-05-20 15:44:21 EDT for 1810s
+All 100 scanned ports on 10.10.10.93 are in ignored states.
+Not shown: 100 open|filtered udp ports (no-response)
+Too many fingerprints match this host to give specific OS details
+TCP/IP fingerprint:
+SCAN(V=7.92%E=4%D=5/20%OT=%CT=%CU=%PV=Y%DS=2%DC=T%G=N%TM=6287F6A7%P=x86_64-pc-linux-gnu)
+U1(R=N)
+IE(R=Y%DFI=N%TG=80%CD=Z)
+
+Network Distance: 2 hops
+
+TRACEROUTE (using proto 1/icmp)
+HOP RTT      ADDRESS
+1   31.66 ms 10.10.14.1
+2   32.25 ms 10.10.10.93
+
+Read data files from: /usr/bin/../share/nmap
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Fri May 20 16:14:31 2022 -- 1 IP address (1 host up) scanned in 1810.72 seconds
+
+```

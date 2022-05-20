@@ -26,48 +26,49 @@ Current Stats (as of April 5th, 2022):
 ### Linux
 | Name | Difficulty |
 | ------ | --------- |
-| [Lame](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/lame) | Easy |
-| [Bashed](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/bashed) | Easy |
-| [Blocky](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/blocky) | Easy |
-| [Shocker](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/shocker) | Easy |
-| [Beep](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/beep) | Easy |
-| [Mirai](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/mirai) | Easy |
-| [ScriptKiddie](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/scriptkiddie) | Easy |
-| [Armageddon](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/armageddon) | Easy |
-| [Cap](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/cap) | Easy |
-| [Knife](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/knife) | Easy |
-| [Valentine](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/valentine) | Easy |
-| [Validation](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/validation) | Easy |
-| [SolidState](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/medium/solidstate) | Medium |
+| [Lame](LearningPlatforms/hackthebox/machines/easy/lame) | Easy |
+| [Bashed](LearningPlatforms/hackthebox/machines/easy/bashed) | Easy |
+| [Blocky](LearningPlatforms/hackthebox/machines/easy/blocky) | Easy |
+| [Shocker](LearningPlatforms/hackthebox/machines/easy/shocker) | Easy |
+| [Beep](LearningPlatforms/hackthebox/machines/easy/beep) | Easy |
+| [Mirai](LearningPlatforms/hackthebox/machines/easy/mirai) | Easy |
+| [ScriptKiddie](LearningPlatforms/hackthebox/machines/easy/scriptkiddie) | Easy |
+| [Armageddon](LearningPlatforms/hackthebox/machines/easy/armageddon) | Easy |
+| [Cap](LearningPlatforms/hackthebox/machines/easy/cap) | Easy |
+| [Knife](LearningPlatforms/hackthebox/machines/easy/knife) | Easy |
+| [Valentine](LearningPlatforms/hackthebox/machines/easy/valentine) | Easy |
+| [Validation](LearningPlatforms/hackthebox/machines/easy/validation) | Easy |
+| [SolidState](LearningPlatforms/hackthebox/machines/medium/solidstate) | Medium |
 
 ### Windows
 | Name | Difficulty |
 | --- | --- |
-| [Legacy](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/legacy) | Easy | 
-| [Blue](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/blue) | Easy |
-| [Jerry](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/jerry) | Easy |
-| [Optimum](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/optimum) | Easy |
-| [Granny](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/granny) | Easy | 
-| [Grandpa](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/grandpa) | Easy |
-| [Devel](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/devel) | Easy |
-| [Netmon](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/netmon) | Easy |
+| [Legacy](LearningPlatforms/hackthebox/machines/easy/legacy) | Easy | 
+| [Blue](LearningPlatforms/hackthebox/machines/easy/blue) | Easy |
+| [Jerry](LearningPlatforms/hackthebox/machines/easy/jerry) | Easy |
+| [Optimum](LearningPlatforms/hackthebox/machines/easy/optimum) | Easy |
+| [Granny](LearningPlatforms/hackthebox/machines/easy/granny) | Easy | 
+| [Grandpa](LearningPlatforms/hackthebox/machines/easy/grandpa) | Easy |
+| [Devel](LearningPlatforms/hackthebox/machines/easy/devel) | Easy |
+| [Netmon](LearningPlatforms/hackthebox/machines/easy/netmon) | Easy |
+| [Bounty](LearningPlatforms/hackthebox/machines/easy/bounty) | Easy |
 | [Bastard](LearningPlatforms/hackthebox/machines/medium/bastard) | Medium |
 
 ### OpenBS
 | Name  | Difficulty |
 | --- | --- |
-| [Sense](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/easy/sense) | Easy |
-| [Poison](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/hackthebox/machines/medium/poison) | Medium |
+| [Sense](LearningPlatforms/hackthebox/machines/easy/sense) | Easy |
+| [Poison](LearningPlatforms/hackthebox/machines/medium/poison) | Medium |
 
 ## CyberSecLabs
 Here are all the boxes I have done for CyberSecLabs that have writeups.
 
 Beginner Labs
-- [Shares](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/CyberSecLabs/BeginnerLabs/shares)
+- [Shares](LearningPlatforms/CyberSecLabs/BeginnerLabs/shares)
 
 ## Proving Grounds
 Here are all the machines I have done for Offensive Security's: Proving Grounds
 
 Intermediate
-- [BTRSys2.1](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/ProvingGrounds/BTRSys2.1)
-- [Deception](https://github.com/Cheat-0/CTF/tree/main/LearningPlatforms/ProvingGrounds/Deception)
+- [BTRSys2.1](LearningPlatforms/ProvingGrounds/BTRSys2.1)
+- [Deception](LearningPlatforms/ProvingGrounds/Deception)
