@@ -1,0 +1,32 @@
+# Nmap 7.92 scan initiated Sun Feb 20 14:51:07 2022 as: nmap -p- -A -oN nmap/all_ports.nmap 10.10.10.15
+Nmap scan report for 10.10.10.15
+Host is up (0.027s latency).
+Not shown: 65534 filtered tcp ports (no-response)
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Microsoft IIS httpd 6.0
+|_http-server-header: Microsoft-IIS/6.0
+| http-webdav-scan: 
+|   Public Options: OPTIONS, TRACE, GET, HEAD, DELETE, PUT, POST, COPY, MOVE, MKCOL, PROPFIND, PROPPATCH, LOCK, UNLOCK, SEARCH
+|   Server Date: Sun, 20 Feb 2022 20:00:12 GMT
+|   Allowed Methods: OPTIONS, TRACE, GET, HEAD, DELETE, COPY, MOVE, PROPFIND, PROPPATCH, SEARCH, MKCOL, LOCK, UNLOCK
+|   Server Type: Microsoft-IIS/6.0
+|_  WebDAV type: Unknown
+|_http-title: Under Construction
+| http-methods: 
+|_  Potentially risky methods: TRACE DELETE COPY MOVE PROPFIND PROPPATCH SEARCH MKCOL LOCK UNLOCK PUT
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Device type: general purpose
+Running (JUST GUESSING): Microsoft Windows 2003|2008|XP|2000 (90%)
+OS CPE: cpe:/o:microsoft:windows_server_2003::sp2 cpe:/o:microsoft:windows_server_2008::sp2 cpe:/o:microsoft:windows_xp::sp3 cpe:/o:microsoft:windows_2000::sp4
+Aggressive OS guesses: Microsoft Windows Server 2003 SP2 (90%), Microsoft Windows Server 2003 SP1 or SP2 (89%), Microsoft Windows 2003 SP2 (89%), Microsoft Windows Server 2008 Enterprise SP2 (89%), Microsoft Windows XP SP3 (89%), Microsoft Windows XP (87%), Microsoft Windows 2000 SP4 or Windows XP Professional SP1 (87%), Microsoft Windows 2000 SP4 (85%), Microsoft Windows Server 2003 SP1 - SP2 (85%), Microsoft Windows XP SP2 or Windows Server 2003 (85%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 2 hops
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+TRACEROUTE (using port 80/tcp)
+HOP RTT      ADDRESS
+1   26.70 ms 10.10.14.1
+2   26.71 ms 10.10.10.15
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sun Feb 20 14:53:11 2022 -- 1 IP address (1 host up) scanned in 123.86 seconds

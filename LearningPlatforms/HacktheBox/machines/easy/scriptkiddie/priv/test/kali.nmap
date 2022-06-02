@@ -1,0 +1,17 @@
+# Nmap 7.92 scan initiated Mon Apr  4 15:13:11 2022 as: nmap --top-ports 10 -oN test/kali.nmap kali
+Nmap scan report for kali (127.0.1.1)
+Host is up (0.000034s latency).
+
+PORT     STATE  SERVICE
+21/tcp   closed ftp
+22/tcp   closed ssh
+23/tcp   closed telnet
+25/tcp   closed smtp
+80/tcp   closed http
+110/tcp  closed pop3
+139/tcp  closed netbios-ssn
+443/tcp  closed https
+445/tcp  closed microsoft-ds
+3389/tcp closed ms-wbt-server
+
+# Nmap done at Mon Apr  4 15:13:11 2022 -- 1 IP address (1 host up) scanned in 0.04 seconds

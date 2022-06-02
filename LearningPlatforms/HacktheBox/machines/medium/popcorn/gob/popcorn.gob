@@ -1,0 +1,6 @@
+/index                (Status: 200) [Size: 177]
+/index.html           (Status: 200) [Size: 177]
+/test.php             (Status: 200) [Size: 47048]
+/test                 (Status: 200) [Size: 47036]
+/torrent              (Status: 301) [Size: 310] [--> http://10.10.10.6/torrent/]
+/rename               (Status: 301) [Size: 309] [--> http://10.10.10.6/rename/]

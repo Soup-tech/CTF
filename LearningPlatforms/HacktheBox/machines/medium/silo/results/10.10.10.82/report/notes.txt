@@ -1,0 +1,56 @@
+[*] http found on tcp/80.
+
+
+
+[*] msrpc found on tcp/135.
+
+
+
+[*] microsoft-ds found on tcp/445.
+
+
+
+[*] oracle-tns found on tcp/1521.
+
+
+
+[*] msrpc found on tcp/49152.
+
+
+
+[*] msrpc found on tcp/49153.
+
+
+
+[*] msrpc found on tcp/49154.
+
+
+
+[*] msrpc found on tcp/49155.
+
+
+
+[*] oracle-tns found on tcp/49159.
+
+
+
+[*] msrpc found on tcp/49160.
+
+
+
+[*] msrpc found on tcp/49161.
+
+
+
+[*] http found on tcp/5985.
+
+
+
+[*] http found on tcp/47001.
+
+
+
+[*] msrpc found on tcp/49162.
+
+
+

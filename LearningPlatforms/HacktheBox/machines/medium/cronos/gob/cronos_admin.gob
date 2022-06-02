@@ -1,0 +1,6 @@
+/welcome.php          (Status: 302) [Size: 439] [--> index.php]
+/index.php            (Status: 200) [Size: 1547]
+/logout.php           (Status: 302) [Size: 0] [--> index.php]
+/config.php           (Status: 200) [Size: 0]
+/session.php          (Status: 302) [Size: 0] [--> index.php]
+/server-status        (Status: 403) [Size: 304]

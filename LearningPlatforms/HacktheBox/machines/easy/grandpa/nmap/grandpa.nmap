@@ -1,0 +1,20 @@
+# Nmap 7.92 scan initiated Sun Feb 20 16:14:33 2022 as: nmap -sC -sV -oN nmap/grandpa.nmap -Pn 10.10.10.14
+Nmap scan report for 10.10.10.14
+Host is up (0.031s latency).
+Not shown: 999 filtered tcp ports (no-response)
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Microsoft IIS httpd 6.0
+|_http-title: Under Construction
+| http-webdav-scan: 
+|   WebDAV type: Unknown
+|   Server Date: Sun, 20 Feb 2022 21:21:45 GMT
+|   Server Type: Microsoft-IIS/6.0
+|   Public Options: OPTIONS, TRACE, GET, HEAD, DELETE, PUT, POST, COPY, MOVE, MKCOL, PROPFIND, PROPPATCH, LOCK, UNLOCK, SEARCH
+|_  Allowed Methods: OPTIONS, TRACE, GET, HEAD, COPY, PROPFIND, SEARCH, LOCK, UNLOCK
+| http-methods: 
+|_  Potentially risky methods: TRACE COPY PROPFIND SEARCH LOCK UNLOCK DELETE PUT MOVE MKCOL PROPPATCH
+|_http-server-header: Microsoft-IIS/6.0
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sun Feb 20 16:14:45 2022 -- 1 IP address (1 host up) scanned in 12.10 seconds

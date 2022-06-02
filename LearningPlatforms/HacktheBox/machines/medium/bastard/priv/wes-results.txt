@@ -1,0 +1,54 @@
+Windows Exploit Suggester 1.02 ( https://github.com/bitsadmin/wesng/ )
+[+] Parsing systeminfo output
+[+] Operating System
+    - Name: Windows Server 2008 R2 for x64-based Systems
+    - Generation: 2008 R2
+    - Build: 7600
+    - Version: None
+    - Architecture: x64-based
+    - Installed hotfixes: None
+[+] Loading definitions
+    - Creation date of definitions: 20220421
+[+] Determining missing patches
+[+] Filtering duplicate vulnerabilities
+[+] Applying display filters
+[!] Found vulnerabilities!
+
+Date: 20120612
+CVE: CVE-2012-0217
+KB: KB2709715
+Title: Vulnerabilities in Windows Kernel Could Allow Elevation of Privilege
+Affected product: Windows Server 2008 R2 for x64-based Systems
+Affected component: 
+Severity: Important
+Impact: Elevation of Privilege
+Exploits: https://www.exploit-db.com/exploits/28718/, https://www.exploit-db.com/exploits/46508/
+
+Date: 20130108
+CVE: CVE-2013-0008
+KB: KB2778930
+Title: Vulnerability in Windows Kernel-Mode Driver Could Allow Elevation of Privilege
+Affected product: Windows Server 2008 R2 for x64-based Systems
+Affected component: 
+Severity: Important
+Impact: Elevation of Privilege
+Exploit: http://www.exploit-db.com/exploits/24485
+
+Date: 20110208
+CVE: CVE-2010-4398
+KB: KB2393802
+Title: Vulnerabilities in Windows Kernel Could Allow Elevation of Privilege
+Affected product: Windows Server 2008 R2 for x64-based Systems
+Affected component: 
+Severity: Important
+Impact: Elevation of Privilege
+Exploits: http://www.exploit-db.com/bypassing-uac-with-user-privilege-under-windows-vista7-mirror/, http://www.exploit-db.com/exploits/15609/
+
+[-] Missing patches: 3
+    - KB2709715: patches 1 vulnerability
+    - KB2778930: patches 1 vulnerability
+    - KB2393802: patches 1 vulnerability
+[I] KB with the most recent release date
+    - ID: KB2778930
+    - Release date: 20130108
+[+] Done. Displaying 3 of the 207 vulnerabilities found.

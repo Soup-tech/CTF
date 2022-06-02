@@ -1,0 +1,27 @@
+# Nmap 7.92 scan initiated Tue Apr 26 23:17:58 2022 as: nmap -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -oN /home/kali/Documents/CTF/LearningPlatforms/hackthebox/machines/easy/arctic/results/10.10.10.11/scans/_quick_tcp_nmap.txt -oX /home/kali/Documents/CTF/LearningPlatforms/hackthebox/machines/easy/arctic/results/10.10.10.11/scans/xml/_quick_tcp_nmap.xml 10.10.10.11
+Nmap scan report for 10.10.10.11
+Host is up, received user-set (0.037s latency).
+Scanned at 2022-04-26 23:17:59 EDT for 381s
+Not shown: 997 filtered tcp ports (no-response)
+PORT      STATE SERVICE REASON          VERSION
+135/tcp   open  msrpc   syn-ack ttl 127 Microsoft Windows RPC
+8500/tcp  open  fmtp?   syn-ack ttl 127
+49154/tcp open  msrpc   syn-ack ttl 127 Microsoft Windows RPC
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Device type: WAP|phone
+Running: Linux 2.4.X|2.6.X, Sony Ericsson embedded
+OS CPE: cpe:/o:linux:linux_kernel:2.4.20 cpe:/o:linux:linux_kernel:2.6.22 cpe:/h:sonyericsson:u8i_vivaz
+OS details: Tomato 1.28 (Linux 2.4.20), Tomato firmware (Linux 2.6.22), Sony Ericsson U8i Vivaz mobile phone
+TCP/IP fingerprint:
+OS:SCAN(V=7.92%E=4%D=4/26%OT=135%CT=%CU=%PV=Y%G=N%TM=6268B764%P=x86_64-pc-l
+OS:inux-gnu)ECN(R=N)T1(R=N)T2(R=N)T3(R=N)T4(R=N)U1(R=N)IE(R=N)
+
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+TRACEROUTE (using port 135/tcp)
+HOP RTT    ADDRESS
+1   ... 30
+
+Read data files from: /usr/bin/../share/nmap
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Tue Apr 26 23:24:20 2022 -- 1 IP address (1 host up) scanned in 382.42 seconds

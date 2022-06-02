@@ -1,0 +1,6 @@
+admin
+	access id:	34322
+	name:		admin
+	email:		admin@megacorp.com
+
+robert:M3g4C0rpUs3r!

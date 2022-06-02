@@ -1,0 +1,2 @@
+root:x:0:0:root:/root:/bin/bash
+mike:x:1000:1000:mike:/home/mike:/bin/bash

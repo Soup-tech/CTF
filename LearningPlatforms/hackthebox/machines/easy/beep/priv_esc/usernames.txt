@@ -1,6 +1,0 @@
-root
-mysql
-cyrus
-asterisk
-spamfilter
-fanis

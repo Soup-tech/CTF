@@ -1,0 +1,12 @@
+[*] msrpc found on tcp/135.
+
+
+
+[*] fmtp found on tcp/8500.
+
+
+
+[*] msrpc found on tcp/49154.
+
+
+

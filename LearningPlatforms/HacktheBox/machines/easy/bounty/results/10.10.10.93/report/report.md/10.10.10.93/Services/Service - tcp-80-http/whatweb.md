@@ -1,0 +1,52 @@
+```bash
+whatweb --color=never --no-errors -a 3 -v http://10.10.10.93:80 2>&1
+```
+
+[/home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/easy/bounty/results/10.10.10.93/scans/tcp80/tcp_80_http_whatweb.txt](file:///home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/easy/bounty/results/10.10.10.93/scans/tcp80/tcp_80_http_whatweb.txt):
+
+```
+WhatWeb report for http://10.10.10.93:80
+Status    : 200 OK
+Title     : Bounty
+IP        : 10.10.10.93
+Country   : RESERVED, ZZ
+
+Summary   : HTTPServer[Microsoft-IIS/7.5], Microsoft-IIS[7.5], X-Powered-By[ASP.NET]
+
+Detected Plugins:
+[ HTTPServer ]
+	HTTP server header string. This plugin also attempts to
+	identify the operating system from the server header.
+
+	String       : Microsoft-IIS/7.5 (from server string)
+
+[ Microsoft-IIS ]
+	Microsoft Internet Information Services (IIS) for Windows
+	Server is a flexible, secure and easy-to-manage Web server
+	for hosting anything on the Web. From media streaming to
+	web application hosting, IIS's scalable and open
+	architecture is ready to handle the most demanding tasks.
+
+	Version      : 7.5
+	Website     : http://www.iis.net/
+
+[ X-Powered-By ]
+	X-Powered-By HTTP header
+
+	String       : ASP.NET (from x-powered-by string)
+
+HTTP Headers:
+	HTTP/1.1 200 OK
+	Content-Type: text/html
+	Last-Modified: Thu, 31 May 2018 03:46:26 GMT
+	Accept-Ranges: bytes
+	ETag: "20ba8ef391f8d31:0"
+	Server: Microsoft-IIS/7.5
+	X-Powered-By: ASP.NET
+	Date: Fri, 20 May 2022 19:45:28 GMT
+	Connection: close
+	Content-Length: 630
+
+
+
+```

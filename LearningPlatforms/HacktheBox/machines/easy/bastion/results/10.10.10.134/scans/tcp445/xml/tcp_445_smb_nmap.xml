@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Sat May 21 13:36:16 2022 as: nmap -vv -&#45;reason -Pn -T4 -sV -p 445 &quot;-&#45;script=banner,(nbstat or smb* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -oN /home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/easy/bastion/results/10.10.10.134/scans/tcp445/tcp_445_smb_nmap.txt -oX /home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/easy/bastion/results/10.10.10.134/scans/tcp445/xml/tcp_445_smb_nmap.xml 10.10.10.134 -->
+<nmaprun scanner="nmap" args="nmap -vv -&#45;reason -Pn -T4 -sV -p 445 &quot;-&#45;script=banner,(nbstat or smb* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -oN /home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/easy/bastion/results/10.10.10.134/scans/tcp445/tcp_445_smb_nmap.txt -oX /home/kali/Documents/Repositories/CTF/LearningPlatforms/hackthebox/machines/easy/bastion/results/10.10.10.134/scans/tcp445/xml/tcp_445_smb_nmap.xml 10.10.10.134" start="1653154576" startstr="Sat May 21 13:36:16 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="1" services="445"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1653154576"/>
+<taskend task="NSE" time="1653154576"/>
+<taskbegin task="NSE" time="1653154576"/>
+<taskend task="NSE" time="1653154576"/>
+<taskbegin task="NSE" time="1653154576"/>
+<taskend task="NSE" time="1653154576"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1653154576"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1653154577"/>
+<taskbegin task="SYN Stealth Scan" time="1653154577"/>
+<taskend task="SYN Stealth Scan" time="1653154577" extrainfo="1 total ports"/>
+<taskbegin task="Service scan" time="1653154577"/>
+<taskend task="Service scan" time="1653154583" extrainfo="1 service on 1 host"/>
+<taskbegin task="NSE" time="1653154583"/>
+<taskprogress task="NSE" time="1653154614" percent="90.00" remaining="4" etc="1653154617"/>
+<taskprogress task="NSE" time="1653154644" percent="97.14" remaining="2" etc="1653154646"/>
+<taskend task="NSE" time="1653154660"/>
+<taskbegin task="NSE" time="1653154660"/>
+<taskend task="NSE" time="1653154663"/>
+<taskbegin task="NSE" time="1653154663"/>
+<taskend task="NSE" time="1653154663"/>
+<host starttime="1653154577" endtime="1653154663"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.10.134" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="microsoft-ds" product="Windows Server 2016 Standard 14393 microsoft-ds" ostype="Windows Server 2008 R2 - 2012" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+</ports>
+<hostscript><script id="smb-protocols" output="&#xa;  dialects: &#xa;    NT LM 0.12 (SMBv1) [dangerous, but default]&#xa;    2.0.2&#xa;    2.1&#xa;    3.0&#xa;    3.0.2&#xa;    3.1.1"><table key="dialects">
+<elem>NT LM 0.12 (SMBv1) [dangerous, but default]</elem>
+<elem>2.0.2</elem>
+<elem>2.1</elem>
+<elem>3.0</elem>
+<elem>3.0.2</elem>
+<elem>3.1.1</elem>
+</table>
+</script><script id="smb2-capabilities" output="&#xa;  2.0.2: &#xa;    Distributed File System&#xa;  2.1: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3.0: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3.0.2: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3.1.1: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations"><table key="2.0.2">
+<elem>Distributed File System</elem>
+</table>
+<table key="2.1">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3.0">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3.0.2">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3.1.1">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+</script><script id="smb-os-discovery" output="&#xa;  OS: Windows Server 2016 Standard 14393 (Windows Server 2016 Standard 6.3)&#xa;  Computer name: Bastion&#xa;  NetBIOS computer name: BASTION\x00&#xa;  Workgroup: WORKGROUP\x00&#xa;  System time: 2022-05-21T19:36:57+02:00&#xa;"><elem key="os">Windows Server 2016 Standard 14393</elem>
+<elem key="lanmanager">Windows Server 2016 Standard 6.3</elem>
+<elem key="server">BASTION\x00</elem>
+<elem key="date">2022-05-21T19:36:57+02:00</elem>
+<elem key="fqdn">Bastion</elem>
+<elem key="domain_dns">Bastion</elem>
+<elem key="workgroup">WORKGROUP\x00</elem>
+</script><script id="smb-mbenum" output="&#xa;  ERROR: Call to Browser Service failed with status = 2184"/><script id="smb-security-mode" output="&#xa;  account_used: guest&#xa;  authentication_level: user&#xa;  challenge_response: supported&#xa;  message_signing: disabled (dangerous, but default)"><elem key="account_used">guest</elem>
+<elem key="authentication_level">user</elem>
+<elem key="challenge_response">supported</elem>
+<elem key="message_signing">disabled</elem>
+</script><script id="smb2-time" output="&#xa;  date: 2022-05-21T17:36:56&#xa;  start_date: 2022-05-21T17:35:15"><elem key="date">2022-05-21T17:36:56</elem>
+<elem key="start_date">2022-05-21T17:35:15</elem>
+</script><script id="smb-vuln-ms10-061" output="ERROR: Script execution failed (use -d to debug)"/><script id="smb-system-info" output="ERROR: Script execution failed (use -d to debug)"/><script id="smb2-security-mode" output="&#xa;  3.1.1: &#xa;    Message signing enabled but not required"><table key="3.1.1">
+<elem>Message signing enabled but not required</elem>
+</table>
+</script><script id="smb-print-text" output="false">false</script><script id="smb-enum-sessions" output="&#xa;  &lt;nobody&gt;&#xa;"/></hostscript><times srtt="39705" rttvar="39705" to="198525"/>
+</host>
+<taskbegin task="NSE" time="1653154663"/>
+<taskend task="NSE" time="1653154663"/>
+<taskbegin task="NSE" time="1653154663"/>
+<taskend task="NSE" time="1653154663"/>
+<taskbegin task="NSE" time="1653154663"/>
+<taskend task="NSE" time="1653154663"/>
+<runstats><finished time="1653154663" timestr="Sat May 21 13:37:43 2022" summary="Nmap done at Sat May 21 13:37:43 2022; 1 IP address (1 host up) scanned in 86.58 seconds" elapsed="86.58" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
