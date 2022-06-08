@@ -40,3 +40,16 @@ Start/stop services
 ```cmd
 > net start/stop <name>
 ```
+
+## Permission Misconfig
+Display security configuration of the current user
+```cmd
+> whoami /all
+```
+
+There are a few security configurations that you are looking for. The security implications are [here](https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation/privilege-escalation-abusing-tokens)
+
+SeImpersonatePrivilege is an easy one to exploit with a few exploits at your disposal.
+```cmd
+> .\PrintSpoof.exe -i -c "whoami"
+```
